@@ -1,0 +1,6 @@
+# python files
+__pycache__/
+
+# dataset
+model_training/data/flowers/
+*.jpg
