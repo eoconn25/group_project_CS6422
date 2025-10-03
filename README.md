@@ -24,7 +24,7 @@ This repository is for our _CS6422: Complex Systems Development_ group project, 
 ### Organization
 The Github is organized into the following folders:
 - **model_training:** Framework for the fine-tuning of our classification model
-- **front-end:** The orgiansation of the files related to front-end development
+- **frontend:** The orgiansation of the files related to front-end development
 - Some other folder that the rest of the gang can create for backend/UI/etc. code
 
 ### Database
