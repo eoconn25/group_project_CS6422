@@ -1,3 +1,5 @@
+/* eslint-disable @definitelytyped/no-self-import -- self-imports in module augmentations aren't self-imports */
+/* eslint-disable @definitelytyped/no-declare-current-package -- The module augmentations are optional */
 /**
  * These are types for things that are present in the upcoming React 18 release.
  *
@@ -30,8 +32,3 @@ import React = require("react");
 import ReactDOM = require(".");
 
 export {};
-
-declare module "react" {
-    // eslint-disable-next-line @typescript-eslint/no-empty-interface
-    interface CacheSignal extends AbortSignal {}
-}
