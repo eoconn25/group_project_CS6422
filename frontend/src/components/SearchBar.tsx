@@ -31,7 +31,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   // JSX to render the search bar
   return (
     // flex container to hold input and button and stretch to full width and aligns input and button horizontally
-    <div className="flex w-full">
+    <div className="flex w-full bg-purple rounded-lg shadow margin-2 font-times">
       {/* this is the input field */}
       <input
         // standard text input field
@@ -46,18 +46,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         onKeyDown={handleKeyDown} 
         // tailwind css classes for styling
         // makes input take up all available space, padding, border, rounded left corners, gray border, focus styles
-        className="flex-1 p-2 border rounded-l-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400"
+        className="flex-1 p-2 border rounded-lg border-gray-300 focus:outline-none focus:ring-2"
       />
-      {/* this is the search button */}
-      <button
-        // when clicked, calls onSearch with the current query
-        onClick={() => onSearch(query)}
-        // tailwind css classes for styling
-        // padding, pink background, white text, rounded right corners, hover effect
-        className="px-4 py-2 bg-pink-500 text-white rounded-r-lg hover:bg-pink-600"
-      >
-        Search
-      </button>
     </div>
   );
 }

@@ -90,22 +90,22 @@ export default function ChatLayout() {
     <div className="h-screen w-screen flex">
       {/* Sidebar */}
       {/* has new chat button, past conversations list and account button at bottom */}
-      <div className="w-64 bg-gray-100 p-4 flex flex-col border-r border-gray-300">
+      <div className="w-64 bg-blue p-4 flex flex-col border-r border-gray-300">
         {/* Top Section (New Chat + Past Conversations) */}
         <div className="flex-1 overflow-y-auto">
           <button
             onClick={handleNewChat}
-            className="w-full mb-4 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
+            className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga"
           >
             New Chat
           </button>
           {/* Past Conversations List */}
           {/* maps padt conversations to a table, click on a row to load that conversation */}
-          <h2 className="font-bold text-lg mb-4">Past Conversations</h2>
+          <h2 className="font-calistoga text-lg mb-4">Past Conversations</h2>
           {pastConversations.length > 0 ? (
             <table className="w-full table-auto border-collapse">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-blue font-calistoga">
                   <th className="p-2 border-b w-10">#</th>
                   <th className="p-2 border-b text-left">Name</th>
                 </tr>
@@ -117,8 +117,8 @@ export default function ChatLayout() {
                     className="hover:bg-gray-50 cursor-pointer"
                     onClick={() => setCurrentConversation(chat.messages)}
                   >
-                    <td className="p-2 border-b text-center">{chat.id}</td>
-                    <td className="p-2 border-b truncate">{chat.title}</td>
+                    <td className="p-2 border-b text-cente font-times">{chat.id}</td>
+                    <td className="p-2 border-b truncate font-times">{chat.title}</td>
                   </tr>
                 ))}
               </tbody>
@@ -131,7 +131,7 @@ export default function ChatLayout() {
         {/* Bottom Account Button */}
         <div className="border-t pt-3 mt-3">
           <button
-            className="w-full py-2 rounded-lg font-medium "
+            className="w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black"
           >
             Account Details
           </button>
@@ -139,7 +139,7 @@ export default function ChatLayout() {
       </div>
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col bg-gray-50">
+      <div className="flex-1 flex flex-col bg-pink">
         {/* Scrollable Chat Messages */}
         {/* loops current conversation messages to display each flower info card */
         /* renders flower info card component for each message in the current conversation, empty shows place holder text */}
@@ -149,7 +149,7 @@ export default function ChatLayout() {
               <FlowerInfoCard key={i} flower={msg.flower} imageUrl={msg.imageUrl} />
             ))
           ) : (
-            <p className="text-gray-500 text-center mt-10">
+            <p className="text-gray-500 text-center mt-10 font-calistoga">
               Search or upload an image to start a conversation.
             </p>
           )}
@@ -158,7 +158,7 @@ export default function ChatLayout() {
         </div>
 
         {/* Bottom Input Bar */}
-        <div className="flex w-full border-t bg-white p-4 gap-2">
+        <div className="flex w-full border-t bg-blue p-4 gap-2">
           <div className="flex-1">
             {/* triggers handlesearch in parent component */}
             <SearchBar onSearch={handleSearch} />
@@ -166,7 +166,7 @@ export default function ChatLayout() {
           {/* upload button that triggers hidden file input */}
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
+            className="px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga"
           >
             Upload
           </button>

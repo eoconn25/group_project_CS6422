@@ -1,38 +1,78 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Your existing global styles below */
+/* ------------------------
+   Global styles + Variables
+-------------------------*/
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* 🎨 Colors */
+  --color-purple: #cdb4db;
+  --color-lightBlue: #bde0fe;
+  --color-lightPink: #FFC8DD;
+  --color-pink: #ffafcc;
+  --color-blue: #a2d2ff;
 
+  /* 🖋 Fonts */
+  --font-calistoga: 'Calistoga', serif;
+  --font-oldstandard: 'Old Standard TT', serif;
+  --font-playfair: 'Playfair Display', serif;
+  --font-librebaskerville: 'Libre Baskerville', serif;
+  --font-rubik: 'Rubik', sans-serif;
+  --font-georgia: Georgia, serif;
+  --font-garamond: Garamond, serif;
+  --font-times: 'Times New Roman', serif;
+}
+
+/* ------------------------
+   🖌 Utility Classes
+------------------------- */
+
+/* Background colors */
+.bg-purple { background-color: var(--color-purple) !important; }
+.bg-lightBlue { background-color: var(--color-lightBlue) !important; }
+.bg-lightPink { background-color: var(--color-lightPink) !important; }
+.bg-pink { background-color: var(--color-pink) !important; }
+.bg-blue { background-color: var(--color-blue) !important; }
+
+/* Font families */
+.font-calistoga { font-family: var(--font-calistoga) !important; }
+.font-oldstandard { font-family: var(--font-oldstandard) !important; }
+.font-playfair { font-family: var(--font-playfair) !important; }
+.font-librebaskerville { font-family: var(--font-librebaskerville) !important; }
+.font-rubik { font-family: var(--font-rubik) !important; }
+.font-georgia { font-family: var(--font-georgia) !important; }
+.font-garamond { font-family: var(--font-garamond) !important; }
+.font-times { font-family: var(--font-times) !important; }
+
+/* ------------------------
+   🌍 Global Styles
+------------------------- */
+
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #535bf2;
 }
 
 h1 {
@@ -51,22 +91,28 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ------------------------
+   ☀️ Light mode overrides
+-------------------------*/
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
