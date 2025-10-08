@@ -9,4 +9,4 @@ copy . .
 
 expose 5000
 
-cmd ["python", "run.py"]
+cmd ["python", "app/run.py"]
