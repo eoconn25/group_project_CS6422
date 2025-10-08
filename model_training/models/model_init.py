@@ -11,14 +11,14 @@ class SimpleResnet(nn.module):
         self.backbone = models.resnet50(pretrained=True)
         self.freeze_resnet(self.backbone)
         in_features = self.backbone.fc.in_features
-        self.backbone.fc = nn.Identity()  # outputs the resnet-extraced features
+        self.backbone.fc = nn.Identity()  # outputs the resnet-extracted features
 
         # Simple classifier head
         self.classifier = nn.Sequential(
             #nn.Linear(2048, 512),
             #nn.ReLU(),
             nn.Dropout(0.4),
-            nn.Linear(in_features, num_classes)  # outpus a tuple - one for color, one for flower species
+            nn.Linear(in_features, num_classes)  # output a tuple - one for color, one for flower species
         )
 
     @staticmethod
