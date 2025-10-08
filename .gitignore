@@ -1,5 +1,6 @@
 # python files
 __pycache__/
+*.pt
 
 # dataset
 model_training/data/flowers/
