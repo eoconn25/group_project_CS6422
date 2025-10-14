@@ -9,9 +9,16 @@ interface Flower {
 interface FlowerInfoCardProps {
   flower: Flower;
   imageUrl?: string | null;
+  isSaved?: boolean; // optional flag to indicate if the flower is saved
+  onSaveOrRemove?: (flower: Flower, imageUrl?: string | null) => void; // optional callback with image
 }
 
-export default function FlowerInfoCard({ flower, imageUrl }: FlowerInfoCardProps) {
+export default function FlowerInfoCard({
+  flower,
+  imageUrl,
+  isSaved = false,
+  onSaveOrRemove,
+}: FlowerInfoCardProps) {
   return (
     <div className="max-w-md p-4 m-4 border rounded-2xl shadow bg-lightPink">
       {/* Header */}
@@ -38,6 +45,18 @@ export default function FlowerInfoCard({ flower, imageUrl }: FlowerInfoCardProps
         <p><strong>Care:</strong> {flower.care}</p>
         <p className="mt-3">{flower.llmText}</p>
       </div>
+
+      {/* Save/Remove button */}
+      {onSaveOrRemove && (
+        <div className="flex justify-center mt-4">
+          <button
+            className="px-4 py-2 bg-purple text-black rounded-lg shadow hover:bg-pink-600 transition"
+            onClick={() => onSaveOrRemove(flower, imageUrl)}
+          >
+            {isSaved ? "Remove" : "Save"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
