@@ -1,106 +1,146 @@
-//useState -> mahe component state like the messages and pat convo
-//useRef -> create references to DOM elements like file input and messages end for scrolling
-//useEffect -> perform side effects like auto scrolling to bottom when new message is added
 import { useState, useRef, useEffect } from "react";
-//import child compontnts made earlier and mock data
 import SearchBar from "./SearchBar";
 import FlowerInfoCard from "./FlowerInfoCard";
+import SavedFlowersPage from "./SavedFlowersPage";
 import { mockFlowers } from "../data/mockData";
 
-// represent a single message in the conversation, flow and optional image
 interface ConversationCard {
   flower: typeof mockFlowers[0];
   imageUrl?: string | null;
 }
 
-// represent a past conversation with id, title and array of messages
 interface PastConversation {
   id: number;
   title: string;
   messages: ConversationCard[];
 }
 
-// state and references for chat layout component
+interface SavedFlower {
+  flower: typeof mockFlowers[0];
+  imageUrl?: string | null;
+}
+
 export default function ChatLayout() {
-  // holds the messages in the current conversation
   const [currentConversation, setCurrentConversation] = useState<ConversationCard[]>([]);
-  // store the previous conversations for the sidebar
+  const [activeConversation, setActiveConversation] = useState<ConversationCard[]>([]);
   const [pastConversations, setPastConversations] = useState<PastConversation[]>([]);
-  // unique id for each conversation
   const [conversationId, setConversationId] = useState(1);
+  const [savedFlowers, setSavedFlowers] = useState<SavedFlower[]>([]);
+  const [showSavedPage, setShowSavedPage] = useState(false);
+  const [viewingPastChat, setViewingPastChat] = useState(false);
+  const [activePastChat, setActivePastChat] = useState<PastConversation | null>(null);
+  const [showSaveMessage, setShowSaveMessage] = useState(false);
+  const [showRemoveMessage, setShowRemoveMessage] = useState(false);
 
-  // references to the hidden file input afor image upload
   const fileInputRef = useRef<HTMLInputElement>(null);
-  // referece to the end of the messages list for auto scrolling
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom when new message appears
+  // Auto-scroll
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      const timeout = setTimeout(() => {
+        chatContainerRef.current?.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: "smooth" });
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
   }, [currentConversation]);
 
-  // handle text search
-  // searched mockflowers by name for a exact match, it is case sensitive
-  // when found, add to current conversation
+  // Search flower
   const handleSearch = (query: string) => {
-    const result = mockFlowers.find(
-      (f) => f.name.toLowerCase() === query.toLowerCase()
-    );
+    const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
     if (result) {
-      setCurrentConversation((prev) => [...prev, { flower: result }]);
+      const newMsg = { flower: result };
+      setCurrentConversation((prev) => [...prev, newMsg]);
+      setActiveConversation((prev) => [...prev, newMsg]);
+      setViewingPastChat(false);
+      setShowSavedPage(false);
     }
   };
 
-  // handle image upload
-  //when a file is selected, create a URL for it and add to current conversation with a mock prediction
+  // File upload
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const url = URL.createObjectURL(file);
-      const matchedFlower = mockFlowers[1]; // Mock prediction (Tulip)
-      setCurrentConversation((prev) => [
-        ...prev,
-        { flower: matchedFlower, imageUrl: url },
-      ]);
+      const matchedFlower = mockFlowers[1]; // Mock prediction
+      const newMsg = { flower: matchedFlower, imageUrl: url };
+      setCurrentConversation((prev) => [...prev, newMsg]);
+      setActiveConversation((prev) => [...prev, newMsg]);
+      setViewingPastChat(false);
+      setShowSavedPage(false);
     }
   };
 
-  // handle New Chat
-  // saves current conversation to past conversations with title of the first flower, future can change to query
-  // wont add if empty then wont add
-  // resets current conversation to start a new chat
-  const handleNewChat = () => {
-    if (currentConversation.length > 0) {
-      const firstFlower = currentConversation[0]?.flower?.name || "Untitled Chat";
-      const newEntry: PastConversation = {
-        id: conversationId,
-        title: firstFlower,
-        messages: currentConversation,
-      };
+  // Save or remove flower with notifications
+  const handleSaveOrRemoveFlower = (flower: typeof mockFlowers[0], imageUrl?: string | null) => {
+    setSavedFlowers((prev) => {
+      const existsIndex = prev.findIndex((f) => f.flower.name === flower.name && f.imageUrl === imageUrl);
 
+      if (existsIndex >= 0) {
+        // Remove flower
+        setShowRemoveMessage(true);
+        setTimeout(() => setShowRemoveMessage(false), 2500);
+        return prev.filter((_, i) => i !== existsIndex);
+      }
+
+      // Add flower
+      setShowSaveMessage(true);
+      setTimeout(() => setShowSaveMessage(false), 2500);
+      return [...prev, { flower, imageUrl }];
+    });
+  };
+
+  // New chat
+  const handleNewChat = () => {
+    if (!viewingPastChat && !showSavedPage && currentConversation.length > 0) {
+      const firstFlower = currentConversation[0]?.flower?.name || "Untitled Chat";
+      const newEntry: PastConversation = { id: conversationId, title: firstFlower, messages: currentConversation };
       setPastConversations((prev) => [...prev, newEntry]);
       setConversationId((id) => id + 1);
     }
+    setCurrentConversation([]);
+    setActiveConversation([]);
+    setShowSavedPage(false);
+    setViewingPastChat(false);
+    setActivePastChat(null);
+  };
 
-    setCurrentConversation([]); // reset chat
+  // View past chat
+  const handleViewPastChat = (chat: PastConversation) => {
+    setActiveConversation(currentConversation);
+    setCurrentConversation(chat.messages);
+    setActivePastChat(chat);
+    setViewingPastChat(true);
+    setShowSavedPage(false);
+  };
+
+  // Back to current chat
+  const handleBackToCurrentChat = () => {
+    setCurrentConversation(activeConversation);
+    setViewingPastChat(false);
+    setActivePastChat(null);
+    setShowSavedPage(false);
   };
 
   return (
-    /* JSX Lauout */
     <div className="h-screen w-screen flex">
       {/* Sidebar */}
-      {/* has new chat button, past conversations list and account button at bottom */}
-      <div className="w-64 bg-blue p-4 flex flex-col border-r border-gray-300">
-        {/* Top Section (New Chat + Past Conversations) */}
+      <div className="w-64 bg-blue p-4 flex flex-col border-r border-black">
         <div className="flex-1 overflow-y-auto">
-          <button
-            onClick={handleNewChat}
-            className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga"
-          >
+          <button onClick={handleNewChat} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
             New Chat
           </button>
-          {/* Past Conversations List */}
-          {/* maps padt conversations to a table, click on a row to load that conversation */}
+
+          <button onClick={() => setShowSavedPage(true)} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
+            My Flowers
+          </button>
+
+          {viewingPastChat && !showSavedPage && (
+            <button onClick={handleBackToCurrentChat} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
+              Back to Current Chat
+            </button>
+          )}
+
           <h2 className="font-calistoga text-lg mb-4">Past Conversations</h2>
           {pastConversations.length > 0 ? (
             <table className="w-full table-auto border-collapse">
@@ -114,71 +154,71 @@ export default function ChatLayout() {
                 {pastConversations.map((chat) => (
                   <tr
                     key={chat.id}
-                    className="hover:bg-gray-50 cursor-pointer"
-                    onClick={() => setCurrentConversation(chat.messages)}
+                    className={`hover:bg-lightBlue cursor-pointer ${activePastChat?.id === chat.id ? "bg-lightBlue" : ""}`}
+                    onClick={() => handleViewPastChat(chat)}
                   >
-                    <td className="p-2 border-b text-cente font-times">{chat.id}</td>
+                    <td className="p-2 border-b text-center font-times">{chat.id}</td>
                     <td className="p-2 border-b truncate font-times">{chat.title}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <p className="text-gray-500 text-sm">No past conversations yet.</p>
+            <p className="text-gray-500 text-sm font-calistoga">No past conversations yet.</p>
           )}
         </div>
 
-        {/* Bottom Account Button */}
-        <div className="border-t pt-3 mt-3">
-          <button
-            className="w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black"
-          >
-            Account Details
-          </button>
-        </div>
+        <button className="w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black">Log Out</button>
       </div>
 
-      {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col bg-pink">
-        {/* Scrollable Chat Messages */}
-        {/* loops current conversation messages to display each flower info card */
-        /* renders flower info card component for each message in the current conversation, empty shows place holder text */}
-        <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4">
-          {currentConversation.length > 0 ? (
-            currentConversation.map((msg, i) => (
-              <FlowerInfoCard key={i} flower={msg.flower} imageUrl={msg.imageUrl} />
-            ))
-          ) : (
-            <p className="text-gray-500 text-center mt-10 font-calistoga">
-              Search or upload an image to start a conversation.
-            </p>
-          )}
-          {/*ensures auto scroll to bottom */}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Bottom Input Bar */}
-        <div className="flex w-full border-t bg-blue p-4 gap-2">
-          <div className="flex-1">
-            {/* triggers handlesearch in parent component */}
-            <SearchBar onSearch={handleSearch} />
+      {/* Main Area */}
+      <div className="flex-1 flex flex-col bg-pink relative">
+        {/* Notifications */}
+        {showSaveMessage && (
+          <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+            ✅ Saved successfully!
           </div>
-          {/* upload button that triggers hidden file input */}
-          <button
-            onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga"
-          >
-            Upload
-          </button>
-          {/* hidden file input for image upload, handles actual file selection */}
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            className="hidden"
-          />
-        </div>
+        )}
+        {showRemoveMessage && (
+          <div className="absolute top-4 right-4 bg-red-400 text-white px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+            ❌ Removed successfully!
+          </div>
+        )}
+
+        {!showSavedPage ? (
+          <>
+            <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" ref={chatContainerRef}>
+              {currentConversation.length > 0 ? (
+                currentConversation.map((msg, i) => (
+                  <FlowerInfoCard
+                    key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
+                    flower={msg.flower}
+                    imageUrl={msg.imageUrl}
+                    onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
+                  />
+                ))
+              ) : (
+                <p className="text-gray-500 text-center mt-10 font-calistoga">
+                  Search or upload an image to start a conversation.
+                </p>
+              )}
+            </div>
+
+            {!viewingPastChat && (
+              <div className="flex w-full border-t bg-blue p-4 gap-2">
+                <div className="flex-1">
+                  <SearchBar onSearch={handleSearch} />
+                </div>
+                <button onClick={() => fileInputRef.current?.click()} className="px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
+                  Upload
+                </button>
+                <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
+              </div>
+            )}
+          </>
+        ) : (
+          <SavedFlowersPage savedFlowers={savedFlowers} onBack={() => setShowSavedPage(false)} onRemove={handleSaveOrRemoveFlower} />
+        )}
       </div>
     </div>
   );
