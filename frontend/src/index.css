@@ -117,3 +117,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* ------------------------
+   ✨ Save Confirmation Animation
+-------------------------*/
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.animate-fadeInOut {
+  animation: fadeInOut 2.5s ease-in-out forwards;
+}
