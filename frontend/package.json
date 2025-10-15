@@ -6,7 +6,7 @@
   "scripts": {
 		"start": "npx vite preview --host 0.0.0.0 --port 3000",
     "dev": "vite",
-    "build": "npx tsc -b && vite build",
+    "build": "npx tsc -b && npx vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "tailwind:init": "tailwindcss init -p"
