@@ -1,6 +1,9 @@
 
 class Config():
     def __init__(self):
+        self.device = 'cuda'
+        self.seed = 25
+
         # model parameters
         self.num_classes = 2  # color and species
 
@@ -13,6 +16,9 @@ class Config():
         # dataset params
         self.train_dir = 'n'
         self.test_dir = 'n'
+        self.main_csv = 'data/images.csv'
 
         # training parameters
+        self.n_folds = 5
         self.epochs = 50
+

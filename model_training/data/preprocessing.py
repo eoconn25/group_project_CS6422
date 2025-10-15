@@ -1,2 +1,0 @@
-
-# get patches of images
