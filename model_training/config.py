@@ -1,24 +1,21 @@
 
 class Config():
     def __init__(self):
-        self.device = 'cuda'
         self.seed = 25
+        self.device = 'cuda'
 
         # model parameters
-        self.num_classes = 2  # color and species
-
-        # preprocessing parameters
-        self.patch_size = 0
-        self.stride = 0
-        self.threshold = 0
-        self.num_patches0 = 0
+        self.num_species = 16
+        self.num_colors = 8
 
         # dataset params
-        self.train_dir = 'n'
-        self.test_dir = 'n'
-        self.main_csv = 'data/images.csv'
+        self.main_csv = 'data/flower_colors_labeled.csv'
+        self.val_split = 0.3
 
         # training parameters
-        self.n_folds = 5
         self.epochs = 50
+        self.batch_size = 16
+        self.num_workers = 4
+        self.lr = 0.001
+        self.weight_decay = 1e-5
 

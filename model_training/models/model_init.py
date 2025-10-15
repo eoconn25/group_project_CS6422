@@ -1,24 +1,28 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 from torchvision import models
 
 # resnet
-class SimpleResnet(nn.module):
-    def __init__(self, num_classes):
+class SimpleResnet(nn.Module):
+    def __init__(self, num_species, num_colors):
         super().__init__()
-        # Load pretrained ResNet50
+        # load pretrained ResNet50
         self.backbone = models.resnet50(pretrained=True)
         self.freeze_resnet(self.backbone)
+
+        # change classification head with the identity
         in_features = self.backbone.fc.in_features
         self.backbone.fc = nn.Identity()  # outputs the resnet-extracted features
 
-        # Simple classifier head
-        self.classifier = nn.Sequential(
-            #nn.Linear(2048, 512),
-            #nn.ReLU(),
+        # classifier head for species
+        self.species_classifier = nn.Sequential(
             nn.Dropout(0.4),
-            nn.Linear(in_features, num_classes)  # output a tuple - one for color, one for flower species
+            nn.Linear(in_features, num_species)
+        )
+        # classifier head for, you guessed it, color
+        self.color_classifier = nn.Sequential(
+            nn.Dropout(0.4),
+            nn.Linear(in_features, num_colors)
         )
 
     @staticmethod
@@ -28,17 +32,10 @@ class SimpleResnet(nn.module):
 
     def forward(self, x):
         feats = self.backbone(x)  # gets (batch, 2048)
-        out = self.classifier(feats)  # gets tuple of classification
-        '''feats = self.backbone.conv1(x)
-        feats = self.backbone.bn1(feats)
-        feats = self.backbone.relu(feats)
-        feats = self.backbone.maxpool(feats)
-        feats = self.backbone.layer1(feats)
-        feats = self.backbone.layer2(feats)
-        feats = self.backbone.layer3(feats)
-        feats = self.backbone.layer4(feats)'''    
-        return out
+        species_logits = self.species_classifier(feats)  # gets classifications
+        color_logits = self.color_classifier(feats)
+        return species_logits, color_logits
     
 
 def get_model(config):
-    return SimpleResnet(config.num_classes)
+    return SimpleResnet(config.num_species, config.num_colors)
