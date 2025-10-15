@@ -5,3 +5,7 @@ __pycache__/
 # dataset
 model_training/data/flowers/
 *.jpg
+
+# React build artifacts
+node_modules/
+dist/
