@@ -1,8 +1,13 @@
-from flask import Flask
+from flask import Flask, jsonify
+from flask_cors import CORS
 import sqlite3
 import os
 
 app = Flask(__name__)
+# This is for production
+# CORS(app, resources={r"/api/*": {"origins": "http://frontend:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
 db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
 def init_db():
@@ -27,7 +32,7 @@ def init_db():
 # Home route
 @app.route('/')
 def home():
-    return 'Placeholder'
+    return jsonify(message = "Hi")
 
 # Upload route
 @app.route('/upload')
