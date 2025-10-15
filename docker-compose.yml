@@ -10,7 +10,7 @@ services:
       - FLASK_ENV=development
 
 
-  react-app:
+  frontend:
     build:
       context: ./frontend
     ports:
