@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
@@ -32,7 +32,7 @@ def init_db():
 # Home route
 @app.route('/')
 def home():
-    return 'Placeholder'
+    return jsonify(message = "Hi")
 
 # Upload route
 @app.route('/upload')
