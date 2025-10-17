@@ -1,9 +1,9 @@
 # python files
 __pycache__/
-*.pt
 
 # dataset
 model_training/data/flowers/
+model_training/data/masks/
 *.jpg
 
 # React build artifacts
