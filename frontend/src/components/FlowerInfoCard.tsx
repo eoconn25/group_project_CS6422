@@ -4,13 +4,14 @@ interface Flower {
   symbolism: string;
   care: string;
   llmText: string;
+  imageUrl?: string;
 }
 
 interface FlowerInfoCardProps {
   flower: Flower;
   imageUrl?: string | null;
-  isSaved?: boolean; // optional flag to indicate if the flower is saved
-  onSaveOrRemove?: (flower: Flower, imageUrl?: string | null) => void; // optional callback with image
+  isSaved?: boolean;
+  onSaveOrRemove?: (flower: Flower, imageUrl?: string | null) => void;
 }
 
 export default function FlowerInfoCard({
@@ -19,34 +20,32 @@ export default function FlowerInfoCard({
   isSaved = false,
   onSaveOrRemove,
 }: FlowerInfoCardProps) {
+  const showPrediction = imageUrl && imageUrl !== flower.imageUrl;
+
   return (
     <div className="max-w-md p-4 m-4 border rounded-2xl shadow bg-lightPink">
-      {/* Header */}
       <h2 className="text-2xl font-bold font-calistoga">{flower.name}</h2>
       <p className="italic text-gray-600 font-times">{flower.scientificName}</p>
 
-      {/* Optional uploaded image */}
-      {imageUrl && (
-        <div className="mt-3 flex flex-col items-center">
-          <img
-            src={imageUrl}
-            alt="Uploaded flower"
-            className="max-w-[250px] max-h-[250px] object-contain rounded-lg shadow"
-          />
+      <div className="mt-3 flex flex-col items-center">
+        <img
+          src={flower.imageUrl || "/placeholder.png"}
+          alt={flower.name}
+          className="max-w-[250px] max-h-[250px] object-contain rounded-lg shadow"
+        />
+        {showPrediction && (
           <p className="text-gray-600 font-times text-sm mt-2">
             Mock prediction: <strong>{flower.name} (92%)</strong>
           </p>
-        </div>
-      )}
+        )}
+      </div>
 
-      {/* Text content */}
       <div className="mt-3 space-y-1 font-georgia">
         <p><strong>Symbolism:</strong> {flower.symbolism}</p>
         <p><strong>Care:</strong> {flower.care}</p>
         <p className="mt-3">{flower.llmText}</p>
       </div>
 
-      {/* Save/Remove button */}
       {onSaveOrRemove && (
         <div className="flex justify-center mt-4">
           <button
