@@ -4,13 +4,15 @@ export const mockFlowers = [
     scientificName: "Rosa",
     symbolism: "Love, passion, romance",
     care: "Water every 2-3 days, full sunlight",
-    llmText: "Roses are timeless in bouquets, symbolizing deep emotions and affection."
+    llmText: "Roses are timeless in bouquets, symbolizing deep emotions and affection.",
+    imageUrl: "/rose.png"
   },
   {
     name: "Tulip",
     scientificName: "Tulipa",
     symbolism: "Perfect love, elegance, grace",
     care: "Water weekly, indirect sunlight",
-    llmText: "Tulips are perfect for spring bouquets, often seen as symbols of renewal."
+    llmText: "Tulips are perfect for spring bouquets, often seen as symbols of renewal.",
+    imageUrl: "/tulip.png"
   }
 ];

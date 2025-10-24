@@ -9,7 +9,7 @@ interface ConversationCard {
   imageUrl?: string | null;
 }
 
-interface PastConversation {
+interface ConversationThread {
   id: number;
   title: string;
   messages: ConversationCard[];
@@ -21,154 +21,131 @@ interface SavedFlower {
 }
 
 export default function ChatLayout() {
-  const [currentConversation, setCurrentConversation] = useState<ConversationCard[]>([]);
-  const [activeConversation, setActiveConversation] = useState<ConversationCard[]>([]);
-  const [pastConversations, setPastConversations] = useState<PastConversation[]>([]);
-  const [conversationId, setConversationId] = useState(1);
+  const [conversations, setConversations] = useState<ConversationThread[]>([]);
+  const [activeId, setActiveId] = useState<number | null>(null);
   const [savedFlowers, setSavedFlowers] = useState<SavedFlower[]>([]);
   const [showSavedPage, setShowSavedPage] = useState(false);
-  const [viewingPastChat, setViewingPastChat] = useState(false);
-  const [activePastChat, setActivePastChat] = useState<PastConversation | null>(null);
   const [showSaveMessage, setShowSaveMessage] = useState(false);
   const [showRemoveMessage, setShowRemoveMessage] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  const activeConversation = conversations.find((c) => c.id === activeId);
 
   // Auto-scroll
   useEffect(() => {
-    if (chatContainerRef.current) {
-      const timeout = setTimeout(() => {
-        chatContainerRef.current?.scrollTo({ top: chatContainerRef.current.scrollHeight, behavior: "smooth" });
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [currentConversation]);
+    if (!chatRef.current) return;
+    const timeout = setTimeout(() => {
+      chatRef.current?.scrollTo({ top: chatRef.current.scrollHeight, behavior: "smooth" });
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, [activeConversation?.messages]);
 
-  // Search flower
+  // Append message
+  const appendMessage = (msg: ConversationCard) => {
+    if (!activeId) {
+      const newId = Date.now();
+      setConversations((prev) => [...prev, { id: newId, title: msg.flower.name, messages: [msg] }]);
+      setActiveId(newId);
+    } else {
+      setConversations((prev) =>
+        prev.map((conv) =>
+          conv.id === activeId
+            ? {
+                ...conv,
+                title: conv.title === "Untitled Chat" ? msg.flower.name : conv.title,
+                messages: [...conv.messages, msg],
+              }
+            : conv
+        )
+      );
+    }
+  };
+
+  // Search
   const handleSearch = (query: string) => {
     const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    if (result) {
-      const newMsg = { flower: result };
-      setCurrentConversation((prev) => [...prev, newMsg]);
-      setActiveConversation((prev) => [...prev, newMsg]);
-      setViewingPastChat(false);
-      setShowSavedPage(false);
-    }
+    if (!result) return;
+    appendMessage({ flower: result });
+    setShowSavedPage(false);
   };
 
-  // File upload
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Upload
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      const matchedFlower = mockFlowers[1]; // Mock prediction
-      const newMsg = { flower: matchedFlower, imageUrl: url };
-      setCurrentConversation((prev) => [...prev, newMsg]);
-      setActiveConversation((prev) => [...prev, newMsg]);
-      setViewingPastChat(false);
-      setShowSavedPage(false);
-    }
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const matchedFlower = mockFlowers[1]; // mock prediction
+    appendMessage({ flower: matchedFlower, imageUrl: url });
+    setShowSavedPage(false);
   };
 
-  // Save or remove flower with notifications
+  // Save/remove flower
   const handleSaveOrRemoveFlower = (flower: typeof mockFlowers[0], imageUrl?: string | null) => {
     setSavedFlowers((prev) => {
-      const existsIndex = prev.findIndex((f) => f.flower.name === flower.name && f.imageUrl === imageUrl);
-
-      if (existsIndex >= 0) {
-        // Remove flower
+      const idx = prev.findIndex((f) => f.flower.name === flower.name); // check by name only
+      if (idx >= 0) {
         setShowRemoveMessage(true);
         setTimeout(() => setShowRemoveMessage(false), 2500);
-        return prev.filter((_, i) => i !== existsIndex);
+        return prev.filter((_, i) => i !== idx);
       }
-
-      // Add flower
       setShowSaveMessage(true);
       setTimeout(() => setShowSaveMessage(false), 2500);
       return [...prev, { flower, imageUrl }];
     });
   };
 
-  // New chat
+  // Check if flower is saved
+  const isFlowerSaved = (flowerName: string) => {
+    return savedFlowers.some((f) => f.flower.name === flowerName);
+  };
+
+  // New Chat
   const handleNewChat = () => {
-    if (!viewingPastChat && !showSavedPage && currentConversation.length > 0) {
-      const firstFlower = currentConversation[0]?.flower?.name || "Untitled Chat";
-      const newEntry: PastConversation = { id: conversationId, title: firstFlower, messages: currentConversation };
-      setPastConversations((prev) => [...prev, newEntry]);
-      setConversationId((id) => id + 1);
-    }
-    setCurrentConversation([]);
-    setActiveConversation([]);
-    setShowSavedPage(false);
-    setViewingPastChat(false);
-    setActivePastChat(null);
-  };
-
-  // View past chat
-  const handleViewPastChat = (chat: PastConversation) => {
-    setActiveConversation(currentConversation);
-    setCurrentConversation(chat.messages);
-    setActivePastChat(chat);
-    setViewingPastChat(true);
-    setShowSavedPage(false);
-  };
-
-  // Back to current chat
-  const handleBackToCurrentChat = () => {
-    setCurrentConversation(activeConversation);
-    setViewingPastChat(false);
-    setActivePastChat(null);
+    const newId = Date.now();
+    setConversations((prev) => [...prev, { id: newId, title: "Untitled Chat", messages: [] }]);
+    setActiveId(newId);
     setShowSavedPage(false);
   };
 
   return (
-    <div className="h-screen w-screen flex">
+    <div className="flex h-screen w-screen">
       {/* Sidebar */}
       <div className="w-64 bg-blue p-4 flex flex-col border-r border-black">
-        <div className="flex-1 overflow-y-auto">
-          <button onClick={handleNewChat} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
-            New Chat
-          </button>
+        <button onClick={handleNewChat} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+          New Chat
+        </button>
 
-          <button onClick={() => setShowSavedPage(true)} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
-            My Flowers
-          </button>
+        <button
+          onClick={() => setShowSavedPage(true)}
+          className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+        >
+          My Flowers
+        </button>
 
-          {viewingPastChat && !showSavedPage && (
-            <button onClick={handleBackToCurrentChat} className="w-full mb-4 px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
-              Back to Current Chat
-            </button>
-          )}
-
-          <h2 className="font-calistoga text-lg mb-4">Past Conversations</h2>
-          {pastConversations.length > 0 ? (
-            <table className="w-full table-auto border-collapse">
-              <thead>
-                <tr className="bg-blue font-calistoga">
-                  <th className="p-2 border-b w-10">#</th>
-                  <th className="p-2 border-b text-left">Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pastConversations.map((chat) => (
-                  <tr
-                    key={chat.id}
-                    className={`hover:bg-lightBlue cursor-pointer ${activePastChat?.id === chat.id ? "bg-lightBlue" : ""}`}
-                    onClick={() => handleViewPastChat(chat)}
-                  >
-                    <td className="p-2 border-b text-center font-times">{chat.id}</td>
-                    <td className="p-2 border-b truncate font-times">{chat.title}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <h2 className="font-calistoga text-lg mb-2">Conversations</h2>
+        <div className="flex-1 overflow-y-auto space-y-1">
+          {conversations.length > 0 ? (
+            conversations.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => setActiveId(c.id)}
+                className={`w-full text-left px-3 py-1 rounded-md font-times transition ${
+                  activeId === c.id ? "bg-lightBlue font-bold" : "bg-blue hover:bg-lightBlue"
+                }`}
+              >
+                {c.title}
+              </button>
+            ))
           ) : (
-            <p className="text-gray-500 text-sm font-calistoga">No past conversations yet.</p>
+            <p className="text-gray-500 text-sm font-calistoga">No conversations yet.</p>
           )}
         </div>
 
-        <button className="w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black">Log Out</button>
+        <button className="mt-auto w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black">
+          Log Out
+        </button>
       </div>
 
       {/* Main Area */}
@@ -187,13 +164,14 @@ export default function ChatLayout() {
 
         {!showSavedPage ? (
           <>
-            <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" ref={chatContainerRef}>
-              {currentConversation.length > 0 ? (
-                currentConversation.map((msg, i) => (
+            <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" ref={chatRef}>
+              {activeConversation?.messages.length ? (
+                activeConversation.messages.map((msg, i) => (
                   <FlowerInfoCard
                     key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
                     flower={msg.flower}
                     imageUrl={msg.imageUrl}
+                    isSaved={isFlowerSaved(msg.flower.name)}
                     onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
                   />
                 ))
@@ -204,20 +182,26 @@ export default function ChatLayout() {
               )}
             </div>
 
-            {!viewingPastChat && (
-              <div className="flex w-full border-t bg-blue p-4 gap-2">
-                <div className="flex-1">
-                  <SearchBar onSearch={handleSearch} />
-                </div>
-                <button onClick={() => fileInputRef.current?.click()} className="px-4 py-2 bg-lightBlue text-black rounded-lg font-calistoga">
-                  Upload
-                </button>
-                <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
+            {/* Search + Upload */}
+            <div className="flex p-4 gap-2 bg-blue">
+              <div className="flex-1">
+                <SearchBar onSearch={handleSearch} />
               </div>
-            )}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+              >
+                Upload
+              </button>
+              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
+            </div>
           </>
         ) : (
-          <SavedFlowersPage savedFlowers={savedFlowers} onBack={() => setShowSavedPage(false)} onRemove={handleSaveOrRemoveFlower} />
+          <SavedFlowersPage
+            savedFlowers={savedFlowers}
+            onBack={() => setShowSavedPage(false)}
+            onRemove={handleSaveOrRemoveFlower}
+          />
         )}
       </div>
     </div>
