@@ -25,6 +25,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     if (e.key === "Enter") {
       //calles on search with the typed query
       onSearch(query);
+      //clear the input field by resetting query state to empty string
       setQuery(""); 
       
     }
