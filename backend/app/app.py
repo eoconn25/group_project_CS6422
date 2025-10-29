@@ -4,9 +4,10 @@ import sqlite3
 import os
 
 app = Flask(__name__)
+app.run(host="0.0.0.0", port=5001)
 # This is for production
-# CORS(app, resources={r"/api/*": {"origins": "http://frontend:3000"}})
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"/api/*": {"origins": "http://frontend:5173"}})
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 
 db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 

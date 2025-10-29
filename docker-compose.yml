@@ -3,18 +3,19 @@ services:
     build:
       context: ./backend
     ports:
-      - "5000:5000"
+      - "5001:5001"
     volumes:
       - ./backend:/app
     environment:
       - FLASK_ENV=development
+      - FLASK_RUN_PORT=5001
 
 
   frontend:
     build:
       context: ./frontend
     ports:
-      - "3000:3000"
+      - "5173:5173"
     #volumes:
       #- ./frontend:/app
     command: npm start
