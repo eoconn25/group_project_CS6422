@@ -3,7 +3,7 @@ export const mockFlowers = [
     name: "Rose",
     color: "Red",
     scientificName: "Rosa",
-    symbolism: "Grace, admiration, gratitude",
+    symbolism: "Love, passion, romance",
     care: "full sun, fertile well-drained soil, consistent watering, and occasional pruning",
     llmText: "Roses are timeless in bouquets, symbolizing deep emotions and affection.",
     imageUrl: "/red_rose.png"
@@ -12,7 +12,7 @@ export const mockFlowers = [
     name: "Rose",
     color: "Pink",
     scientificName: "Rosa",
-    symbolism: "Love, passion, romance",
+    symbolism: "Grace, admiration, gratitude",
     care: "full sun, fertile well-drained soil, consistent watering, and occasional pruning",
     llmText: "Often used in bouquets for celebrations, thank-you gifts, or gentle romantic gestures.",
     imageUrl: "/pink_rose.jpg"
