@@ -1,6 +1,12 @@
-from python:3.13
+from python:3.10
 
 workdir /app
+
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
 
 copy requirements.txt ./
 run pip install --no-cache-dir -r requirements.txt

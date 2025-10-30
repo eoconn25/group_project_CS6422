@@ -7,7 +7,7 @@ from torchvision import transforms
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=UserWarning)
-from model_init import get_model
+from trained_model.model_init import get_model
 
 
 class ClassifyFlower:

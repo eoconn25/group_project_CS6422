@@ -2,9 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sqlite3
 import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trained_model.cnn_inference import ClassifyFlower
 from trained_model.model_init import get_model
-from werkzeug.utils import secure_filename
+#from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.run(host="0.0.0.0", port=5001)
@@ -13,7 +15,6 @@ app.run(host="0.0.0.0", port=5001)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 
 db_path = os.path.join(os.path.dirname(__file__), 'database.db')
-
 
 # Directory for temporary picture uploads
 PHOTO_UPLOAD_FOLDER = "uploads"
@@ -62,15 +63,16 @@ def predict():
     if file.filename == '':
         return jsonify({'error': 'Empty filename'}), 400
 
+
     # Save uploaded file temporarily
-    filename = secure_filename(file.filename)
+    filename = 'test_img'
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
 
     try:
         # Run your model
-        result_param1, result_param2 = model.clfr.predict(filepath)
+        result_param1, result_param2 = model.predict(filepath)
         print("Model output:", result_param1, result_param2)
 
         # Return as JSON
