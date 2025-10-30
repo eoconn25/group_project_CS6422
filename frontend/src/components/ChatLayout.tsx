@@ -111,10 +111,18 @@ export default function ChatLayout() {
   // creates a URL for the uploaded image and appends a message with a mock predicted flower (second flower in mock data)
   // then goes back to the main chat view
   // make async to talk to AI
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (!file) return;
+  //   const url = URL.createObjectURL(file);
+  //   const matchedFlower = mockFlowers[1]; // mock prediction
+  //   appendMessage({ flower: matchedFlower, imageUrl: url });
+  //   setShowSavedPage(false);
+  // };
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("entered handleUpload")
     
-    const file = e.target.files?.[2];
+    const file = e.target.files?.[0];
     console.log("Selected:", file);
 
 
@@ -125,40 +133,40 @@ export default function ChatLayout() {
 
     // new from here
     // Prepare data for backend
-    // const formData = new FormData();
-    // formData.append("image", file);
-    // console.log("form data: ", formData)
+    const formData = new FormData();
+    formData.append("image", file);
+    console.log("form data: ", formData)
 
-    // try {
-    // console.log("Sending image to backend...");
-    // const response = await fetch("http://localhost:5001/predict", {
-    //   method: "POST",
-    //   body: formData,
-    // });
+    try {
+    console.log("Sending image to backend...");
+    const response = await fetch("http://localhost:5001/predict", {
+      method: "POST",
+      body: formData,
+    });
 
-    // if (!response.ok) {
-    //   console.error("Server returned error:", response.status);
-    //   return;
-    // }
+    if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
 
-    // const data = await response.json();
-    // console.log("Backend response:", data);
+    const data = await response.json();
+    console.log("Backend response:", data);
 
-    // // data.prediction should come from Flask
-    // // const matchedFlower = data.prediction || "unknown"; // this assumes data has "prediction" property
-    // const matchedFlower = mockFlowers.find(f => f.name === data.prediction) || mockFlowers[0];
-    // console.log("matchedFlower: ", matchedFlower)
+    // data.prediction should come from Flask
+    // const matchedFlower = data.prediction || "unknown"; // this assumes data has "prediction" property
+    const matchedFlower = mockFlowers.find(f => f.name === data.species) || mockFlowers[0];
+    console.log("matchedFlower: ", matchedFlower)
 
-    // // Update your UI / message list
-    // appendMessage({ flower: matchedFlower, imageUrl: url });
+    // Update your UI / message list
+    appendMessage({ flower: matchedFlower, imageUrl: url });
 
-    // } catch (error) {
-    //   console.error("Error during upload:", error);
-    // }
+    } catch (error) {
+      console.error("Error during upload:", error);
+    }
 
     // old version
-    const matchedFlower = mockFlowers[1]; // mock prediction
-    appendMessage({ flower: matchedFlower, imageUrl: url });
+    // const matchedFlower = mockFlowers[2]; // mock prediction
+    // appendMessage({ flower: matchedFlower, imageUrl: url });
     // setShowSavedPage(false);  // commented this for now
   };
 
@@ -209,7 +217,7 @@ export default function ChatLayout() {
         </button>
 
         {/* button to view saved flowers */}
-        {/* thhe styling is the same as the new chat button*/}
+        {/* the styling is the same as the new chat button*/}
         <button
           onClick={() => setShowSavedPage(true)}
           className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
@@ -235,7 +243,7 @@ export default function ChatLayout() {
                 // the current active convo will have a different style
                 // which is a light blue background and bold font and a full width, text aligned left, padding on the left 3 and right is 1, rounded corners, times font and a transition effect
                 className={`w-full text-left px-3 py-1 rounded-md font-times transition ${
-                  // when it is hoovered it will change to light blue
+                  // when it is hovered over it will change to light blue
                   activeId === c.id ? "bg-lightBlue font-bold" : "bg-blue hover:bg-lightBlue"
                 }`}
               >
