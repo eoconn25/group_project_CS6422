@@ -2,6 +2,7 @@
 // has name and the scientific name, what it symblises, what its care instructions are, llm generated text, and optional image url
 interface Flower {
   name: string;
+  color: string;
   scientificName: string;
   symbolism: string;
   care: string;
@@ -35,7 +36,7 @@ export default function FlowerInfoCard({
     // the width size is limited to medium, has a padding and border, there is a border with rounded corners and a drop shadow, background is a lightpink
     <div className="max-w-md p-4 m-4 border rounded-2xl shadow bg-lightPink">
       {/* flower name is displaed with the text size 2xl, and be bold in a calistoga font */}
-      <h2 className="text-2xl font-bold font-calistoga">{flower.name}</h2>
+      <h2 className="text-2xl font-bold font-calistoga">{flower.color} {flower.name}</h2>
       {/*this is the scinetific name with italic font that is times and also gray */}
       <p className="italic text-gray-600 font-times">{flower.scientificName}</p>
 

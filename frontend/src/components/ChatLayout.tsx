@@ -78,7 +78,7 @@ export default function ChatLayout() {
   const appendMessage = (msg: ConversationCard) => {
     if (!activeId) {
       const newId = Date.now();
-      setConversations((prev) => [...prev, { id: newId, title: msg.flower.name, messages: [msg] }]);
+      setConversations((prev) => [...prev, { id: newId, title: `${msg.flower.color} ${msg.flower.name}`, messages: [msg] }]);
       setActiveId(newId);
     } else {
       setConversations((prev) =>
@@ -169,8 +169,18 @@ export default function ChatLayout() {
     console.log("Backend response:", data); // {color, species}
 
     if (data.species) {
-      // const matchedFlower = data.prediction || "unknown"; // this assumes data has "prediction" property
-      const matchedFlower = mockFlowers.find(f => f.name.toLowerCase() === data.species) || mockFlowers[0];
+      // Match by both name AND color (case-insensitive)
+      const matchedFlower =
+        mockFlowers.find( // find flower with both correct name and color
+            f =>
+              f.name.toLowerCase() === data.species.toLowerCase() &&
+              f.color.toLowerCase() === data.color.toLowerCase()
+          ) ||
+        // fallback: try matching by name only
+        mockFlowers.find(f => f.name.toLowerCase() === data.species.toLowerCase()) ||
+        // final fallback: first element
+        mockFlowers[0];
+        
       console.log("matchedFlower: ", matchedFlower)
 
       // Update your UI / message list
