@@ -6,13 +6,18 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trained_model.cnn_inference import ClassifyFlower
 from trained_model.model_init import get_model
+import traceback
 #from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.run(host="0.0.0.0", port=5001)
+# app.run(host="0.0.0.0", port=5001) # commented for now
+
 # This is for production
 # CORS(app, resources={r"/api/*": {"origins": "http://frontend:5173"}})
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+# old dev version
+# CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+# new dev version
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
@@ -21,7 +26,7 @@ PHOTO_UPLOAD_FOLDER = "uploads"
 os.makedirs(PHOTO_UPLOAD_FOLDER, exist_ok=True)
 
 # Load your CNN model
-model = ClassifyFlower(get_model, 'trained_model/test1.2_best_model.pt', "trained_model/flower_segmentation_model.pt")
+model = ClassifyFlower(get_model, 'trained_model/test1.2_best_model.pt', "trained_model/flowers_segmentation_model.pt")
 
 def init_db():
     conn = sqlite3.connect(db_path)
@@ -69,6 +74,10 @@ def predict():
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
+    
+    # Debugging logs
+    print(f"Model: {model}")
+    print(f"File exists? {os.path.exists(filepath)}")
 
     try:
         # Run your model
@@ -82,8 +91,13 @@ def predict():
         })
 
     except Exception as e:
-        print("Prediction error:", str(e))
-        return jsonify({'error': str(e)}), 500
+        tb = traceback.format_exc()
+        print("Prediction error:", tb)
+        # Send traceback back to frontend for debugging
+        return jsonify({
+            'error': str(e),
+            'traceback': tb
+        }), 500
 
     finally:
         # Clean up temp file (optional)

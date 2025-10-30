@@ -48,6 +48,8 @@ export default function ChatLayout() {
   const [showSaveMessage, setShowSaveMessage] = useState(false);
   //controls the display of remove notifications
   const [showRemoveMessage, setShowRemoveMessage] = useState(false);
+  //control the display of upload error message
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   //references for file input and chat container (scrollable area)
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -139,10 +141,24 @@ export default function ChatLayout() {
 
     try {
     console.log("Sending image to backend...");
-    const response = await fetch("http://localhost:5001/predict", {
+    // const response = await fetch("http://localhost:5001/predict", {
+    //   method: "POST",
+    //   body: formData,
+    // });
+
+    const API_BASE =
+      window.location.hostname === "localhost"
+        ? "http://localhost:5001"
+        : "http://backend:5001";
+
+    console.log("API_BASE: ", API_BASE);
+
+    const response = await fetch(`${API_BASE}/predict`, {
       method: "POST",
       body: formData,
     });
+
+
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
@@ -150,15 +166,20 @@ export default function ChatLayout() {
     }
 
     const data = await response.json();
-    console.log("Backend response:", data);
+    console.log("Backend response:", data); // {color, species}
 
-    // data.prediction should come from Flask
-    // const matchedFlower = data.prediction || "unknown"; // this assumes data has "prediction" property
-    const matchedFlower = mockFlowers.find(f => f.name === data.species) || mockFlowers[0];
-    console.log("matchedFlower: ", matchedFlower)
+    if (data.species) {
+      // const matchedFlower = data.prediction || "unknown"; // this assumes data has "prediction" property
+      const matchedFlower = mockFlowers.find(f => f.name.toLowerCase() === data.species) || mockFlowers[0];
+      console.log("matchedFlower: ", matchedFlower)
 
-    // Update your UI / message list
-    appendMessage({ flower: matchedFlower, imageUrl: url });
+      // Update your UI / message list
+      appendMessage({ flower: matchedFlower, imageUrl: url });
+    } else {
+      console.log("No flower was detected in photo upload")
+      setShowErrorMessage(true);
+      setTimeout(() => setShowErrorMessage(false), 3000);
+    }
 
     } catch (error) {
       console.error("Error during upload:", error);
@@ -332,6 +353,11 @@ export default function ChatLayout() {
               {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
               <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
             </div>
+            {showErrorMessage && (
+                <div className="absolute top-4 right-4 bg-red-400 text-white px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+                  No flower was detected in photo upload
+                </div>
+              )}
           </>
         ) : (
           // shows the saved flowers page when showSavedPage is true

@@ -24,7 +24,7 @@ class ClassifyFlower:
 
         # initialize trained model
         self.model = model_arch().to(self.device)
-        self.model.load_state_dict(torch.load(weights_path))
+        self.model.load_state_dict(torch.load(weights_path, map_location=self.device)) # added map_location to remove cuda error
         self.model.eval()
 
         self.seg_path = seg_path # path to segmentation model
