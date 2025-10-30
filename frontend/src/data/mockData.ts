@@ -14,5 +14,13 @@ export const mockFlowers = [
     care: "Water weekly, indirect sunlight",
     llmText: "Tulips are perfect for spring bouquets, often seen as symbols of renewal.",
     imageUrl: "/tulip.png"
+  },
+  {
+    name: "Sunflower",
+    scientificName: "Helianthus annuus",
+    symbolism: "loyalty, adoration",
+    care: "Keep soil moist, direct sunlight",
+    llmText: "Sunflowers are popular for summer weddings.",
+    imageUrl: "/sunflower.jpg"
   }
 ];
