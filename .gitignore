@@ -1,6 +1,9 @@
 # python files
 __pycache__/
 
+# Venv
+venv/
+
 # dataset
 model_training/data/flowers/
 model_training/data/masks/
