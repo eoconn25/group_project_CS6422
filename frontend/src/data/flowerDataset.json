@@ -1,0 +1,257 @@
+{
+    "version": "1.0",
+    "title": "Flower Dataset by Species and Color",
+    "species": [
+        {
+            "id": "rosa",
+            "common_name": "Rose",
+            "scientific_name": "Rosa",
+            "variants": [
+                {
+                    "color_name": "Red",
+                    "hex": "#C21E21",
+                    "rgb": [194, 30, 33],
+                    "petal_count": { "min": 20, "max": 50, "typical": 30 },
+                    "average_diameter_cm": 8,
+                    "fragrance": { "intensity": 4, "description": "Strong, classic rose scent" },
+                    "blooming_season": ["spring", "summer", "autumn"],
+                    "native_regions": ["Asia", "Europe"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained, fertile" }
+                },
+                {
+                    "color_name": "Pink",
+                    "hex": "#FF66CC",
+                    "rgb": [255, 102, 204],
+                    "petal_count": { "min": 15, "max": 40, "typical": 28 },
+                    "average_diameter_cm": 7,
+                    "fragrance": { "intensity": 3, "description": "Sweet, mild" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Europe", "Asia"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "loamy, well-drained" }
+                },
+                {
+                    "color_name": "White",
+                    "hex": "#FFFFFF",
+                    "rgb": [255, 255, 255],
+                    "petal_count": { "min": 18, "max": 45, "typical": 26 },
+                    "average_diameter_cm": 7,
+                    "fragrance": { "intensity": 2, "description": "Light, fresh" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Asia", "Europe", "North America (cultivars)"],
+                    "care": { "light": "full sun to partial", "water": "moderate", "soil": "well-drained" }
+                },
+                {
+                    "color_name": "Yellow",
+                    "hex": "#FFD700",
+                    "rgb": [255, 215, 0],
+                    "petal_count": { "min": 16, "max": 40, "typical": 24 },
+                    "average_diameter_cm": 6.5,
+                    "fragrance": { "intensity": 2, "description": "Mild, sweet" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Asia", "Europe"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "fertile, well-drained" }
+                }
+            ]
+        },
+        {
+            "id": "tulipa",
+            "common_name": "Tulip",
+            "scientific_name": "Tulipa",
+            "variants": [
+                {
+                    "color_name": "Purple",
+                    "hex": "#6A0DAD",
+                    "rgb": [106, 13, 173],
+                    "petal_count": { "min": 6, "max": 12, "typical": 6 },
+                    "average_diameter_cm": 6,
+                    "fragrance": { "intensity": 1, "description": "Usually faint or none" },
+                    "blooming_season": ["spring"],
+                    "native_regions": ["Central Asia", "Turkey"],
+                    "care": { "light": "full sun to partial", "water": "moderate", "soil": "well-drained, sandy loam" }
+                },
+                {
+                    "color_name": "Yellow",
+                    "hex": "#FFEA00",
+                    "rgb": [255, 234, 0],
+                    "petal_count": { "min": 6, "max": 12, "typical": 6 },
+                    "average_diameter_cm": 6,
+                    "fragrance": { "intensity": 1, "description": "Light" },
+                    "blooming_season": ["spring"],
+                    "native_regions": ["Central Asia"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained" }
+                },
+                {
+                    "color_name": "Bi-color / Variegated",
+                    "hex": "#FFD1DC",
+                    "rgb": [255, 209, 220],
+                    "petal_count": { "min": 6, "max": 12, "typical": 6 },
+                    "average_diameter_cm": 6,
+                    "fragrance": { "intensity": 0, "description": "None to faint" },
+                    "blooming_season": ["spring"],
+                    "native_regions": ["Hybrid cultivars"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained" }
+                }
+            ]
+        },
+        {
+            "id": "lilium",
+            "common_name": "Lily",
+            "scientific_name": "Lilium",
+            "variants": [
+                {
+                    "color_name": "White",
+                    "hex": "#F8F8FF",
+                    "rgb": [248, 248, 255],
+                    "petal_count": { "min": 6, "max": 8, "typical": 6 },
+                    "average_diameter_cm": 10,
+                    "fragrance": { "intensity": 5, "description": "Powerful, sweet" },
+                    "blooming_season": ["summer"],
+                    "native_regions": ["Northern Hemisphere"],
+                    "care": { "light": "partial shade to sun", "water": "regular", "soil": "rich, well-drained" }
+                },
+                {
+                    "color_name": "Orange (Tiger)",
+                    "hex": "#FF6A00",
+                    "rgb": [255, 106, 0],
+                    "petal_count": { "min": 6, "max": 8, "typical": 6 },
+                    "average_diameter_cm": 8,
+                    "fragrance": { "intensity": 3, "description": "Spicy to sweet" },
+                    "blooming_season": ["summer"],
+                    "native_regions": ["Asia", "North America (species)"],
+                    "care": { "light": "full sun to partial", "water": "moderate", "soil": "well-drained" }
+                },
+                {
+                    "color_name": "Pink",
+                    "hex": "#FFC0CB",
+                    "rgb": [255, 192, 203],
+                    "petal_count": { "min": 6, "max": 8, "typical": 6 },
+                    "average_diameter_cm": 9,
+                    "fragrance": { "intensity": 4, "description": "Sweet and strong" },
+                    "blooming_season": ["summer"],
+                    "native_regions": ["Asia"],
+                    "care": { "light": "partial shade", "water": "moderate", "soil": "rich, moist, well-drained" }
+                }
+            ]
+        },
+        {
+            "id": "orchidaceae",
+            "common_name": "Orchid",
+            "scientific_name": "Orchidaceae",
+            "variants": [
+                {
+                    "color_name": "Purple",
+                    "hex": "#7B1FA2",
+                    "rgb": [123, 31, 162],
+                    "petal_count": { "min": 3, "max": 6, "typical": 5 },
+                    "average_diameter_cm": 8,
+                    "fragrance": { "intensity": 2, "description": "Varies by genus" },
+                    "blooming_season": ["spring", "summer", "autumn"],
+                    "native_regions": ["Tropical Asia", "Americas"],
+                    "care": { "light": "bright, indirect", "water": "moderate to low", "soil": "epiphytic mix or well-draining" }
+                },
+                {
+                    "color_name": "White",
+                    "hex": "#FFFFFF",
+                    "rgb": [255, 255, 255],
+                    "petal_count": { "min": 3, "max": 6, "typical": 5 },
+                    "average_diameter_cm": 7,
+                    "fragrance": { "intensity": 3, "description": "Often sweet nocturnal scents" },
+                    "blooming_season": ["varies"],
+                    "native_regions": ["Worldwide (tropics)"],
+                    "care": { "light": "bright, indirect", "water": "regular but not waterlogged", "soil": "bark mix" }
+                },
+                {
+                    "color_name": "Spotted / Patterned",
+                    "hex": "#F4C2C2",
+                    "rgb": [244, 194, 194],
+                    "petal_count": { "min": 3, "max": 6, "typical": 5 },
+                    "average_diameter_cm": 6,
+                    "fragrance": { "intensity": 1, "description": "Mild or none" },
+                    "blooming_season": ["varies"],
+                    "native_regions": ["Tropical Americas", "Asia"],
+                    "care": { "light": "filtered bright", "water": "moderate", "soil": "orchid bark or sphagnum" }
+                }
+            ]
+        },
+        {
+            "id": "leucanthemum",
+            "common_name": "Daisy",
+            "scientific_name": "Leucanthemum / Bellis",
+            "variants": [
+                {
+                    "color_name": "White (Classic)",
+                    "hex": "#FFFFFF",
+                    "rgb": [255, 255, 255],
+                    "petal_count": { "min": 15, "max": 30, "typical": 20 },
+                    "average_diameter_cm": 5,
+                    "fragrance": { "intensity": 0, "description": "None or faint" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Europe"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained" }
+                },
+                {
+                    "color_name": "Pink",
+                    "hex": "#FFD1F0",
+                    "rgb": [255, 209, 240],
+                    "petal_count": { "min": 12, "max": 28, "typical": 18 },
+                    "average_diameter_cm": 4.5,
+                    "fragrance": { "intensity": 0, "description": "None" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Cultivars"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained, fertile" }
+                },
+                {
+                    "color_name": "Yellow (Small cultivars)",
+                    "hex": "#FFE066",
+                    "rgb": [255, 224, 102],
+                    "petal_count": { "min": 10, "max": 20, "typical": 14 },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": { "intensity": 0, "description": "None" },
+                    "blooming_season": ["spring", "summer"],
+                    "native_regions": ["Hybrid cultivars"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained" }
+                }
+            ]
+        },
+        {
+            "id": "helianthus",
+            "common_name": "Sunflower",
+            "scientific_name": "Helianthus annuus",
+            "variants": [
+                {
+                    "color_name": "Yellow",
+                    "hex": "#FFB300",
+                    "rgb": [255, 179, 0],
+                    "petal_count": { "min": 20, "max": 40, "typical": 30 },
+                    "average_diameter_cm": 20,
+                    "fragrance": { "intensity": 1, "description": "Light, green" },
+                    "blooming_season": ["summer", "autumn"],
+                    "native_regions": ["North America"],
+                    "care": { "light": "full sun", "water": "moderate to high", "soil": "well-drained, fertile" }
+                },
+                {
+                    "color_name": "Red / Rust",
+                    "hex": "#8B3A3A",
+                    "rgb": [139, 58, 58],
+                    "petal_count": { "min": 18, "max": 36, "typical": 26 },
+                    "average_diameter_cm": 15,
+                    "fragrance": { "intensity": 1, "description": "Minimal" },
+                    "blooming_season": ["summer"],
+                    "native_regions": ["Cultivars"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "well-drained" }
+                },
+                {
+                    "color_name": "Cream / Pale",
+                    "hex": "#FFF5E1",
+                    "rgb": [255, 245, 225],
+                    "petal_count": { "min": 16, "max": 34, "typical": 24 },
+                    "average_diameter_cm": 18,
+                    "fragrance": { "intensity": 0, "description": "None" },
+                    "blooming_season": ["summer"],
+                    "native_regions": ["Hybrid cultivars"],
+                    "care": { "light": "full sun", "water": "moderate", "soil": "fertile, well-drained" }
+                }
+            ]
+        }
+    ]
+}
