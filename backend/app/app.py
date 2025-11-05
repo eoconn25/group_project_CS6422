@@ -15,6 +15,7 @@ import traceback
 #db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "Content-Type", "methods": ["POST", "OPTIONS"]}})
 app.config['SECRET_KEY'] = 'ChangeThisProbably'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
@@ -29,7 +30,10 @@ llm = SmartAss()
 # old dev version
 # CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 # new dev version
-CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
+
+#CORS(app, origins=["http://react:5173"])
+
+#CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Directory for temporary picture uploads
 PHOTO_UPLOAD_FOLDER = "uploads"
@@ -64,6 +68,7 @@ class User(db.Model):
 #    return None
 
 
+# 2025-11-05 this works for now....
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.get_json()  # get json from frontend

@@ -95,17 +95,28 @@ export default function ChatLayout() {
     }
   };
 
+
+	// ===================== 2025-11-05================
+	// This is a somewhat working version of communication, it only console.logs the response now
   // Search
   // looks for a flower by name will append a message with that flower if found
   // and hides the saved flowers page if it was open
   // ignores case when searching
   // does nothing if no match is found
-  const handleSearch = (query: string) => {
-    const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    if (!result) return;
-    appendMessage({ flower: result });
+  const handleSearch = async (query: string) => {
+		const result = await fetch("http://localhost:5001/ask", 
+			{ method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({prompt: query}) 
+		})
+		const data = await result.json()
+    //const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
+    //if (!result) return;
+    //appendMessage(data.response);
+		console.log("Received: ", data);
     setShowSavedPage(false);
   };
+	// ==============================================
 
   // Upload
   // handles image upload by the user
