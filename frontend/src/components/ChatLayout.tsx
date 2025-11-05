@@ -16,7 +16,7 @@ import { mockFlowers } from "../data/mockData";
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string";
+  type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
   content?: string; // string response content from llm
   flower?: typeof mockFlowers[0];
   imageUrl?: string | null; // image url for flower image
@@ -117,6 +117,7 @@ export default function ChatLayout() {
         title,
         messages: [
           {
+            id: msg.id ?? Date.now(),
             type: msg.type || "string",
             content: msg.content || "",
             flower: msg.flower,
@@ -140,6 +141,7 @@ export default function ChatLayout() {
       }
 
       const newMessage: ConversationCard = {
+        id: msg.id ?? Date.now(),
         type: msg.type || "string",
         content: msg.content || "",
         flower: msg.flower,
@@ -342,7 +344,7 @@ export default function ChatLayout() {
   // before your main return() — right after defining activeConversation, etc.
 const renderedMessages = activeConversation?.messages.length
   ? activeConversation.messages.map((msg, i) => {
-      if (msg.type === "flower" && msg.flower) {
+      if (msg.type === "flower" && msg.flower) { // check to see if flower type and flower data exist
         return (
           <FlowerInfoCard
             key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
@@ -352,14 +354,14 @@ const renderedMessages = activeConversation?.messages.length
             onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
           />
         );
-      } else if (msg.type === "string" && msg.content) {
+      } else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
             content={msg.content}
           />
         );
-      } else {
+      } else { // otherwise, return null (and panic)
         return null;
       }
     })
