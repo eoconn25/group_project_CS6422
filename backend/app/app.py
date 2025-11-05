@@ -72,8 +72,11 @@ class User(db.Model):
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.get_json()  # get json from frontend
+    print("data: ", data)
     prompt = data.get("prompt", "")
+    print("prompt: ", prompt)
     reply = llm.prompt(prompt)  # prompt llm
+    print("reply: ", reply)
     return jsonify({"response": reply})  # return json response to frontend
 
 # Home route
