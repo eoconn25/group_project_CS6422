@@ -1,17 +1,22 @@
 import requests
-from typing import List, Dict, Optional
+from typing import List, Dict
+import os
+from openai import OpenAI
 
 # run "lms server start" in powershell - this will start an lmstudio process on port 1234
 
 class SmartAss:
     def __init__(self, 
-                 base_url='http://localhost:1234/v1/chat/completions', 
-                 model='openai/gpt-oss-20b'):
-        # perhaps implement threading to call CNN as well
-        #threads = []; t1 = threading.Thread(target=self._llm)
+                 base_url=None, 
+                 model='llama2:7b'):
+        # perhaps implement threading to call CNN as well; threads = []; t1 = threading.Thread(target=self._llm)
+        # initialize llm model -- local version
+        #self.base_url = base_url
+        #self.model = model
 
-        # initialize llm model
-        self.base_url = base_url
+        # ollama backend within container
+        ollama_url = base_url or os.getenv("OLLAMA_URL", "http://localhost:11434")
+        self.client = OpenAI(base_url=f"{ollama_url}/v1", api_key="ollama")
         self.model = model
 
         # we will want a conversation history to provide context for LLM, save previous chats, etc
@@ -91,6 +96,16 @@ if __name__ == "__main__":
     # print response
     print("LLM response:")
     print(response)
+
+    # test prompt
+    user_prompt = "Can you elaborate on the pro ti pyou previously mentioned?"
+    response = smart_ass.prompt(user_prompt)
+
+    # print response
+    print("LLM response:")
+    print(response)
+
+    
 
 '''
 # stuff for frontend - double check
