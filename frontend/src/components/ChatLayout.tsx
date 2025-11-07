@@ -27,7 +27,7 @@ interface ConversationCard {
   type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
   content?: string; // string response content from llm
   flower?: FlowerVariant;
-  imageUrl?: string | null; // image url for flower image
+  imageUrl?: string | ""; // image url for flower image
 }
 
 // blueprint for what a conversation thread looks like, and will hold all convos made
@@ -41,7 +41,7 @@ interface ConversationThread {
 // blueprint for what a saved flower object looks like
 // the flower data and an optional image url
 interface SavedFlower {
-  flower: typeof flowerDataset[0];
+  flower: FlowerVariant;
   imageUrl?: string | null;
 }
 
@@ -129,7 +129,7 @@ export default function ChatLayout() {
             type: msg.type || "string",
             content: msg.content || "",
             flower: msg.flower,
-            imageUrl: msg.imageUrl ?? null,
+            imageUrl: msg.imageUrl ?? "",
           },
         ],
       };
@@ -153,7 +153,7 @@ export default function ChatLayout() {
         type: msg.type || "string",
         content: msg.content || "",
         flower: msg.flower,
-        imageUrl: msg.imageUrl ?? null,
+        imageUrl: msg.imageUrl ?? "",
       };
 
       return {
@@ -311,7 +311,7 @@ export default function ChatLayout() {
   // Save/remove flower
   // if its found, it will show remove message and remove it from saved flowers
   // if its not founds, will show save message and add it to saved flowers
-  const handleSaveOrRemoveFlower = (flower: typeof flowerDataset[0], imageUrl?: string | null) => {
+  const handleSaveOrRemoveFlower = (flower: FlowerVariant, imageUrl?: string | null) => {
     setSavedFlowers((prev) => {
       const idx = prev.findIndex((f) => f.flower.name === flower.name); // check by name only
       if (idx >= 0) {
