@@ -16,8 +16,9 @@ import traceback
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "Content-Type", "methods": ["POST", "OPTIONS"]}})
+#CORS(app)
 app.config['SECRET_KEY'] = 'ChangeThisProbably'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////app/app/instance/database.db'
 
 db = SQLAlchemy(app)
 
@@ -104,6 +105,18 @@ def register():
     db.session.commit()
 
     return jsonify(message='User created successfully'), 201
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+
+    return jsonify(), 201
+
+def create_tables():
+    with app.app_context():
+        db.create_all()
 
 @app.route('/predict', methods=['POST'])
 def predict():

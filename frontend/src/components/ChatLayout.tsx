@@ -155,6 +155,61 @@ export default function ChatLayout() {
   });
 };
 
+	const API_BASE =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "http://backend:5001";
+//	 ============================================== 
+// This is my section -> Caylum
+// The idea here is that I am going to dump a bunch of these
+// Backend Calls here and you guys can shuffle them around to wherever
+// They are needed, since I don't really understand react
+	const register = async (username: string, password: string) => {
+		try {
+		console.log("username: ", username)
+		console.log("password: ", password)
+    const response = await fetch(`${API_BASE}/register`, 
+		  { method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({username: username, password: password}) 
+		})
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+    console.log("Received: ", data);
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+
+
+	const login = async (username: string, password: string) => {
+		try {
+		console.log("username: ", username)
+		console.log("password: ", password)
+    const response = await fetch(`${API_BASE}/login`, 
+		  { method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({username: username, password: password}) 
+		})
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+    console.log("Received: ", data);
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+// ==============================================
+
 
 	// ===================== 2025-11-05================
 	// This is a somewhat working version of communication, it only console.logs the response now
@@ -418,6 +473,17 @@ const renderedMessages = activeConversation?.messages.length
         <button onClick={handleNewChat} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
           New Chat
         </button>
+
+        {/* ===================== */}
+        {/* This is also my section -> Caylum */}
+
+        <button onClick={() => register("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					Test Register
+        </button>
+        <button onClick={() => login("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					Test Login
+        </button>
+        {/* ===================== */}
 
         {/* button to view saved flowers */}
         {/* the styling is the same as the new chat button*/}
