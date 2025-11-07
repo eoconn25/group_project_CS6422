@@ -1,13 +1,28 @@
 // blueprint for what a flower object looks like
 // has name and the scientific name, what it symblises, what its care instructions are, llm generated text, and optional image url
 interface Flower {
-  name: string;
   color: string;
-  scientificName: string;
-  symbolism: string;
-  care: string;
-  llmText: string;
-  imageUrl?: string;
+  name: string;
+  scientific_name: string;
+  symbolism: string[];
+  petal_count: {
+    min: number;
+    max: number;
+    typical: number;
+  };
+  average_diameter_cm: number;
+  fragrance: {
+    intensity: number;
+    description: string;
+  };
+  blooming_season: string[];
+  native_regions: string[];
+  care: {
+    light: string;
+    water: string;
+    soil: string;
+  };
+  image: string;
 }
 
 //blueprint for the props that the FlowerInfoCard component will receive
@@ -29,7 +44,7 @@ export default function FlowerInfoCard({
   onSaveOrRemove,
 }: FlowerInfoCardProps) {
   // this is the mock predicition for the image matching the flower
-  const showPrediction = imageUrl && imageUrl !== flower.imageUrl;
+  const showPrediction = imageUrl && imageUrl !== flower.image;
 
   return (
     // the container for the card
@@ -38,7 +53,7 @@ export default function FlowerInfoCard({
       {/* flower name is displaed with the text size 2xl, and be bold in a calistoga font */}
       <h2 className="text-2xl font-bold font-calistoga">{flower.color} {flower.name}</h2>
       {/*this is the scinetific name with italic font that is times and also gray */}
-      <p className="italic text-gray-600 font-times">{flower.scientificName}</p>
+      <p className="italic text-gray-600 font-times">{flower.scientific_name}</p>
 
       {/* starts the section for the flower image */}
       {/* has a top margin, and the items get center and flexed */}
@@ -47,7 +62,7 @@ export default function FlowerInfoCard({
         {/* src -> uses the image if it exists, then a place for a default fallback */}
         {/* alt -> descrption of the flower */}
         <img
-          src={flower.imageUrl || "/placeholder.png"}
+          src={flower.image || "/placeholder.png"}
           alt={flower.name}
           /* the image has a max width and height of 250px, the object is contained within that size, has rounded corners and a shadow */
           /* this solved the issues of the images being too big */
@@ -67,9 +82,20 @@ export default function FlowerInfoCard({
       {/* it has a top margin, and there is spacing places between the paragraphs placed, and the font is georgia*/}
       {/* displays what it symbolises, the care and the llmtext*/}
       <div className="mt-3 space-y-1 font-georgia">
-        <p><strong>Symbolism:</strong> {flower.symbolism}</p>
-        <p><strong>Care:</strong> {flower.care}</p>
-        <p className="mt-3">{flower.llmText}</p>
+        <p><strong>Symbolism:</strong> </p>
+        <ul className="list-disc list-inside">
+          {flower.symbolism.map((meaning, index) => (
+            <li key={index}>{meaning}</li>
+          ))}
+        </ul>
+        <p><strong>Care:</strong>  </p>
+        <ul className="list-disc list-inside">
+          <li><strong>Light:</strong> {flower.care.light}</li>
+          <li><strong>Water:</strong> {flower.care.water}</li>
+          <li><strong>Soil:</strong> {flower.care.soil}</li>
+        </ul>
+        {/* this isn't a parameter anymore, need to change to receive data from LLM maybe */}
+        {/* <p className="mt-3">{flower.llmText}</p> */}
       </div>
 
       {/* renders the button for saving and deleting if the onSaveOrRemove function was passed */}
