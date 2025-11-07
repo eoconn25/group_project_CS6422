@@ -7,13 +7,21 @@ import SearchBar from "./SearchBar";
 import FlowerInfoCard from "./FlowerInfoCard";
 import SavedFlowersPage from "./SavedFlowersPage";
 // the mock data to display for flowers for now
-import { mockFlowers } from "../data/mockData";
+// import { mockFlowers } from "../data/mockData";
+import flowerDataset from '../data/flowerDataset.json';
+import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
+
+
+
+// // Optionally type your import:
+// const dataset: FlowerDataset = flowerDataset;
+
 
 // blueprint for what a conversation card looks like
 // uses the flower type from the mock data
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
-  flower: typeof mockFlowers[0];
+  flower: FlowerVariant;
   imageUrl?: string | null;
 }
 
@@ -28,7 +36,7 @@ interface ConversationThread {
 // blueprint for what a saved flower object looks like
 // the flower data and an optional image url
 interface SavedFlower {
-  flower: typeof mockFlowers[0];
+  flower: typeof flowerDataset[0];
   imageUrl?: string | null;
 }
 
@@ -101,7 +109,7 @@ export default function ChatLayout() {
   // ignores case when searching
   // does nothing if no match is found
   const handleSearch = (query: string) => {
-    const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
+    const result = flowerDataset.find((f) => f.name.toLowerCase() === query.toLowerCase());
     if (!result) return;
     appendMessage({ flower: result });
     setShowSavedPage(false);
@@ -169,22 +177,13 @@ export default function ChatLayout() {
     console.log("Backend response:", data); // {color, species}
 
     if (data.species) {
-      // Match by both name AND color (case-insensitive)
-      const matchedFlower =
-        mockFlowers.find( // find flower with both correct name and color
-            f =>
-              f.name.toLowerCase() === data.species.toLowerCase() &&
-              f.color.toLowerCase() === data.color.toLowerCase()
-          ) ||
-        // fallback: try matching by name only
-        mockFlowers.find(f => f.name.toLowerCase() === data.species.toLowerCase()) ||
-        // final fallback: first element
-        mockFlowers[0];
-        
+      const matchedFlower = findMatchingFlower(data);
       console.log("matchedFlower: ", matchedFlower)
-
+          
+    
       // Update your UI / message list
       appendMessage({ flower: matchedFlower, imageUrl: url });
+
     } else {
       console.log("No flower was detected in photo upload")
       setShowErrorMessage(true);
@@ -204,7 +203,7 @@ export default function ChatLayout() {
   // Save/remove flower
   // if its found, it will show remove message and remove it from saved flowers
   // if its not founds, will show save message and add it to saved flowers
-  const handleSaveOrRemoveFlower = (flower: typeof mockFlowers[0], imageUrl?: string | null) => {
+  const handleSaveOrRemoveFlower = (flower: typeof flowerDataset[0], imageUrl?: string | null) => {
     setSavedFlowers((prev) => {
       const idx = prev.findIndex((f) => f.flower.name === flower.name); // check by name only
       if (idx >= 0) {
@@ -232,6 +231,33 @@ export default function ChatLayout() {
     setActiveId(newId);
     setShowSavedPage(false);
   };
+
+  /**
+//  * Finds the best matching flower variant from the dataset.
+//  * 
+//  * @param {Object} dataset - The full flower dataset (with a `flowers` array).
+//  * @param {Object} data - The search parameters, e.g. { species: "Rose", color: "Red" }.
+//  * @returns {Object} - The matched variant object.
+//  */
+  function findMatchingFlower(data: { species: string; color: string }) {
+    // Find the species
+    const matchedSpecies = flowerDataset.flowers.find(
+      f => f.species.toLowerCase() === data.species.toLowerCase()
+    );
+
+    // If no species match, return first variant of first species
+    if (!matchedSpecies) {
+      return flowerDataset.flowers[0].variants[0];
+    }
+
+    // find variant of that species with color
+    const matchedVariant = matchedSpecies.variants.find(
+      v => v.color.toLowerCase() === data.color.toLowerCase()
+    );
+
+    // If color not found return first variant of that species
+    return matchedVariant || matchedSpecies.variants[0];
+  }
 
   return (
     // main container for the chat layout

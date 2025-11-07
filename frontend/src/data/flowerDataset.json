@@ -2,10 +2,11 @@
     "flowers": [
             {
                 "species": "Astilbe",
-                "scientific_name": "Astilbe",
                 "variants": [
                     {
                         "color": "Pink",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["patience", "dedication"],
                         "petal_count": { "min": 10, "max": 30, "typical": 18 },
                         "average_diameter_cm": 5,
@@ -17,6 +18,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["purity", "calm"],
                         "petal_count": { "min": 10, "max": 30, "typical": 17 },
                         "average_diameter_cm": 5,
@@ -28,6 +31,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["passion", "energy"],
                         "petal_count": { "min": 12, "max": 32, "typical": 20 },
                         "average_diameter_cm": 6,
@@ -39,6 +44,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["royalty", "mystery"],
                         "petal_count": { "min": 10, "max": 28, "typical": 18 },
                         "average_diameter_cm": 5,
@@ -50,6 +57,8 @@
                     },
                     {
                         "color": "Peach",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["appreciation", "gentleness"],
                         "petal_count": { "min": 10, "max": 30, "typical": 19 },
                         "average_diameter_cm": 5.5,
@@ -61,6 +70,8 @@
                     },
                     {
                         "color": "Dried",
+                        "name": "Astilbe",
+                        "scientific_name": "Astilbe",
                         "symbolism": ["resilience", "nostalgia"],
                         "petal_count": { "min": 10, "max": 30, "typical": 18 },
                         "average_diameter_cm": 4.5,
@@ -73,11 +84,12 @@
                 ]
             },
             {
-                "species": "Bellflowers",
-                "scientific_name": "Campanula",
+                "species": "Bellflower",
                 "variants": [
                     {
                         "color": "Blue",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["gratitude", "humility"],
                         "petal_count": { "min": 5, "max": 7, "typical": 5 },
                         "average_diameter_cm": 4,
@@ -89,6 +101,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["admiration", "respect"],
                         "petal_count": { "min": 5, "max": 7, "typical": 6 },
                         "average_diameter_cm": 4,
@@ -100,6 +114,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["purity", "simplicity"],
                         "petal_count": { "min": 5, "max": 7, "typical": 5 },
                         "average_diameter_cm": 3.5,
@@ -111,6 +127,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["affection", "gratitude"],
                         "petal_count": { "min": 5, "max": 7, "typical": 5 },
                         "average_diameter_cm": 4,
@@ -122,6 +140,8 @@
                     },
                     {
                         "color": "Burgundy",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["depth", "gratitude"],
                         "petal_count": { "min": 5, "max": 7, "typical": 6 },
                         "average_diameter_cm": 4.2,
@@ -133,6 +153,8 @@
                     },
                     {
                         "color": "Red with contrasting speckles",
+                        "name": "Bellflower",
+                        "scientific_name": "Campanula",
                         "symbolism": ["creativity", "uniqueness"],
                         "petal_count": { "min": 5, "max": 7, "typical": 5 },
                         "average_diameter_cm": 4.5,
@@ -146,10 +168,11 @@
             },
             {
                 "species": "Black-eyed Susan",
-                "scientific_name": "Rudbeckia Hirta",
                 "variants": [
                     {
                         "color": "Yellow with dark center",
+                        "name": "Black-eyed Susan",
+                        "scientific_name": "Rudbeckia Hirta",
                         "symbolism": ["encouragement", "motivation"],
                         "petal_count": { "min": 10, "max": 20, "typical": 13 },
                         "average_diameter_cm": 8,
@@ -161,6 +184,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Black-eyed Susan",
+                        "scientific_name": "Rudbeckia Hirta",
                         "symbolism": ["warmth", "energy"],
                         "petal_count": { "min": 10, "max": 22, "typical": 14 },
                         "average_diameter_cm": 8,
@@ -172,6 +197,8 @@
                     },
                     {
                         "color": "Red-brown",
+                        "name": "Black-eyed Susan",
+                        "scientific_name": "Rudbeckia Hirta",
                         "symbolism": ["stability", "endurance"],
                         "petal_count": { "min": 10, "max": 20, "typical": 13 },
                         "average_diameter_cm": 9,
@@ -183,6 +210,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Black-eyed Susan",
+                        "scientific_name": "Rudbeckia Hirta",
                         "symbolism": ["resilience", "hope"],
                         "petal_count": { "min": 10, "max": 20, "typical": 12 },
                         "average_diameter_cm": 7.5,
@@ -194,6 +223,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Black-eyed Susan",
+                        "scientific_name": "Rudbeckia Hirta",
                         "symbolism": ["playfulness", "joy"],
                         "petal_count": { "min": 10, "max": 22, "typical": 14 },
                         "average_diameter_cm": 8,
@@ -207,10 +238,11 @@
             },
             {
                 "species": "Calendula",
-                "scientific_name": "Calendula",
                 "variants": [
                     {
                         "color": "Orange",
+                        "name": "Calendula",
+                        "scientific_name": "Calendula",
                         "symbolism": ["healing", "comfort"],
                         "petal_count": { "min": 20, "max": 40, "typical": 28 },
                         "average_diameter_cm": 6,
@@ -222,6 +254,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Calendula",
+                        "scientific_name": "Calendula",
                         "symbolism": ["joy", "warmth"],
                         "petal_count": { "min": 18, "max": 36, "typical": 26 },
                         "average_diameter_cm": 6,
@@ -233,6 +267,8 @@
                     },
                     {
                         "color": "Cream",
+                        "name": "Calendula",
+                        "scientific_name": "Calendula",
                         "symbolism": ["healing", "calm"],
                         "petal_count": { "min": 18, "max": 34, "typical": 24 },
                         "average_diameter_cm": 5.5,
@@ -246,10 +282,11 @@
             },
             {
                 "species": "Californa Poppy",
-                "scientific_name": "Eschscholzia Californica",
                 "variants": [
                     {
                         "color": "Orange",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["resilience", "dreaming"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 5,
@@ -261,6 +298,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["cheer", "optimism"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 5,
@@ -272,6 +311,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["vibrancy", "boldness"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 5,
@@ -283,6 +324,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["simplicity", "clarity"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 4.5,
@@ -294,6 +337,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["romance", "whimsy"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 4.5,
@@ -305,6 +350,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Californa Poppy",
+                        "scientific_name": "Eschscholzia Californica",
                         "symbolism": ["imagination", "serenity"],
                         "petal_count": { "min": 4, "max": 6, "typical": 4 },
                         "average_diameter_cm": 4.7,
@@ -322,6 +369,8 @@
                 "variants": [
                     {
                         "color": "Pink",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["love", "fascination"],
                         "petal_count": { "min": 20, "max": 40, "typical": 28 },
                         "average_diameter_cm": 6,
@@ -333,6 +382,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["love", "admiration"],
                         "petal_count": { "min": 22, "max": 42, "typical": 30 },
                         "average_diameter_cm": 6,
@@ -344,6 +395,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["purity", "good luck"],
                         "petal_count": { "min": 18, "max": 36, "typical": 26 },
                         "average_diameter_cm": 5.5,
@@ -355,6 +408,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["friendship", "joy"],
                         "petal_count": { "min": 18, "max": 36, "typical": 24 },
                         "average_diameter_cm": 6,
@@ -366,6 +421,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["enthusiasm", "admiration"],
                         "petal_count": { "min": 20, "max": 40, "typical": 28 },
                         "average_diameter_cm": 6,
@@ -377,6 +434,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Carnation",
+                        "scientific_name": "Dianthus Caryophyllus",
                         "symbolism": ["caprice", "creativity"],
                         "petal_count": { "min": 18, "max": 38, "typical": 27 },
                         "average_diameter_cm": 5.5,
@@ -390,10 +449,11 @@
             },
             {
                 "species": "Common Daisy",
-                "scientific_name": "Bellis Perennis",
                 "variants": [
                     {
                         "color": "White",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["innocence", "simplicity"],
                         "petal_count": { "min": 12, "max": 30, "typical": 20 },
                         "average_diameter_cm": 3.5,
@@ -405,6 +465,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["youth", "gentleness"],
                         "petal_count": { "min": 12, "max": 28, "typical": 18 },
                         "average_diameter_cm": 3.5,
@@ -416,6 +478,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["affection", "playfulness"],
                         "petal_count": { "min": 12, "max": 28, "typical": 19 },
                         "average_diameter_cm": 3.5,
@@ -427,6 +491,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["cheer", "vitality"],
                         "petal_count": { "min": 12, "max": 26, "typical": 18 },
                         "average_diameter_cm": 3.6,
@@ -437,6 +503,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["joy", "optimism"],
                         "petal_count": { "min": 12, "max": 28, "typical": 19 },
                         "average_diameter_cm": 3.5,
@@ -448,6 +516,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Common Daisy",
+                        "scientific_name": "Bellis Perennis",
                         "symbolism": ["imagination", "delight"],
                         "petal_count": { "min": 12, "max": 30, "typical": 20 },
                         "average_diameter_cm": 3.7,
@@ -461,10 +531,11 @@
             },
             {
                 "species": "Coreopsis",
-                "scientific_name": "Coreopsis",
                 "variants": [
                     {
                         "color": "Yellow",
+                        "name": "Coreopsis",
+                        "scientific_name": "Coreopsis",
                         "symbolism": ["cheerfulness", "simplicity"],
                         "petal_count": { "min": 8, "max": 20, "typical": 12 },
                         "average_diameter_cm": 5,
@@ -476,6 +547,8 @@
                     },
                     {
                         "color": "Orange-red",
+                        "name": "Coreopsis",
+                        "scientific_name": "Coreopsis",
                         "symbolism": ["vibrancy", "joy"],
                         "petal_count": { "min": 8, "max": 18, "typical": 12 },
                         "average_diameter_cm": 5,
@@ -487,6 +560,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Coreopsis",
+                        "scientific_name": "Coreopsis",
                         "symbolism": ["passion", "boldness"],
                         "petal_count": { "min": 8, "max": 16, "typical": 11 },
                         "average_diameter_cm": 5,
@@ -498,6 +573,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Coreopsis",
+                        "scientific_name": "Coreopsis",
                         "symbolism": ["gentleness", "joy"],
                         "petal_count": { "min": 8, "max": 18, "typical": 12 },
                         "average_diameter_cm": 4.8,
@@ -511,10 +588,11 @@
             },
             {
                 "species": "Daffodil",
-                "scientific_name": "Narcissus",
                 "variants": [
                     {
                         "color": "Yellow",
+                        "name": "Daffodil",
+                        "scientific_name": "Narcissus",
                         "symbolism": ["rebirth", "new beginnings"],
                         "petal_count": { "min": 6, "max": 12, "typical": 6 },
                         "average_diameter_cm": 7,
@@ -526,6 +604,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Daffodil",
+                        "scientific_name": "Narcissus",
                         "symbolism": ["purity", "hope"],
                         "petal_count": { "min": 6, "max": 10, "typical": 6 },
                         "average_diameter_cm": 6.5,
@@ -537,6 +617,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Daffodil",
+                        "scientific_name": "Narcissus",
                         "symbolism": ["energy", "creativity"],
                         "petal_count": { "min": 6, "max": 12, "typical": 8 },
                         "average_diameter_cm": 7,
@@ -548,6 +630,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Daffodil",
+                        "scientific_name": "Narcissus",
                         "symbolism": ["admiration", "grace"],
                         "petal_count": { "min": 6, "max": 12, "typical": 8 },
                         "average_diameter_cm": 6.5,
@@ -561,10 +645,11 @@
             },
             {
                 "species": "Dandelion",
-                "scientific_name": "Taraxacum",
                 "variants": [
                     {
                         "color": "Yellow",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["wishes", "survival"],
                         "petal_count": { "min": 50, "max": 150, "typical": 80 },
                         "average_diameter_cm": 3,
@@ -576,6 +661,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["joy", "persistence"],
                         "petal_count": { "min": 50, "max": 140, "typical": 75 },
                         "average_diameter_cm": 3,
@@ -587,6 +674,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["playfulness", "novelty"],
                         "petal_count": { "min": 50, "max": 130, "typical": 80 },
                         "average_diameter_cm": 3,
@@ -598,6 +687,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["purity", "transformation"],
                         "petal_count": { "min": 50, "max": 150, "typical": 85 },
                         "average_diameter_cm": 3.2,
@@ -609,6 +700,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["strength", "individuality"],
                         "petal_count": { "min": 50, "max": 140, "typical": 78 },
                         "average_diameter_cm": 3.1,
@@ -620,6 +713,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Dandelion",
+                        "scientific_name": "Taraxacum",
                         "symbolism": ["mystery", "originality"],
                         "petal_count": { "min": 50, "max": 135, "typical": 80 },
                         "average_diameter_cm": 3,
@@ -633,10 +728,11 @@
             },
             {
                 "species": "Iris",
-                "scientific_name": "Iris",
                 "variants": [
                     {
                         "color": "Blue",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["faith", "wisdom"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -648,6 +744,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["royalty", "valor"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 7 },
                         "average_diameter_cm": 9,
@@ -659,6 +757,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["passion", "friendship"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -670,6 +770,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["purity", "peace"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -681,6 +783,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["energy", "creativity"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 7 },
                         "average_diameter_cm": 8,
@@ -692,6 +796,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["passion", "courage"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 7 },
                         "average_diameter_cm": 8.5,
@@ -703,6 +809,8 @@
                     },
                     {
                         "color": "Red-purple",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["mystique", "elegance"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 7 },
                         "average_diameter_cm": 8.5,
@@ -714,6 +822,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["admiration", "affection"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -725,6 +835,8 @@
                     },
                     {
                         "color": "Brown",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["stability", "earthiness"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -735,6 +847,8 @@
                     },
                     {
                         "color": "Black",
+                        "name": "Iris",
+                        "scientific_name": "Iris",
                         "symbolism": ["mystery", "drama"],
                         "petal_count": { "min": 6, "Max": 9, "typical": 6 },
                         "average_diameter_cm": 8,
@@ -748,10 +862,11 @@
             },
             {
                 "species": "Magnolia",
-                "scientific_name": "Magnolia",
                 "variants": [
                     {
                         "color": "White",
+                        "name": "Magnolia",
+                        "scientific_name": "Magnolia",
                         "symbolism": ["dignity", "nobility"],
                         "petal_count": { "min": 6, "max": 12, "typical": 9 },
                         "average_diameter_cm": 18,
@@ -763,6 +878,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Magnolia",
+                        "scientific_name": "Magnolia",
                         "symbolism": ["youth", "joy"],
                         "petal_count": { "min": 6, "max": 12, "typical": 10 },
                         "average_diameter_cm": 16,
@@ -774,6 +891,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Magnolia",
+                        "scientific_name": "Magnolia",
                         "symbolism": ["dignity", "mystery"],
                         "petal_count": { "min": 6, "max": 12, "typical": 9 },
                         "average_diameter_cm": 17,
@@ -785,6 +904,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Magnolia",
+                        "scientific_name": "Magnolia",
                         "symbolism": ["renewal", "optimism"],
                         "petal_count": { "min": 6, "max": 12, "typical": 9 },
                         "average_diameter_cm": 17,
@@ -798,10 +919,11 @@
             },
             {
                 "species": "Rose",
-                "scientific_name": "Rosa",
                 "variants": [
                     {
                         "color": "Red",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["love", "passion"],
                         "petal_count": { "min": 20, "max": 50, "typical": 30 },
                         "average_diameter_cm": 8,
@@ -813,6 +935,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["gratitude", "admiration"],
                         "petal_count": { "min": 18, "max": 45, "typical": 28 },
                         "average_diameter_cm": 7.5,
@@ -824,6 +948,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["purity", "innocence"],
                         "petal_count": { "min": 15, "max": 40, "typical": 25 },
                         "average_diameter_cm": 7,
@@ -835,6 +961,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["friendship", "joy"],
                         "petal_count": { "min": 15, "max": 40, "typical": 24 },
                         "average_diameter_cm": 7.5,
@@ -846,6 +974,8 @@
                     },
                     {
                         "color": "Black",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["mystery", "farewell"],
                         "petal_count": { "min": 20, "max": 50, "typical": 32 },
                         "average_diameter_cm": 8,
@@ -857,6 +987,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["enchantment", "royalty"],
                         "petal_count": { "min": 18, "max": 45, "typical": 29 },
                         "average_diameter_cm": 7.8,
@@ -868,6 +1000,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["enthusiasm", "desire"],
                         "petal_count": { "min": 18, "max": 45, "typical": 28 },
                         "average_diameter_cm": 7.5,
@@ -879,6 +1013,8 @@
                     },
                     {
                         "color": "Green",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["harmony", "new beginnings"],
                         "petal_count": { "min": 15, "max": 35, "typical": 24 },
                         "average_diameter_cm": 7,
@@ -890,6 +1026,8 @@
                     },
                     {
                         "color": "Blue",
+                        "name": "Rose",
+                        "scientific_name": "Rosa",
                         "symbolism": ["mystique", "rarity"],
                         "petal_count": { "min": 18, "max": 40, "typical": 27 },
                         "average_diameter_cm": 7.2,
@@ -903,10 +1041,11 @@
             },
             {
                 "species": "Sunflower",
-                "scientific_name": "Helianthus",
                 "variants": [
                     {
                         "color": "Yellow",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["adoration", "loyalty"],
                         "petal_count": { "min": 20, "max": 40, "typical": 30 },
                         "average_diameter_cm": 25,
@@ -918,6 +1057,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["strength", "passion"],
                         "petal_count": { "min": 18, "max": 36, "typical": 28 },
                         "average_diameter_cm": 20,
@@ -929,6 +1070,8 @@
                     },
                     {
                         "color": "Brown",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["stability", "earth"],
                         "petal_count": { "min": 16, "max": 34, "typical": 26 },
                         "average_diameter_cm": 22,
@@ -940,6 +1083,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["admiration", "joy"],
                         "petal_count": { "min": 18, "max": 32, "typical": 24 },
                         "average_diameter_cm": 20,
@@ -951,6 +1096,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["purity", "light"],
                         "petal_count": { "min": 18, "max": 34, "typical": 26 },
                         "average_diameter_cm": 22,
@@ -962,6 +1109,8 @@
                     },
                     {
                         "color": "Green",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["renewal", "abundance"],
                         "petal_count": { "min": 16, "max": 30, "typical": 24 },
                         "average_diameter_cm": 21,
@@ -973,6 +1122,8 @@
                     },
                     {
                         "color": "Orange",
+                        "name": "Sunflower",
+                        "scientific_name": "Helianthus",
                         "symbolism": ["strength", "warmth"],
                         "petal_count": { "min": 18, "max": 34, "typical": 26 },
                         "average_diameter_cm": 21,
@@ -986,10 +1137,11 @@
             },
             {
                 "species": "Tulip",
-                "scientific_name": "Tulipa",
                 "variants": [
                     {
                         "color": "Yellow",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["cheerfulness", "friendship"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6,
@@ -1001,6 +1153,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["love", "passion"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6,
@@ -1012,6 +1166,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["caring", "good wishes"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6,
@@ -1023,6 +1179,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["royalty", "mystery"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6,
@@ -1034,6 +1192,8 @@
                     },
                     {
                         "color": "White",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["purity", "forgiveness"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6,
@@ -1045,6 +1205,8 @@
                     },
                     {
                         "color": "Black",
+                        "name": "Tulip",
+                        "scientific_name": "Tulipa",
                         "symbolism": ["elegance", "mystery"],
                         "petal_count": { "min": 6, "max": 9, "typical": 6 },
                         "average_diameter_cm": 6.5,
@@ -1058,10 +1220,11 @@
             },
             {
                 "species": "Water Lily",
-                "scientific_name": "Nymphaeaceae",
                 "variants": [
                     {
                         "color": "White",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["purity", "tranquility"],
                         "petal_count": { "min": 15, "max": 30, "typical": 20 },
                         "average_diameter_cm": 15,
@@ -1073,6 +1236,8 @@
                     },
                     {
                         "color": "Pink",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["love", "rebirth"],
                         "petal_count": { "min": 14, "max": 28, "typical": 18 },
                         "average_diameter_cm": 14,
@@ -1084,6 +1249,8 @@
                     },
                     {
                         "color": "Yellow",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["enlightenment", "energy"],
                         "petal_count": { "min": 12, "max": 26, "typical": 16 },
                         "average_diameter_cm": 13,
@@ -1095,6 +1262,8 @@
                     },
                     {
                         "color": "Red",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["passion", "tranquility"],
                         "petal_count": { "min": 14, "max": 28, "typical": 20 },
                         "average_diameter_cm": 14,
@@ -1106,6 +1275,8 @@
                     },
                     {
                         "color": "Blue",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["serenity", "depth"],
                         "petal_count": { "min": 14, "max": 28, "typical": 18 },
                         "average_diameter_cm": 13,
@@ -1117,6 +1288,8 @@
                     },
                     {
                         "color": "Purple",
+                        "name": "Water Lily",
+                        "scientific_name": "Nymphaeaceae",
                         "symbolism": ["mysticism", "luxury"],
                         "petal_count": { "min": 15, "max": 30, "typical": 19 },
                         "average_diameter_cm": 14,
