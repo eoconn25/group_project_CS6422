@@ -1,3 +1,4 @@
+import { useState } from "react";
 // blueprint for what a flower object looks like
 // has name and the scientific name, what it symblises, what its care instructions are, llm generated text, and optional image url
 interface Flower {
@@ -43,8 +44,7 @@ export default function FlowerInfoCard({
   isSaved = false,
   onSaveOrRemove,
 }: FlowerInfoCardProps) {
-  // this is the mock predicition for the image matching the flower
-  const showPrediction = imageUrl && imageUrl !== flower.image;
+  const [showMore, setShowMore] = useState(false);
 
   return (
     // the container for the card
@@ -99,6 +99,27 @@ export default function FlowerInfoCard({
         {/* this isn't a parameter anymore, need to change to receive data from LLM maybe */}
         {/* <p className="mt-3">{flower.llmText}</p> */}
       </div>
+
+      {/* More Info Toggle */}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="px-4 py-2 bg-purple text-black rounded-lg hover:bg-blue transition"
+        >
+          {showMore ? "Hide Info" : "More Info"}
+        </button>
+      </div>
+
+      {/* Expanded Info */}
+      {showMore && (
+        <div className="mt-3 text-sm font-georgia space-y-2 border-t border-gray-300 pt-3">
+          <p><strong>Petal Count:</strong> {flower.petal_count.typical} (range {flower.petal_count.min}–{flower.petal_count.max})</p>
+          <p><strong>Average Diameter:</strong> {flower.average_diameter_cm} cm</p>
+          <p><strong>Fragrance:</strong> {flower.fragrance.description} (Intensity: {flower.fragrance.intensity}/5)</p>
+          <p><strong>Blooming Season:</strong> {flower.blooming_season.join(", ")}</p>
+          <p><strong>Native Regions:</strong> {flower.native_regions.join(", ")}</p>
+        </div>
+      )}
 
       {/* renders the button for saving and deleting if the onSaveOrRemove function was passed */}
       {onSaveOrRemove && (
