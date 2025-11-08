@@ -68,14 +68,6 @@ export default function FlowerInfoCard({
           /* this solved the issues of the images being too big */
           className="max-w-[250px] max-h-[250px] object-contain rounded-lg shadow"
         />
-        {/* && -> says that it will only render if conditions are meet*/}
-        {showPrediction && (
-          // the text image will be grey, the font is times and small sieed with a margin top of 2
-          <p className="text-gray-600 font-times text-sm mt-2">
-            {/* the text for the mock prediction of image matching */}
-            Mock prediction: <strong>{flower.name} (92%)</strong>
-          </p>
-        )}
       </div>
 
       {/* a section for the description of the flower*/}
@@ -83,13 +75,23 @@ export default function FlowerInfoCard({
       {/* displays what it symbolises, the care and the llmtext*/}
       <div className="mt-3 space-y-1 font-georgia">
         <p><strong>Symbolism:</strong> </p>
-        <ul className="list-disc list-inside">
+        {/*<ul className="list-disc list-inside">
           {flower.symbolism.map((meaning, index) => (
             <li key={index}>{meaning}</li>
           ))}
-        </ul>
+        </ul>*/}
+        <div className="flex flex-wrap gap-2 mt-1">
+        {flower.symbolism.map((meaning, index) => (
+          <span
+            key={index}
+            className="bg-purple text-black rounded-full px-3 py-1 font-times shadow-sm"
+          >
+            {meaning}
+          </span>
+        ))}
+      </div>
         <p><strong>Care:</strong>  </p>
-        <ul className="list-disc list-inside">
+        <ul className="list-disc list-inside font-times">
           <li><strong>Light:</strong> {flower.care.light}</li>
           <li><strong>Water:</strong> {flower.care.water}</li>
           <li><strong>Soil:</strong> {flower.care.soil}</li>

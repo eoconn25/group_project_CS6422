@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-		"start": "npx vite preview --host 0.0.0.0 --port 5173",
+    "start": "npx vite preview --host 0.0.0.0 --port 5173",
     "dev": "vite",
     "build": "npx tsc -b && npx vite build",
     "lint": "eslint .",
@@ -18,6 +18,8 @@
     "@fontsource/playfair-display": "^5.2.8",
     "@fontsource/rubik": "^5.2.8",
     "postcss-cli": "^11.0.1",
+    "primeicons": "^7.0.0",
+    "primereact": "^10.9.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
