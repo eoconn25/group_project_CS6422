@@ -1,39 +1,14 @@
 // used to select the state of if more info is shown
 import { useState } from "react";
-// blueprint for what a flower object looks like
-// has name and the scientific name, what it symblises, what its care instructions are, and optional image url
-interface Flower {
-  color: string;
-  name: string;
-  scientific_name: string;
-  symbolism: string[];
-  petal_count: {
-    min: number;
-    max: number;
-    typical: number;
-  };
-  average_diameter_cm: number;
-  fragrance: {
-    intensity: number;
-    description: string;
-  };
-  blooming_season: string[];
-  native_regions: string[];
-  care: {
-    light: string;
-    water: string;
-    soil: string;
-  };
-  image: string;
-}
+import type { FlowerVariant } from "../types/flowerTypes";
 
 //blueprint for the props that the FlowerInfoCard component will receive
 // the main flower object, a image url that is optional, a check to see of its saved (boolean), and a function to save or remove the flower that is also optional
 interface FlowerInfoCardProps {
-  flower: Flower;
+  flower: FlowerVariant;
   imageUrl?: string | null;
   isSaved?: boolean;
-  onSaveOrRemove?: (flower: Flower, imageUrl?: string | null) => void;
+  onSaveOrRemove?: (flower: FlowerVariant, imageUrl?: string | null) => void;
 }
 
 // main component function for the flower info card
@@ -124,11 +99,67 @@ export default function FlowerInfoCard({
       {showMore && (
         // the container for the extra info has a top margin, small text size, georgia font, spacing between the paragraphs, a top border and padding at the top
         <div className="mt-3 text-sm font-georgia space-y-2 border-t border-gray-300 pt-3">
+          {/* Petal Count*/}
           <p><strong>Petal Count:</strong> {flower.petal_count.typical} (range {flower.petal_count.min}–{flower.petal_count.max})</p>
+          {/* Average Diameter */}
           <p><strong>Average Diameter:</strong> {flower.average_diameter_cm} cm</p>
+          {/* Fragrance */}
           <p><strong>Fragrance:</strong> {flower.fragrance.description} (Intensity: {flower.fragrance.intensity}/5)</p>
-          <p><strong>Blooming Season:</strong> {flower.blooming_season.join(", ")}</p>
-          <p><strong>Native Regions:</strong> {flower.native_regions.join(", ")}</p>
+          {/* Blooming Season */}
+          {/* checks if blooming season exists and has length more than 0 */}
+          {/* if so displays the section as a list*/}
+          {/* same for native regions, traditional uses below */}
+          {flower.blooming_season && flower.blooming_season.length > 0 && (
+            <div>
+              <p><strong>Blooming Season:</strong></p>
+              <ul className="list-disc list-inside ml-4">
+                {flower.blooming_season.map((season, index) => (
+                  <li key={index}>{season}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Native Regions */}
+          {flower.native_regions && flower.native_regions.length > 0 && (
+            <div>
+              <p><strong>Native Regions:</strong></p>
+              <ul className="list-disc list-inside ml-4">
+                {flower.native_regions.map((region, index) => (
+                  <li key={index}>{region}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {/* Traditional Uses */}
+          {flower.traditional_uses && flower.traditional_uses.length > 0 && (
+            <div>
+              <p><strong>Traditional Uses:</strong></p>
+              <ul className="list-disc list-inside ml-4">
+                {flower.traditional_uses.map((use, index) => (
+                  <li key={index}>{use}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Allergies */}
+          {/* checks if allergies data exists */}
+          {/* if so displays the section as a list*/}
+          {/* different from above as allergies is an object not an array */}
+          {/* so each type of allergy is listed separately */}
+          {flower.allergies && (
+            <div>
+              <p><strong>Allergies:</strong></p>
+              <ul className="list-disc list-inside ml-4">
+                <li><strong>Humans:</strong> {flower.allergies.humans}</li>
+                <li><strong>Cats:</strong> {flower.allergies.cats}</li>
+                <li><strong>Dogs:</strong> {flower.allergies.dogs}</li>
+                <li><strong>Pollinators:</strong> {flower.allergies.pollinators}</li>
+                <li><strong>Livestock:</strong> {flower.allergies.livestock}</li>
+              </ul>
+            </div>
+          )}
         </div>
       )}
 
