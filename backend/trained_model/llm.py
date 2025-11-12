@@ -1,9 +1,10 @@
 import requests
 from typing import List, Dict
 import os
-from openai import OpenAI
+import subprocess
+import json
 
-# run "lms server start" in powershell - this will start an lmstudio process on port 1234
+# DEPRECATED run "lms server start" in powershell - this will start an lmstudio process on port 1234
 
 class SmartAss:
     def __init__(self, 
@@ -15,8 +16,7 @@ class SmartAss:
         #self.model = model
 
         # ollama backend within container
-        ollama_url = base_url or os.getenv("OLLAMA_URL", "http://localhost:11434")
-        self.client = OpenAI(base_url=f"{ollama_url}/v1", api_key="ollama")
+        self.base_url = base_url or os.getenv("OLLAMA_URL", "http://ollama:11434")
         self.model = model
 
         # we will want a conversation history to provide context for LLM, save previous chats, etc
@@ -41,34 +41,54 @@ class SmartAss:
         # call prompt engineering function
         messages = self.prompt_engineer(prompt)
 
+        url = f'{self.base_url}/api/generate'
+
         # this delivers the prompt to the llm with full context
         turn = {
             'model': self.model,  # defines model
             'messages': messages,  # context/conversation history
+            "stream": False
             #"temperature": temperature, # model params
-            #"max_tokens": max_tokens
+            #"num_predict": max_tokens
         }
 
         # try to send this turn to the llm; report errors if failure
         try:
-            response = requests.post(self.base_url, json=turn, timeout=180)
+            '''result = subprocess.run(
+                ["ollama", "run", self.model, "--json", json.dumps({"prompt": prompt})],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            output = result.stdout
+            data = json.loads(output)
+            message = data.get('output', '')  # adjust based on CLI format
+            self.add_message('assistant', message)
+            return message'''
+            response = requests.post(url, json=turn, timeout=180)
             response.raise_for_status()
             data = response.json()
 
             # extract llm response and add to conversation history
-            message = data['choices'][0]['message']['content']
+            message = data.get('response', '').strip()
             self.add_message('assistant', message)
             return message
+        
+            '''except subprocess.CalledProcessError as e:
+            print("Ollama CLI error:", e.stderr)
+            return "oh no, didnt work"'''
+        
         except Exception as e:
             print(f'error: {e}')
             return 'oh no, didnt work'
         
 
     def prompt_engineer(self, prompt:str) -> List[Dict[str,str]]:
-        return [
+        messages = self.conversation + [
             {'role': 'system', 'content': 'You are an expert in flower symbolism and bouquet design'},
             {'role': 'user', 'content': prompt}
         ]
+        return messages
         # retrieve context from db
         context = self.query_db(prompt)
         
