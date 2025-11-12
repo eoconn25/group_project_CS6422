@@ -6,15 +6,28 @@ import { useState, useRef, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import FlowerInfoCard from "./FlowerInfoCard";
 import SavedFlowersPage from "./SavedFlowersPage";
+import LlmResponseCard from "./LlmResponseCard";
 // the mock data to display for flowers for now
-import { mockFlowers } from "../data/mockData";
+// import { mockFlowers } from "../data/mockData";
+import flowerDataset from '../data/flowerDataset.json';
+import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
+
+
+
+// // Optionally type your import:
+// const dataset: FlowerDataset = flowerDataset;
+
 
 // blueprint for what a conversation card looks like
-// uses the flower type from the mock data
+// can be either a flower info card or a string response from the llm
+// optionally uses the flower type from the mock data
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
-  flower: typeof mockFlowers[0];
-  imageUrl?: string | null;
+  id: number; // unique id for the message, use Date.now()
+  type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
+  content?: string; // string response content from llm
+  flower?: FlowerVariant;
+  imageUrl?: string | ""; // image url for flower image
 }
 
 // blueprint for what a conversation thread looks like, and will hold all convos made
@@ -28,13 +41,25 @@ interface ConversationThread {
 // blueprint for what a saved flower object looks like
 // the flower data and an optional image url
 interface SavedFlower {
-  flower: typeof mockFlowers[0];
+  flower: FlowerVariant;
   imageUrl?: string | null;
 }
 
 // main component function for the chat layout
 //declares and exports the main component function for the chat layout
-export default function ChatLayout() {
+//export default function ChatLayout() {
+//OLD VERSION
+export default function ChatLayout({
+    // object destructuring to get the username and logout function from props
+    username,
+    onLogout,
+  }: {
+    // the username is optional string
+    username?: string;
+    // the logout function has no return value
+    onLogout: () => void;
+  }) 
+{
   //state declarations
   //holds all the conversations made
   const [conversations, setConversations] = useState<ConversationThread[]>([]);
@@ -75,53 +100,156 @@ export default function ChatLayout() {
   // to active convo or new one
   // if no active convo, creates a new one with a unique id and the flower name as the title
   // if there is an active convo, appends the new message to it and updates the title if it was "Untitled Chat"
-  const appendMessage = (msg: ConversationCard) => {
+  // const appendMessage = (msg: ConversationCard) => {
+  //   if (!activeId) {
+  //     const newId = Date.now();
+  //     setConversations((prev) => [...prev, { id: newId, title: `${msg.flower.color} ${msg.flower.name}`, messages: [msg] }]);
+  //     setActiveId(newId);
+  //   } else {
+  //     setConversations((prev) =>
+  //       prev.map((conv) =>
+  //         conv.id === activeId
+  //           ? {
+  //               ...conv,
+  //               title: conv.title === "Untitled Chat" ? msg.flower.name : conv.title,
+  //               messages: [...conv.messages, msg],
+  //             }
+  //           : conv
+  //       )
+  //     );
+  //   }
+  // };
+
+  const appendMessage = (msg: Partial<ConversationCard>) => {
+  setConversations((prev) => {
+    // if no active conversation exists, create one
     if (!activeId) {
       const newId = Date.now();
-      setConversations((prev) => [...prev, { id: newId, title: `${msg.flower.color} ${msg.flower.name}`, messages: [msg] }]);
-      setActiveId(newId);
-    } else {
-      setConversations((prev) =>
-        prev.map((conv) =>
-          conv.id === activeId
-            ? {
-                ...conv,
-                title: conv.title === "Untitled Chat" ? msg.flower.name : conv.title,
-                messages: [...conv.messages, msg],
-              }
-            : conv
-        )
-      );
-    }
-  };
 
+      // derive a title
+      const title =
+        msg.type === "flower" && msg.flower
+          ? `${msg.flower.color} ${msg.flower.name}`
+          : "Untitled Chat";
+
+      const newConv: ConversationThread = {
+        id: newId,
+        title,
+        messages: [
+          {
+            id: msg.id ?? Date.now(),
+            type: msg.type || "string",
+            content: msg.content || "",
+            flower: msg.flower,
+            imageUrl: msg.imageUrl ?? "",
+          },
+        ],
+      };
+
+      setActiveId(newId);
+      return [...prev, newConv];
+    }
+
+    // otherwise, append to the existing active conversation
+    return prev.map((conv) => {
+      if (conv.id !== activeId) return conv;
+
+      // update title only if it’s "Untitled Chat" and we have a new flower
+      let newTitle = conv.title;
+      if (conv.title === "Untitled Chat" && msg.flower) {
+        newTitle = msg.flower.name;
+      }
+
+      const newMessage: ConversationCard = {
+        id: msg.id ?? Date.now(),
+        type: msg.type || "string",
+        content: msg.content || "",
+        flower: msg.flower,
+        imageUrl: msg.imageUrl ?? "",
+      };
+
+      return {
+        ...conv,
+        title: newTitle,
+        messages: [...conv.messages, newMessage],
+      };
+    });
+  });
+};
+
+
+	// ===================== 2025-11-05================
+	// This is a somewhat working version of communication, it only console.logs the response now
   // Search
   // looks for a flower by name will append a message with that flower if found
   // and hides the saved flowers page if it was open
   // ignores case when searching
   // does nothing if no match is found
-  const handleSearch = (query: string) => {
-    const result = mockFlowers.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    if (!result) return;
-    appendMessage({ flower: result });
+  const handleSearch = async (query: string) => {
+		console.log("query string: ", query);
+
+    try {
+    console.log("Sending query to backend...");
+
+    const API_BASE =
+      window.location.hostname === "localhost"
+        ? "http://localhost:5001"
+        : "http://backend:5001";
+
+    console.log("API_BASE: ", API_BASE);
+
+
+
+    const response = await fetch(`${API_BASE}/ask`, 
+			{ method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({prompt: query}) 
+		})
+
+    // const response = await fetch("http://localhost:5001/ask", 
+    //       { method: "POST", 
+    //         headers: {"Content-Type": "application/json"}, 
+    //         body: JSON.stringify({prompt: query}) 
+    //     })
+
+
+    if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+
+    
+		const data = await response.json()
+    //const result = flowerDataset.find((f) => f.name.toLowerCase() === query.toLowerCase());
+    //if (!result) return;
+    //appendMessage(data.response);
+		
+        
+    console.log("Received: ", data);
+
+    appendMessage({ id: Date.now(), type: "string", content: data.response });
     setShowSavedPage(false);
+
+
+    } catch (error) {
+      console.error("Error during upload:", error);
+    }
   };
+	// ==============================================
+
+
+
 
   // Upload
   // handles image upload by the user
   // gets the first file from the input
-  // creates a URL for the uploaded image and appends a message with a mock predicted flower (second flower in mock data)
+  // creates a URL for the uploaded image coverts to FormData
+  // sends FormData to backend to communicate AI and awaits json response
+  // searches for json response in dataset
+  // appends matched item in dataset to message
   // then goes back to the main chat view
   // make async to talk to AI
-  // const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (!file) return;
-  //   const url = URL.createObjectURL(file);
-  //   const matchedFlower = mockFlowers[1]; // mock prediction
-  //   appendMessage({ flower: matchedFlower, imageUrl: url });
-  //   setShowSavedPage(false);
-  // };
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("entered handleUpload")
     
     const file = e.target.files?.[0];
@@ -169,22 +297,13 @@ export default function ChatLayout() {
     console.log("Backend response:", data); // {color, species}
 
     if (data.species) {
-      // Match by both name AND color (case-insensitive)
-      const matchedFlower =
-        mockFlowers.find( // find flower with both correct name and color
-            f =>
-              f.name.toLowerCase() === data.species.toLowerCase() &&
-              f.color.toLowerCase() === data.color.toLowerCase()
-          ) ||
-        // fallback: try matching by name only
-        mockFlowers.find(f => f.name.toLowerCase() === data.species.toLowerCase()) ||
-        // final fallback: first element
-        mockFlowers[0];
-        
+      const matchedFlower = findMatchingFlower(data);
       console.log("matchedFlower: ", matchedFlower)
-
+          
+    
       // Update your UI / message list
-      appendMessage({ flower: matchedFlower, imageUrl: url });
+      appendMessage({ id: Date.now(), type: "flower", flower: matchedFlower, imageUrl: url });
+
     } else {
       console.log("No flower was detected in photo upload")
       setShowErrorMessage(true);
@@ -204,7 +323,7 @@ export default function ChatLayout() {
   // Save/remove flower
   // if its found, it will show remove message and remove it from saved flowers
   // if its not founds, will show save message and add it to saved flowers
-  const handleSaveOrRemoveFlower = (flower: typeof mockFlowers[0], imageUrl?: string | null) => {
+  const handleSaveOrRemoveFlower = (flower: FlowerVariant, imageUrl?: string | null) => {
     setSavedFlowers((prev) => {
       const idx = prev.findIndex((f) => f.flower.name === flower.name); // check by name only
       if (idx >= 0) {
@@ -232,6 +351,93 @@ export default function ChatLayout() {
     setActiveId(newId);
     setShowSavedPage(false);
   };
+
+  // before your main return() — right after defining activeConversation, etc.
+const renderedMessages = activeConversation?.messages.length
+  ? activeConversation.messages.map((msg, i) => {
+      if (msg.type === "flower" && msg.flower) { // check to see if flower type and flower data exist
+        return (
+          <FlowerInfoCard
+            key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
+            flower={msg.flower}
+            imageUrl={msg.imageUrl}
+            isSaved={isFlowerSaved(msg.flower.name)}
+            onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
+          />
+        );
+      } else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
+        return (
+          <LlmResponseCard
+            key={`string-${msg.id}-${i}`}
+            content={msg.content}
+          />
+        );
+      } else { // otherwise, return null (and panic)
+        return null;
+      }
+    })
+  : (
+    <p className="text-gray-500 text-center mt-10 font-calistoga">
+      Search or upload an image to start a conversation.
+    </p>
+  );
+
+
+
+  // where "renderedMessages" is used, used to be:
+  // {/* checks if there is an active conversation and if it has messages to display */}
+  //             {activeConversation?.messages.length ? (
+  //               /* maps through the messages in the active conversation and renders a FlowerInfoCard for each one */
+  //               activeConversation.messages.map((msg, i) => (
+  //                 if (msg.type === "flower" && msg.flower) {
+  //                   return (
+  //                     <FlowerInfoCard
+  //                       key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
+  //                       flower={msg.flower}
+  //                       imageUrl={msg.imageUrl}
+  //                       isSaved={isFlowerSaved(msg.flower.name)}
+  //                       onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
+  //                     />
+  //                   );
+  //                 } else if (msg.type === "string" && msg.content) {
+  //                   return (
+  //                     <LlmResponseCard
+  //                       key={`string-${msg.id}-${i}`}
+  //                       content={msg.content}
+  //                     />
+  //                   );
+  //                 } else {
+  //                   return null;
+  //                 }
+  //               })
+  //             ) : (
+  //               <p className="text-gray-500 text-center mt-10 font-calistoga">
+  //                 Search or upload an image to start a conversation.
+  //               </p>
+  //             )}
+
+
+
+
+  function findMatchingFlower(data: { species: string; color: string }) {
+    // Find the species
+    const matchedSpecies = flowerDataset.flowers.find(
+      f => f.species.toLowerCase() === data.species.toLowerCase()
+    );
+
+    // If no species match, return first variant of first species
+    if (!matchedSpecies) {
+      return flowerDataset.flowers[0].variants[0];
+    }
+
+    // find variant of that species with color
+    const matchedVariant = matchedSpecies.variants.find(
+      v => v.color.toLowerCase() === data.color.toLowerCase()
+    );
+
+    // If color not found return first variant of that species
+    return matchedVariant || matchedSpecies.variants[0];
+  }
 
   return (
     // main container for the chat layout
@@ -286,11 +492,20 @@ export default function ChatLayout() {
             // if no conversations this is the text, grey color, small size, and calistoga font
             <p className="text-gray-500 text-sm font-calistoga">No conversations yet.</p>
           )}
-        </div>
+        </div >
+        {/* Welcome message with username */}
+        {username && (
+          <p className="text-black font-calistoga mb-2 text-sm">
+            🌸 Welcome, <span className="font-bold">{username}</span>!
+          </p>
+        )}
         {/* the logout button at the bottom of the sidebar */}
         {/* the button has margin top auto to push it to the bottom, full width, padding on top and bottom of 2, rounded corners, calistoga font, light blue background and black text */}
         {/* at the moment does not cause no login had been made, for the future reference*/}
-        <button className="mt-auto w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black">
+        <button
+          onClick={onLogout}
+          className="mt-auto w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black"
+        >
           Log Out
         </button>
       </div>
@@ -319,26 +534,7 @@ export default function ChatLayout() {
           {/*this is the chat view */}
           {/*the chat container takes the remaining space above the search/upload area, is scrollable vertically, has padding, uses flexbox with vertical layout and spacing between messages, and references the chatRef for auto-scrolling */}
             <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" ref={chatRef}>
-              {/* checks if there is an active conversation and if it has messages to display */}
-              {activeConversation?.messages.length ? (
-                /* maps through the messages in the active conversation and renders a FlowerInfoCard for each one */
-                activeConversation.messages.map((msg, i) => (
-                  // the key is a combination of flower name, image url and index to ensure uniqueness
-                  // passes the flower data and image url to display and checks if its already saved to set the button text
-                  <FlowerInfoCard
-                    key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
-                    flower={msg.flower}
-                    imageUrl={msg.imageUrl}
-                    isSaved={isFlowerSaved(msg.flower.name)}
-                    onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
-                  />
-                ))
-              ) : (
-                // if no messages this is the text, grey color, centered, has a margin top 10 and lastly calistoga font
-                <p className="text-gray-500 text-center mt-10 font-calistoga">
-                  Search or upload an image to start a conversation.
-                </p>
-              )}
+              {renderedMessages}
             </div>
 
             {/* Search + Upload */}
