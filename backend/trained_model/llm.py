@@ -46,7 +46,7 @@ class SmartAss:
         # this delivers the prompt to the llm with full context
         turn = {
             'model': self.model,  # defines model
-            'messages': messages,  # context/conversation history
+            'prompt': prompt,  # context/conversation history
             "stream": False
             #"temperature": temperature, # model params
             #"num_predict": max_tokens
@@ -54,29 +54,15 @@ class SmartAss:
 
         # try to send this turn to the llm; report errors if failure
         try:
-            '''result = subprocess.run(
-                ["ollama", "run", self.model, "--json", json.dumps({"prompt": prompt})],
-                capture_output=True,
-                text=True,
-                check=True
-            )
-            output = result.stdout
-            data = json.loads(output)
-            message = data.get('output', '')  # adjust based on CLI format
-            self.add_message('assistant', message)
-            return message'''
             response = requests.post(url, json=turn, timeout=180)
             response.raise_for_status()
             data = response.json()
+            print(f'\n\nHERE {data}\n\n', flush=True)
 
             # extract llm response and add to conversation history
             message = data.get('response', '').strip()
             self.add_message('assistant', message)
             return message
-        
-            '''except subprocess.CalledProcessError as e:
-            print("Ollama CLI error:", e.stderr)
-            return "oh no, didnt work"'''
         
         except Exception as e:
             print(f'error: {e}')
