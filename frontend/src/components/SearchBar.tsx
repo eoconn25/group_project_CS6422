@@ -40,7 +40,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         // standard text input field
         type="text"
         // text when input is empty
-        placeholder="Search for a flower..."
+        placeholder="Ask your flower question..."
         // controlled component, displayed value will come from query state
         value={query}
         // update query state when user types

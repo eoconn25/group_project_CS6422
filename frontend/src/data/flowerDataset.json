@@ -1,0 +1,4199 @@
+{
+    "flowers": [
+        {
+            "species": "Astilbe",
+            "variants": [
+                {
+                    "color": "Pink",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "patience",
+                        "dedication"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 30,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Light, subtle"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/pink_astilbe.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "purity",
+                        "calm"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 30,
+                        "typical": 17
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/white_astilbe.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "passion",
+                        "energy"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 32,
+                        "typical": 20
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/red_astilbe.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "royalty",
+                        "mystery"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 28,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Subtle"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/purple_astilbe.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Peach",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "appreciation",
+                        "gentleness"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 30,
+                        "typical": 19
+                    },
+                    "average_diameter_cm": 5.5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Softly sweet"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/peach_astilbe.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Dried",
+                    "name": "Astilbe",
+                    "scientific_name": "Astilbe",
+                    "symbolism": [
+                        "resilience",
+                        "nostalgia"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 30,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 4.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Earthy, muted"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "partial shade",
+                        "water": "moderate to high",
+                        "soil": "moist, rich"
+                    },
+                    "image": "/astilbe/dried_astilbe.avif",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Bellflower",
+            "variants": [
+                {
+                    "color": "Blue",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "gratitude",
+                        "humility"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 5
+                    },
+                    "average_diameter_cm": 4,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/blue_bellflower.webp",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "admiration",
+                        "respect"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 4,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/purple_bellflower.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "purity",
+                        "simplicity"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 5
+                    },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/white_bellflower.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "affection",
+                        "gratitude"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 5
+                    },
+                    "average_diameter_cm": 4,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/pink_bellflower.webp",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Burgundy",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "depth",
+                        "gratitude"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 4.2,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/burgundy_bellflower.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red with contrasting speckles",
+                    "name": "Bellflower",
+                    "scientific_name": "Campanula",
+                    "symbolism": [
+                        "creativity",
+                        "uniqueness"
+                    ],
+                    "petal_count": {
+                        "min": 5,
+                        "max": 7,
+                        "typical": 5
+                    },
+                    "average_diameter_cm": 4.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Delicate"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/bellflowers/red_speckled_bellflower.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Black-eyed Susan",
+            "variants": [
+                {
+                    "color": "Yellow with dark center",
+                    "name": "Black-eyed Susan",
+                    "scientific_name": "Rudbeckia Hirta",
+                    "symbolism": [
+                        "encouragement",
+                        "motivation"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 20,
+                        "typical": 13
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal scent"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/black_eyed_susan/yellow_black_eyed_susan.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Black-eyed Susan",
+                    "scientific_name": "Rudbeckia Hirta",
+                    "symbolism": [
+                        "warmth",
+                        "energy"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 22,
+                        "typical": 14
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/black_eyed_susan/orange_black_eyed_susan.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red-brown",
+                    "name": "Black-eyed Susan",
+                    "scientific_name": "Rudbeckia Hirta",
+                    "symbolism": [
+                        "stability",
+                        "endurance"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 20,
+                        "typical": 13
+                    },
+                    "average_diameter_cm": 9,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/black_eyed_susan/brown_black_eyed_susan.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Black-eyed Susan",
+                    "scientific_name": "Rudbeckia Hirta",
+                    "symbolism": [
+                        "resilience",
+                        "hope"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 20,
+                        "typical": 12
+                    },
+                    "average_diameter_cm": 7.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Clean, subtle"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/black_eyed_susan/white_black_eyed_susan.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Black-eyed Susan",
+                    "scientific_name": "Rudbeckia Hirta",
+                    "symbolism": [
+                        "playfulness",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 10,
+                        "max": 22,
+                        "typical": 14
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Lightly sweet"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/black_eyed_susan/pink_black_eyed_susan.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Calendula",
+            "variants": [
+                {
+                    "color": "Orange",
+                    "name": "Calendula",
+                    "scientific_name": "Calendula",
+                    "symbolism": [
+                        "healing",
+                        "comfort"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 40,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild, herbal"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/calendula/orange_calendula.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Calendula",
+                    "scientific_name": "Calendula",
+                    "symbolism": [
+                        "joy",
+                        "warmth"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 36,
+                        "typical": 26
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/calendula/yellow_calendula.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Cream",
+                    "name": "Calendula",
+                    "scientific_name": "Calendula",
+                    "symbolism": [
+                        "healing",
+                        "calm"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 34,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 5.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe",
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/calendula/cream_calendula.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Californa Poppy",
+            "variants": [
+                {
+                    "color": "Orange",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "resilience",
+                        "dreaming"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/orange_california_poppy.jpeg",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "cheer",
+                        "optimism"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/yellow_california_poppy.jpeg",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "vibrancy",
+                        "boldness"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/red_california_poppy.webp",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "simplicity",
+                        "clarity"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 4.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/white_california_poppy.jpeg",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "romance",
+                        "whimsy"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 4.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Gentle"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/pink_california_poppy.jpeg",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Californa Poppy",
+                    "scientific_name": "Eschscholzia Californica",
+                    "symbolism": [
+                        "imagination",
+                        "serenity"
+                    ],
+                    "petal_count": {
+                        "min": 4,
+                        "max": 6,
+                        "typical": 4
+                    },
+                    "average_diameter_cm": 4.7,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Subtle"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "sandy, well-drained"
+                    },
+                    "image": "/california_poppy/purple_california_poppy.jpeg",
+                    "traditional_uses": [
+                        "culinary seeds",
+                        "medicinal extracts",
+                        "wildflower meadows"
+                    ],
+                    "allergies": {
+                        "humans": "Sap can irritate skin; seeds safe in moderation.",
+                        "cats": "Toxic; ingestion affects central nervous system.",
+                        "dogs": "Can cause sedation or tremors if eaten.",
+                        "pollinators": "Large pollen stores feed bees safely.",
+                        "livestock": "Highly toxic to grazing animals; keep fenced."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Carnation",
+            "scientific_name": "Dianthus Caryophyllus",
+            "variants": [
+                {
+                    "color": "Pink",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "love",
+                        "fascination"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 40,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Clove-like, spicy"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, alkaline to neutral"
+                    },
+                    "image": "/carnation/pink_carnation.webp",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "love",
+                        "admiration"
+                    ],
+                    "petal_count": {
+                        "min": 22,
+                        "max": 42,
+                        "typical": 30
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Spicy, strong"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, alkaline to neutral"
+                    },
+                    "image": "/carnation/red_carnation.jpeg",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "purity",
+                        "good luck"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 36,
+                        "typical": 26
+                    },
+                    "average_diameter_cm": 5.5,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Mild, spicy"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/carnation/white_carnation.jpeg",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "friendship",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 36,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Sweet-spicy"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/carnation/yellow_carnation.webp",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "enthusiasm",
+                        "admiration"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 40,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Citrus-spice"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, alkaline to neutral"
+                    },
+                    "image": "/carnation/orange_carnation.webp",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Carnation",
+                    "scientific_name": "Dianthus Caryophyllus",
+                    "symbolism": [
+                        "caprice",
+                        "creativity"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 38,
+                        "typical": 27
+                    },
+                    "average_diameter_cm": 5.5,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Rich, clove-like"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Mediterranean"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, alkaline to neutral"
+                    },
+                    "image": "/carnation/purple_carnation.jpeg",
+                    "traditional_uses": [
+                        "boutonnieres",
+                        "corsages",
+                        "dyeing experiments"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Common Daisy",
+            "variants": [
+                {
+                    "color": "White",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "innocence",
+                        "simplicity"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 30,
+                        "typical": 20
+                    },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint, fresh"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/common_daisy/white_common_daisy.jpeg",
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "youth",
+                        "gentleness"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 28,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/common_daisy/pink_common_daisy.jpeg",
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "affection",
+                        "playfulness"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 28,
+                        "typical": 19
+                    },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/common_daisy/red_common_daisy.jpeg",
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "cheer",
+                        "vitality"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 26,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 3.6,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Fresh, light"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "joy",
+                        "optimism"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 28,
+                        "typical": 19
+                    },
+                    "average_diameter_cm": 3.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Sunny, faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/common_daisy/yellow_common_daisy.jpeg",
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Common Daisy",
+                    "scientific_name": "Bellis Perennis",
+                    "symbolism": [
+                        "imagination",
+                        "delight"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 30,
+                        "typical": 20
+                    },
+                    "average_diameter_cm": 3.7,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Subtle"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "low to moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/common_daisy/purple_common_daisy.jpeg",
+                    "traditional_uses": [
+                        "wildflower mixes",
+                        "crowns",
+                        "children's crafts"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Coreopsis",
+            "variants": [
+                {
+                    "color": "Yellow",
+                    "name": "Coreopsis",
+                    "scientific_name": "Coreopsis",
+                    "symbolism": [
+                        "cheerfulness",
+                        "simplicity"
+                    ],
+                    "petal_count": {
+                        "min": 8,
+                        "max": 20,
+                        "typical": 12
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "well-drained, sandy"
+                    },
+                    "image": "/coreopsis/yellow_coreopsis.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange-red",
+                    "name": "Coreopsis",
+                    "scientific_name": "Coreopsis",
+                    "symbolism": [
+                        "vibrancy",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 8,
+                        "max": 18,
+                        "typical": 12
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "well-drained, sandy"
+                    },
+                    "image": "/coreopsis/orange_red_coreopsis.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Coreopsis",
+                    "scientific_name": "Coreopsis",
+                    "symbolism": [
+                        "passion",
+                        "boldness"
+                    ],
+                    "petal_count": {
+                        "min": 8,
+                        "max": 16,
+                        "typical": 11
+                    },
+                    "average_diameter_cm": 5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "well-drained, sandy"
+                    },
+                    "image": "/coreopsis/red_coreopsis.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Coreopsis",
+                    "scientific_name": "Coreopsis",
+                    "symbolism": [
+                        "gentleness",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 8,
+                        "max": 18,
+                        "typical": 12
+                    },
+                    "average_diameter_cm": 4.8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Delicate"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "well-drained, sandy"
+                    },
+                    "image": "/coreopsis/pink_coreopsis.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Daffodil",
+            "variants": [
+                {
+                    "color": "Yellow",
+                    "name": "Daffodil",
+                    "scientific_name": "Narcissus",
+                    "symbolism": [
+                        "rebirth",
+                        "new beginnings"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 7,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Light, sweet"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/daffodil/yellow_daffodil.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Daffodil",
+                    "scientific_name": "Narcissus",
+                    "symbolism": [
+                        "purity",
+                        "hope"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 10,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6.5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Delicate, sweet"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/daffodil/white_daffodil.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Daffodil",
+                    "scientific_name": "Narcissus",
+                    "symbolism": [
+                        "energy",
+                        "creativity"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 8
+                    },
+                    "average_diameter_cm": 7,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/daffodil/orange_daffodil.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Daffodil",
+                    "scientific_name": "Narcissus",
+                    "symbolism": [
+                        "admiration",
+                        "grace"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 8
+                    },
+                    "average_diameter_cm": 6.5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Sweet, gentle"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/daffodil/pink_daffodil.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Dandelion",
+            "variants": [
+                {
+                    "color": "Yellow",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "wishes",
+                        "survival"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 150,
+                        "typical": 80
+                    },
+                    "average_diameter_cm": 3,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "None to very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/yellow_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "joy",
+                        "persistence"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 140,
+                        "typical": 75
+                    },
+                    "average_diameter_cm": 3,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "None"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/orange_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "playfulness",
+                        "novelty"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 130,
+                        "typical": 80
+                    },
+                    "average_diameter_cm": 3,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/pink_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "purity",
+                        "transformation"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 150,
+                        "typical": 85
+                    },
+                    "average_diameter_cm": 3.2,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Clean, faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/white_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "strength",
+                        "individuality"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 140,
+                        "typical": 78
+                    },
+                    "average_diameter_cm": 3.1,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Earthy, faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/red_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Dandelion",
+                    "scientific_name": "Taraxacum",
+                    "symbolism": [
+                        "mystery",
+                        "originality"
+                    ],
+                    "petal_count": {
+                        "min": 50,
+                        "max": 135,
+                        "typical": 80
+                    },
+                    "average_diameter_cm": 3,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "low",
+                        "soil": "varied, tolerant"
+                    },
+                    "image": "/dandelion/purple_dandelion.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Iris",
+            "variants": [
+                {
+                    "color": "Blue",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "faith",
+                        "wisdom"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Light, powdery"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/iris/blue_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "royalty",
+                        "valor"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 7
+                    },
+                    "average_diameter_cm": 9,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/iris/purple_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "passion",
+                        "friendship"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/iris/yellow_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "purity",
+                        "peace"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Subtle"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/iris/white_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "energy",
+                        "creativity"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 7
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Warm, subtle"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/iris/orange_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "passion",
+                        "courage"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 7
+                    },
+                    "average_diameter_cm": 8.5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Light, spicy"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/iris/red_iris.webps",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Red-purple",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "mystique",
+                        "elegance"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 7
+                    },
+                    "average_diameter_cm": 8.5,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Floral, refined"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/iris/red_purple_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "admiration",
+                        "affection"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Delicate, sweet"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/iris/pink_iris.jpeg",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Brown",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "stability",
+                        "earthiness"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Earthy, subtle"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Black",
+                    "name": "Iris",
+                    "scientific_name": "Iris",
+                    "symbolism": [
+                        "mystery",
+                        "drama"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "Max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Northern Hemisphere"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/iris/black_iris.webp",
+                    "traditional_uses": [
+                        "cut flowers",
+                        "perfume bases",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Magnolia",
+            "variants": [
+                {
+                    "color": "White",
+                    "name": "Magnolia",
+                    "scientific_name": "Magnolia",
+                    "symbolism": [
+                        "dignity",
+                        "nobility"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 9
+                    },
+                    "average_diameter_cm": 18,
+                    "fragrance": {
+                        "intensity": 4,
+                        "description": "Lemon-vanilla, strong"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "moist, well-drained"
+                    },
+                    "image": "/magnolia/white_magnolia.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Magnolia",
+                    "scientific_name": "Magnolia",
+                    "symbolism": [
+                        "youth",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 10
+                    },
+                    "average_diameter_cm": 16,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Sweet, floral"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "moist, well-drained"
+                    },
+                    "image": "/magnolia/pink_magnolia.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Magnolia",
+                    "scientific_name": "Magnolia",
+                    "symbolism": [
+                        "dignity",
+                        "mystery"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 9
+                    },
+                    "average_diameter_cm": 17,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Strong, sweet"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Asia"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "moist, well-drained"
+                    },
+                    "image": "/magnolia/purple_magnolia.jpeg",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Magnolia",
+                    "scientific_name": "Magnolia",
+                    "symbolism": [
+                        "renewal",
+                        "optimism"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 12,
+                        "typical": 9
+                    },
+                    "average_diameter_cm": 17,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Lemon-sweet"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Americas"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "moderate",
+                        "soil": "moist, well-drained"
+                    },
+                    "image": "/magnolia/yellow_magnolia.webp",
+                    "traditional_uses": [
+                        "ornamental displays",
+                        "gift bouquets",
+                        "educational gardens"
+                    ],
+                    "allergies": {
+                        "humans": "Generally safe with minor risk of skin irritation.",
+                        "cats": "Potentially irritating if large quantities are ingested.",
+                        "dogs": "Monitor for mild stomach upset if chewed.",
+                        "pollinators": "Safe and often beneficial to bees and butterflies.",
+                        "livestock": "Keep ornamental plantings away from grazing animals."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Rose",
+            "variants": [
+                {
+                    "color": "Red",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "love",
+                        "passion"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 50,
+                        "typical": 30
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 4,
+                        "description": "Strong, classic rose scent"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/red_rose.png",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "gratitude",
+                        "admiration"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 45,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 7.5,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Sweet, floral"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/pink_rose.webp",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "purity",
+                        "innocence"
+                    ],
+                    "petal_count": {
+                        "min": 15,
+                        "max": 40,
+                        "typical": 25
+                    },
+                    "average_diameter_cm": 7,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Mild, fresh"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/rose/white_rose.jpeg",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "friendship",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 15,
+                        "max": 40,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 7.5,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Light, fruity"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/yellow_rose.jpeg",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Black",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "mystery",
+                        "farewell"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 50,
+                        "typical": 32
+                    },
+                    "average_diameter_cm": 8,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Deep, spicy"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/rose/black_rose.webp",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "enchantment",
+                        "royalty"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 45,
+                        "typical": 29
+                    },
+                    "average_diameter_cm": 7.8,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Sweet, rich"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/purple_rose.jpeg",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "enthusiasm",
+                        "desire"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 45,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 7.5,
+                    "fragrance": {
+                        "intensity": 3,
+                        "description": "Citrus, spicy"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/orange_rose.jpeg",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Green",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "harmony",
+                        "new beginnings"
+                    ],
+                    "petal_count": {
+                        "min": 15,
+                        "max": 35,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 7,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Fresh, herbal"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/rose/green_rose.webp",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                },
+                {
+                    "color": "Blue",
+                    "name": "Rose",
+                    "scientific_name": "Rosa",
+                    "symbolism": [
+                        "mystique",
+                        "rarity"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 40,
+                        "typical": 27
+                    },
+                    "average_diameter_cm": 7.2,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Soft, floral"
+                    },
+                    "blooming_season": [
+                        "spring",
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, fertile"
+                    },
+                    "image": "/rose/blue_rose.jpeg",
+                    "traditional_uses": [
+                        "perfume making",
+                        "tea blends",
+                        "symbolic gifting"
+                    ],
+                    "allergies": {
+                        "humans": "Thorns and pollen may cause mild irritation.",
+                        "cats": "Generally safe though leaves upset stomach if eaten.",
+                        "dogs": "Thorns can injure gums; hips safe in moderation.",
+                        "pollinators": "Highly attractive and safe for bees.",
+                        "livestock": "Avoid thorny stems in forage to prevent mouth injuries."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Sunflower",
+            "variants": [
+                {
+                    "color": "Yellow",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "adoration",
+                        "loyalty"
+                    ],
+                    "petal_count": {
+                        "min": 20,
+                        "max": 40,
+                        "typical": 30
+                    },
+                    "average_diameter_cm": 25,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal scent"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate to high",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/yellow_sunflower.jpeg",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "strength",
+                        "passion"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 36,
+                        "typical": 28
+                    },
+                    "average_diameter_cm": 20,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate to high",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/red_sunflower.jpeg",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "Brown",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "stability",
+                        "earth"
+                    ],
+                    "petal_count": {
+                        "min": 16,
+                        "max": 34,
+                        "typical": 26
+                    },
+                    "average_diameter_cm": 22,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "North America"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/brown_sunflower.jpeg",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "admiration",
+                        "joy"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 32,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 20,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Light, sweet"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/pink_sunflower.jpeg",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "purity",
+                        "light"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 34,
+                        "typical": 26
+                    },
+                    "average_diameter_cm": 22,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Clean, faint"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/white_sunflower.webp",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "Green",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "renewal",
+                        "abundance"
+                    ],
+                    "petal_count": {
+                        "min": 16,
+                        "max": 30,
+                        "typical": 24
+                    },
+                    "average_diameter_cm": 21,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Herbal, subtle"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/green_sunflower.jpeg",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                },
+                {
+                    "color": "Orange",
+                    "name": "Sunflower",
+                    "scientific_name": "Helianthus",
+                    "symbolism": [
+                        "strength",
+                        "warmth"
+                    ],
+                    "petal_count": {
+                        "min": 18,
+                        "max": 34,
+                        "typical": 26
+                    },
+                    "average_diameter_cm": 21,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Earthy, faint"
+                    },
+                    "blooming_season": [
+                        "summer",
+                        "autumn"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "fertile, well-drained"
+                    },
+                    "image": "/sunflower/orange_sunflower.webp",
+                    "traditional_uses": [
+                        "edible seeds",
+                        "cooking oil",
+                        "cheerful arrangements"
+                    ],
+                    "allergies": {
+                        "humans": "Pollen can trigger hay fever in sensitive people.",
+                        "cats": "Non-toxic but large ingestion may upset stomachs.",
+                        "dogs": "Seeds are safe if unsalted; stems may be fibrous.",
+                        "pollinators": "Excellent nectar source; no toxicity concerns.",
+                        "livestock": "Leaves are safe but fibrous; seeds often fed to birds."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Tulip",
+            "variants": [
+                {
+                    "color": "Yellow",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "cheerfulness",
+                        "friendship"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild, sometimes sweet"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Central Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained, sandy"
+                    },
+                    "image": "/tulip/yellow_tulip.jpeg",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "love",
+                        "passion"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Central Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/tulip/red_tulip.png",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "caring",
+                        "good wishes"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Central Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/tulip/pink_tulip.webp",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "royalty",
+                        "mystery"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Minimal"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Central Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/tulip/purple_tulip.webp",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                },
+                {
+                    "color": "White",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "purity",
+                        "forgiveness"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Very faint"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Central Asia",
+                        "Europe"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/tulip/white_tulip.jpeg",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                },
+                {
+                    "color": "Black",
+                    "name": "Tulip",
+                    "scientific_name": "Tulipa",
+                    "symbolism": [
+                        "elegance",
+                        "mystery"
+                    ],
+                    "petal_count": {
+                        "min": 6,
+                        "max": 9,
+                        "typical": 6
+                    },
+                    "average_diameter_cm": 6.5,
+                    "fragrance": {
+                        "intensity": 0,
+                        "description": "Velvety subtle"
+                    },
+                    "blooming_season": [
+                        "spring"
+                    ],
+                    "native_regions": [
+                        "Cultivar"
+                    ],
+                    "care": {
+                        "light": "full sun",
+                        "water": "moderate",
+                        "soil": "well-drained"
+                    },
+                    "image": "/tulip/black_tulip.webp",
+                    "traditional_uses": [
+                        "spring displays",
+                        "holiday gifting",
+                        "festival decor"
+                    ],
+                    "allergies": {
+                        "humans": "Bulbs can irritate skin; wear gloves when planting.",
+                        "cats": "Toxic if bulbs or leaves are ingested.",
+                        "dogs": "Causes drooling and vomiting if bulbs are eaten.",
+                        "pollinators": "Limited nectar; generally safe.",
+                        "livestock": "Keep bulbs out of reach; ingestion causes stomach upset."
+                    }
+                }
+            ]
+        },
+        {
+            "species": "Water Lily",
+            "variants": [
+                {
+                    "color": "White",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "purity",
+                        "tranquility"
+                    ],
+                    "petal_count": {
+                        "min": 15,
+                        "max": 30,
+                        "typical": 20
+                    },
+                    "average_diameter_cm": 15,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Light, aquatic"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide (aquatic)"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/white_waterlily.jpeg",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                },
+                {
+                    "color": "Pink",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "love",
+                        "rebirth"
+                    ],
+                    "petal_count": {
+                        "min": 14,
+                        "max": 28,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 14,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Sweet aquatic"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide (aquatic)"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/pink_waterlily.webp",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                },
+                {
+                    "color": "Yellow",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "enlightenment",
+                        "energy"
+                    ],
+                    "petal_count": {
+                        "min": 12,
+                        "max": 26,
+                        "typical": 16
+                    },
+                    "average_diameter_cm": 13,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Mild aquatic"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Tropical to temperate regions"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/yellow_waterlily.jpeg",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                },
+                {
+                    "color": "Red",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "passion",
+                        "tranquility"
+                    ],
+                    "petal_count": {
+                        "min": 14,
+                        "max": 28,
+                        "typical": 20
+                    },
+                    "average_diameter_cm": 14,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Sweet aquatic"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide (aquatic)"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/red_waterlily.jpeg",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                },
+                {
+                    "color": "Blue",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "serenity",
+                        "depth"
+                    ],
+                    "petal_count": {
+                        "min": 14,
+                        "max": 28,
+                        "typical": 18
+                    },
+                    "average_diameter_cm": 13,
+                    "fragrance": {
+                        "intensity": 1,
+                        "description": "Cool, fresh"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide (aquatic)"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/blue_waterlily.webp",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                },
+                {
+                    "color": "Purple",
+                    "name": "Water Lily",
+                    "scientific_name": "Nymphaeaceae",
+                    "symbolism": [
+                        "mysticism",
+                        "luxury"
+                    ],
+                    "petal_count": {
+                        "min": 15,
+                        "max": 30,
+                        "typical": 19
+                    },
+                    "average_diameter_cm": 14,
+                    "fragrance": {
+                        "intensity": 2,
+                        "description": "Sweet floral"
+                    },
+                    "blooming_season": [
+                        "summer"
+                    ],
+                    "native_regions": [
+                        "Worldwide (aquatic)"
+                    ],
+                    "care": {
+                        "light": "full sun to partial shade",
+                        "water": "submerged conditions",
+                        "soil": "heavy loam under water"
+                    },
+                    "image": "/waterlily/purple_waterlily.jpeg",
+                    "traditional_uses": [
+                        "religious ceremonies",
+                        "funeral arrangements",
+                        "garden borders"
+                    ],
+                    "allergies": {
+                        "humans": "Sap may irritate skin and pollen can stain fabrics.",
+                        "cats": "Highly toxic; even small ingestions can be fatal.",
+                        "dogs": "Can cause kidney issues if bulbs are eaten.",
+                        "pollinators": "Pollen-heavy blooms can dust bees but are safe.",
+                        "livestock": "Keep bulbs away from grazing animals to avoid illness."
+                    }
+                }
+            ]
+        }
+    ]
+}
