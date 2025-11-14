@@ -24,7 +24,7 @@ import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
+  type: "flower" | "string" | "user"; // type of message, either a flower object or string response (from llm), the users prompt
   content?: string; // string response content from llm
   flower?: FlowerVariant;
   imageUrl?: string | ""; // image url for flower image
@@ -119,46 +119,23 @@ export default function ChatLayout({
   //     );
   //   }
   // };
+  const waitForState = () =>
+  new Promise(resolve => setTimeout(resolve, 0));
 
-  const appendMessage = (msg: Partial<ConversationCard>) => {
-  setConversations((prev) => {
-    // if no active conversation exists, create one
-    if (!activeId) {
-      const newId = Date.now();
+  const appendMessage = (
+  msg: Partial<ConversationCard>,
+  targetId?: number       // ⭐ NEW: force message into correct conversation
+) => {
+  setConversations(prev => {
+    const id = targetId ?? activeId;  // use explicit ID or fallback
 
-      // derive a title
-      const title =
-        msg.type === "flower" && msg.flower
-          ? `${msg.flower.color} ${msg.flower.name}`
-          : "Untitled Chat";
-
-      const newConv: ConversationThread = {
-        id: newId,
-        title,
-        messages: [
-          {
-            id: msg.id ?? Date.now(),
-            type: msg.type || "string",
-            content: msg.content || "",
-            flower: msg.flower,
-            imageUrl: msg.imageUrl ?? "",
-          },
-        ],
-      };
-
-      setActiveId(newId);
-      return [...prev, newConv];
+    if (!id) {
+      console.error("appendMessage called with no active conversation!");
+      return prev;
     }
 
-    // otherwise, append to the existing active conversation
-    return prev.map((conv) => {
-      if (conv.id !== activeId) return conv;
-
-      // update title only if it’s "Untitled Chat" and we have a new flower
-      let newTitle = conv.title;
-      if (conv.title === "Untitled Chat" && msg.flower) {
-        newTitle = msg.flower.name;
-      }
+    return prev.map(conv => {
+      if (conv.id !== id) return conv;
 
       const newMessage: ConversationCard = {
         id: msg.id ?? Date.now(),
@@ -167,6 +144,19 @@ export default function ChatLayout({
         flower: msg.flower,
         imageUrl: msg.imageUrl ?? "",
       };
+
+      // ⭐ TITLE LOGIC
+      let newTitle = conv.title;
+
+      // If the chat has no messages yet → the first message determines the title
+      if (conv.messages.length === 0) {
+        if (msg.type === "user" && msg.content) {
+          newTitle = msg.content;                 // user prompt becomes title
+        } 
+        else if (msg.type === "flower" && msg.flower) {
+          newTitle = `${msg.flower.color} ${msg.flower.name}`;   // flower becomes title
+        }
+      }
 
       return {
         ...conv,
@@ -186,9 +176,27 @@ export default function ChatLayout({
   // ignores case when searching
   // does nothing if no match is found
   const handleSearch = async (query: string) => {
-		console.log("query string: ", query);
+  console.log("query string: ", query);
 
-    try {
+  // ⭐ FIX: Ensure conversation exists BEFORE appendMessage runs
+  let convId = activeId;
+
+  if (!convId) {
+    convId = Date.now();
+    setActiveId(convId);
+
+    // create an empty conversation
+    setConversations(prev => [
+      ...prev,
+      {
+        id: convId,
+        title: "Untitled Chat",
+        messages: []
+      }
+    ]);
+  }
+
+  try {
     console.log("Sending query to backend...");
 
     const API_BASE =
@@ -198,43 +206,48 @@ export default function ChatLayout({
 
     console.log("API_BASE: ", API_BASE);
 
+    // ⭐ FIX: Pass convId so appendMessage uses the *correct* chat
+    appendMessage(
+      {
+        id: Date.now(),
+        type: "user",
+        content: query
+      },
+      convId
+    );
 
-
-    const response = await fetch(`${API_BASE}/ask`, 
-			{ method: "POST", 
-				headers: {"Content-Type": "application/json"}, 
-				body: JSON.stringify({prompt: query}) 
-		})
-
-    // const response = await fetch("http://localhost:5001/ask", 
-    //       { method: "POST", 
-    //         headers: {"Content-Type": "application/json"}, 
-    //         body: JSON.stringify({prompt: query}) 
-    //     })
-
+    const response = await fetch(`${API_BASE}/ask`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: query })
+      });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
       return;
     }
 
-    
-		const data = await response.json()
-    //const result = flowerDataset.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    //if (!result) return;
-    //appendMessage(data.response);
-		
-        
+    const data = await response.json();
+
     console.log("Received: ", data);
 
-    appendMessage({ id: Date.now(), type: "string", content: data.response });
+    // ⭐ FIX: Again, force message into SAME conversation
+    appendMessage(
+      {
+        id: Date.now() + 1,
+        type: "string",
+        content: data.response
+      },
+      convId
+    );
+
     setShowSavedPage(false);
 
-
-    } catch (error) {
-      console.error("Error during upload:", error);
-    }
-  };
+  } catch (error) {
+    console.error("Error during upload:", error);
+  }
+};
 	// ==============================================
 
 
@@ -257,6 +270,21 @@ export default function ChatLayout({
 
 
     if (!file) return;
+
+    // another check to make sure file type restricted
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
+
+  const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
+
+  if (!allowedTypes.includes(file.type) && !allowedExts.includes(ext)) {
+    console.error("Unsupported file type:", file.type, ext);
+    // you can reuse your error toast, or later make a new one
+    setShowErrorMessage(true);
+    // optional: different message state if you want specific copy
+    return;
+  }
+
 
     const url = URL.createObjectURL(file);
     console.log(url)
@@ -365,7 +393,20 @@ const renderedMessages = activeConversation?.messages.length
             onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
           />
         );
-      } else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
+      } 
+      //show user prompts on the right
+      else if (msg.type === "user" && msg.content) {
+        return (
+          <div
+            key={`user-${msg.id}-${i}`}
+            className="self-end bg-lightBlue text-black font-calistoga 
+                       p-3 rounded-xl max-w-xs shadow"
+          >
+            {msg.content}
+          </div>
+        );
+      }
+      else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
@@ -540,24 +581,39 @@ const renderedMessages = activeConversation?.messages.length
             {/* Search + Upload */}
             {/* has a flexbox layout with padding, gap between items and a blue background */}
             {/* placed under the chat container */}
-            <div className="flex p-4 gap-2 bg-blue">
+            {/* Search + Upload */}
+            <div className="flex p-4 gap-2 bg-blue relative z-20">
+              {/* the upload button and hidden file input */}
+              {/* the button has padding, light blue background, rounded corners and calistoga font */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="relative group px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+              >
+                +
+                {/* Custom tooltip */}
+                <div
+                  className="
+                    absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+                    bg-black text-white text-xs px-2 py-1 rounded pointer-events-none
+                    opacity-0 group-hover:opacity-100 transition-opacity
+                  "
+                >
+                Image Upload
+                </div>
+              </button>
+              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                ref={fileInputRef}
+                onChange={handleUpload}
+                className="hidden"
+              />
               {/* the search bar takes the remaining space in its section */}
               <div className="flex-1">
                 {/* calls the search bar component and passes the handleSearch function to it */}
                 <SearchBar onSearch={handleSearch} />
               </div>
-              {/* the upload button and hidden file input */}
-              {/* the button has padding, light blue background, rounded corners and calistoga font */}
-              <button
-                /* when clicked it triggers the hidden file input to open the file dialog */
-                onClick={() => fileInputRef.current?.click()}
-                // button styling is padding on left axis of 4 and right its 2, light blue background, rounded corners and calistoga font
-                className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
-              >
-                Upload
-              </button>
-              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
-              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
             </div>
             {showErrorMessage && (
                 <div className="absolute top-4 right-4 bg-red-400 text-white px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
