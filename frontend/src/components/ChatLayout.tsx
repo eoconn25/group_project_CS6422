@@ -145,11 +145,18 @@ export default function ChatLayout({
         imageUrl: msg.imageUrl ?? "",
       };
 
-      // auto-title if first flower appears
-      const newTitle =
-        conv.title === "Untitled Chat" && msg.flower
-          ? msg.flower.name
-          : conv.title;
+      // ⭐ TITLE LOGIC
+      let newTitle = conv.title;
+
+      // If the chat has no messages yet → the first message determines the title
+      if (conv.messages.length === 0) {
+        if (msg.type === "user" && msg.content) {
+          newTitle = msg.content;                 // user prompt becomes title
+        } 
+        else if (msg.type === "flower" && msg.flower) {
+          newTitle = `${msg.flower.color} ${msg.flower.name}`;   // flower becomes title
+        }
+      }
 
       return {
         ...conv,
