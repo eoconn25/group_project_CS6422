@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 import sqlite3
 import os
 import sys
@@ -21,6 +22,7 @@ app.config['SECRET_KEY'] = 'ChangeThisProbably'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////app/app/instance/database.db'
 
 db = SQLAlchemy(app)
+jwt = JWTManager(app)
 
 llm = SmartAss()
 
@@ -48,6 +50,24 @@ class User(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+
+class UserChats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    chatGroup = db.Column(db.String(100), nullable=False)
+    msgSeq = db.Column(db.Integer, nullable=False)
+    msgText = db.Column(db.Text, nullable=False)
+    isModel = db.Column(db.Boolean)
+
+class UserUploadedImages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    filepath = db.Column(db.String(256), nullable=False)
+
+class PinnedFlowers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    flowerKey = db.Column(db.String(100), nullable=False)
 
 #def init_db():
 #    conn = sqlite3.connect(db_path)
@@ -112,7 +132,11 @@ def login():
     username = data['username']
     password = data['password']
 
-    return jsonify(), 201
+    if not User.query.filter_by(username=username, password=password).first():
+        return jsonify(message='Login Failed'), 400
+
+    access_token = create_access_token(identity=username, expires_delta=datetime.timedelta(days=7))
+    return jsonify(message='Login Successful', token=access_token), 200
 
 def create_tables():
     with app.app_context():

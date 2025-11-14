@@ -223,7 +223,8 @@ export default function ChatLayout({
       return;
     }
 		const data = await response.json()
-    console.log("Received: ", data);
+		localStorage.setItem("token", data.token)
+    console.log("Received: ", localStorage.getItem("token"));
 		// After this just like add whatever you received back somewhere 
 		//
 		} catch (error) {
