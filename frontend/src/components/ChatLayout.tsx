@@ -258,6 +258,21 @@ export default function ChatLayout({
 
     if (!file) return;
 
+    // another check to make sure file type restricted
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
+
+  const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
+
+  if (!allowedTypes.includes(file.type) && !allowedExts.includes(ext)) {
+    console.error("Unsupported file type:", file.type, ext);
+    // you can reuse your error toast, or later make a new one
+    setShowErrorMessage(true);
+    // optional: different message state if you want specific copy
+    return;
+  }
+
+
     const url = URL.createObjectURL(file);
     console.log(url)
 
@@ -561,7 +576,13 @@ const renderedMessages = activeConversation?.messages.length
                 </div>
               </button>
               {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
-              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                ref={fileInputRef}
+                onChange={handleUpload}
+                className="hidden"
+              />
               {/* the search bar takes the remaining space in its section */}
               <div className="flex-1">
                 {/* calls the search bar component and passes the handleSearch function to it */}
