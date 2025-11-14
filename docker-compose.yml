@@ -9,6 +9,14 @@ services:
     environment:
       - FLASK_ENV=development
       - FLASK_RUN_PORT=5001
+      - OLLAMA_URL=http://ollama:11434
+    depends_on:
+      ollama:
+        condition: service_healthy
+    #command: python app.py
+      #>/bin/sh -c "ollama serve & ollama pull llama2:7b && python app/run.py"
+
+
 
 
   frontend:
@@ -19,3 +27,19 @@ services:
     #volumes:
       #- ./frontend:/app
     command: npm start
+
+
+  ollama:
+    build: ./ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  ollama:

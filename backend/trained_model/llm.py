@@ -1,17 +1,22 @@
 import requests
-from typing import List, Dict, Optional
+from typing import List, Dict
+import os
+import subprocess
+import json
 
-# run "lms server start" in powershell - this will start an lmstudio process on port 1234
+# DEPRECATED run "lms server start" in powershell - this will start an lmstudio process on port 1234
 
 class SmartAss:
     def __init__(self, 
-                 base_url='http://localhost:1234/v1/chat/completions', 
-                 model='openai/gpt-oss-20b'):
-        # perhaps implement threading to call CNN as well
-        #threads = []; t1 = threading.Thread(target=self._llm)
+                 base_url=None, 
+                 model='llama2:7b'):
+        # perhaps implement threading to call CNN as well; threads = []; t1 = threading.Thread(target=self._llm)
+        # initialize llm model -- local version
+        #self.base_url = base_url
+        #self.model = model
 
-        # initialize llm model
-        self.base_url = base_url
+        # ollama backend within container
+        self.base_url = base_url or os.getenv("OLLAMA_URL", "http://ollama:11434")
         self.model = model
 
         # we will want a conversation history to provide context for LLM, save previous chats, etc
@@ -36,34 +41,40 @@ class SmartAss:
         # call prompt engineering function
         messages = self.prompt_engineer(prompt)
 
+        url = f'{self.base_url}/api/generate'
+
         # this delivers the prompt to the llm with full context
         turn = {
             'model': self.model,  # defines model
-            'messages': messages,  # context/conversation history
+            'prompt': prompt,  # context/conversation history
+            "stream": False
             #"temperature": temperature, # model params
-            #"max_tokens": max_tokens
+            #"num_predict": max_tokens
         }
 
         # try to send this turn to the llm; report errors if failure
         try:
-            response = requests.post(self.base_url, json=turn, timeout=180)
+            response = requests.post(url, json=turn, timeout=180)
             response.raise_for_status()
             data = response.json()
+            print(f'\n\nHERE {data}\n\n', flush=True)
 
             # extract llm response and add to conversation history
-            message = data['choices'][0]['message']['content']
+            message = data.get('response', '').strip()
             self.add_message('assistant', message)
             return message
+        
         except Exception as e:
             print(f'error: {e}')
             return 'oh no, didnt work'
         
 
     def prompt_engineer(self, prompt:str) -> List[Dict[str,str]]:
-        return [
+        messages = self.conversation + [
             {'role': 'system', 'content': 'You are an expert in flower symbolism and bouquet design'},
             {'role': 'user', 'content': prompt}
         ]
+        return messages
         # retrieve context from db
         context = self.query_db(prompt)
         
@@ -91,6 +102,16 @@ if __name__ == "__main__":
     # print response
     print("LLM response:")
     print(response)
+
+    # test prompt
+    user_prompt = "Can you elaborate on the pro ti pyou previously mentioned?"
+    response = smart_ass.prompt(user_prompt)
+
+    # print response
+    print("LLM response:")
+    print(response)
+
+    
 
 '''
 # stuff for frontend - double check

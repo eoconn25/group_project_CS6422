@@ -14,6 +14,7 @@ export const mockFlowers = [
     scientificName: "Rosa",
     symbolism: "Grace, admiration, gratitude",
     care: "full sun, fertile well-drained soil, consistent watering, and occasional pruning",
+    traditional_uses: ["perfume making", "tea blends", "symbolic gifting"],
     llmText: "Often used in bouquets for celebrations, thank-you gifts, or gentle romantic gestures.",
     imageUrl: "/pink_rose.jpg"
   },

@@ -18,3 +18,6 @@ pillow==11.1.0
 ultralytics==8.3.206
 torchvision==0.20.1
 opencv-python
+openai
+requests
+typing_extensions

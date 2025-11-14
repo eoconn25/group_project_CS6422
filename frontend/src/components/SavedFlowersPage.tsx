@@ -1,12 +1,11 @@
 // imports the flowe card component to display the saved flowers
 import FlowerInfoCard from "./FlowerInfoCard";
-//uses the mocjk data for flower type definition
-import { mockFlowers } from "../data/mockData";
+import type { FlowerVariant } from "../types/flowerTypes";
 
 //blueprint for what the saved flower object looks like
 interface SavedFlower {
-  //have the same structure as the flower in mock data
-  flower: typeof mockFlowers[0];
+  // have the same structure as the shared flower variant definition
+  flower: FlowerVariant;
   //the image url can be a string or null (optional)
   imageUrl?: string | null;
 }
@@ -18,7 +17,7 @@ interface SavedFlowersPageProps {
   //this goes back to the chatpage with no return, when clicked
   onBack: () => void;
   // this removes the flower with the data and image as parameters to remove
-  onRemove: (flower: typeof mockFlowers[0], imageUrl?: string | null) => void;
+  onRemove: (flower: FlowerVariant, imageUrl?: string | null) => void;
 }
 
 // this is the main component function for the saved flowers page

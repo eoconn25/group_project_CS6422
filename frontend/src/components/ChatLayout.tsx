@@ -47,7 +47,19 @@ interface SavedFlower {
 
 // main component function for the chat layout
 //declares and exports the main component function for the chat layout
-export default function ChatLayout() {
+//export default function ChatLayout() {
+//OLD VERSION
+export default function ChatLayout({
+    // object destructuring to get the username and logout function from props
+    username,
+    onLogout,
+  }: {
+    // the username is optional string
+    username?: string;
+    // the logout function has no return value
+    onLogout: () => void;
+  }) 
+{
   //state declarations
   //holds all the conversations made
   const [conversations, setConversations] = useState<ConversationThread[]>([]);
@@ -546,11 +558,20 @@ const renderedMessages = activeConversation?.messages.length
             // if no conversations this is the text, grey color, small size, and calistoga font
             <p className="text-gray-500 text-sm font-calistoga">No conversations yet.</p>
           )}
-        </div>
+        </div >
+        {/* Welcome message with username */}
+        {username && (
+          <p className="text-black font-calistoga mb-2 text-sm">
+            🌸 Welcome, <span className="font-bold">{username}</span>!
+          </p>
+        )}
         {/* the logout button at the bottom of the sidebar */}
         {/* the button has margin top auto to push it to the bottom, full width, padding on top and bottom of 2, rounded corners, calistoga font, light blue background and black text */}
         {/* at the moment does not cause no login had been made, for the future reference*/}
-        <button className="mt-auto w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black">
+        <button
+          onClick={onLogout}
+          className="mt-auto w-full py-2 rounded-lg font-calistoga bg-lightBlue text-black"
+        >
           Log Out
         </button>
       </div>

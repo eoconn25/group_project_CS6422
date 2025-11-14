@@ -20,6 +20,8 @@ export interface FlowerVariant {
     water: string;
     soil: string;
   };
+  traditional_uses: string[];
+  allergies: Record<string, string>;
   image: string;
 }
 
