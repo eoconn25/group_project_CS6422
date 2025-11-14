@@ -24,7 +24,7 @@ import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
+  type: "flower" | "string" | "user"; // type of message, either a flower object or string response (from llm), the users prompt
   content?: string; // string response content from llm
   flower?: FlowerVariant;
   imageUrl?: string | ""; // image url for flower image
@@ -119,46 +119,23 @@ export default function ChatLayout({
   //     );
   //   }
   // };
+  const waitForState = () =>
+  new Promise(resolve => setTimeout(resolve, 0));
 
-  const appendMessage = (msg: Partial<ConversationCard>) => {
-  setConversations((prev) => {
-    // if no active conversation exists, create one
-    if (!activeId) {
-      const newId = Date.now();
+  const appendMessage = (
+  msg: Partial<ConversationCard>,
+  targetId?: number       // ⭐ NEW: force message into correct conversation
+) => {
+  setConversations(prev => {
+    const id = targetId ?? activeId;  // use explicit ID or fallback
 
-      // derive a title
-      const title =
-        msg.type === "flower" && msg.flower
-          ? `${msg.flower.color} ${msg.flower.name}`
-          : "Untitled Chat";
-
-      const newConv: ConversationThread = {
-        id: newId,
-        title,
-        messages: [
-          {
-            id: msg.id ?? Date.now(),
-            type: msg.type || "string",
-            content: msg.content || "",
-            flower: msg.flower,
-            imageUrl: msg.imageUrl ?? "",
-          },
-        ],
-      };
-
-      setActiveId(newId);
-      return [...prev, newConv];
+    if (!id) {
+      console.error("appendMessage called with no active conversation!");
+      return prev;
     }
 
-    // otherwise, append to the existing active conversation
-    return prev.map((conv) => {
-      if (conv.id !== activeId) return conv;
-
-      // update title only if it’s "Untitled Chat" and we have a new flower
-      let newTitle = conv.title;
-      if (conv.title === "Untitled Chat" && msg.flower) {
-        newTitle = msg.flower.name;
-      }
+    return prev.map(conv => {
+      if (conv.id !== id) return conv;
 
       const newMessage: ConversationCard = {
         id: msg.id ?? Date.now(),
@@ -167,6 +144,12 @@ export default function ChatLayout({
         flower: msg.flower,
         imageUrl: msg.imageUrl ?? "",
       };
+
+      // auto-title if first flower appears
+      const newTitle =
+        conv.title === "Untitled Chat" && msg.flower
+          ? msg.flower.name
+          : conv.title;
 
       return {
         ...conv,
@@ -186,9 +169,27 @@ export default function ChatLayout({
   // ignores case when searching
   // does nothing if no match is found
   const handleSearch = async (query: string) => {
-		console.log("query string: ", query);
+  console.log("query string: ", query);
 
-    try {
+  // ⭐ FIX: Ensure conversation exists BEFORE appendMessage runs
+  let convId = activeId;
+
+  if (!convId) {
+    convId = Date.now();
+    setActiveId(convId);
+
+    // create an empty conversation
+    setConversations(prev => [
+      ...prev,
+      {
+        id: convId,
+        title: "Untitled Chat",
+        messages: []
+      }
+    ]);
+  }
+
+  try {
     console.log("Sending query to backend...");
 
     const API_BASE =
@@ -198,43 +199,48 @@ export default function ChatLayout({
 
     console.log("API_BASE: ", API_BASE);
 
+    // ⭐ FIX: Pass convId so appendMessage uses the *correct* chat
+    appendMessage(
+      {
+        id: Date.now(),
+        type: "user",
+        content: query
+      },
+      convId
+    );
 
-
-    const response = await fetch(`${API_BASE}/ask`, 
-			{ method: "POST", 
-				headers: {"Content-Type": "application/json"}, 
-				body: JSON.stringify({prompt: query}) 
-		})
-
-    // const response = await fetch("http://localhost:5001/ask", 
-    //       { method: "POST", 
-    //         headers: {"Content-Type": "application/json"}, 
-    //         body: JSON.stringify({prompt: query}) 
-    //     })
-
+    const response = await fetch(`${API_BASE}/ask`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: query })
+      });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
       return;
     }
 
-    
-		const data = await response.json()
-    //const result = flowerDataset.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    //if (!result) return;
-    //appendMessage(data.response);
-		
-        
+    const data = await response.json();
+
     console.log("Received: ", data);
 
-    appendMessage({ id: Date.now(), type: "string", content: data.response });
+    // ⭐ FIX: Again, force message into SAME conversation
+    appendMessage(
+      {
+        id: Date.now() + 1,
+        type: "string",
+        content: data.response
+      },
+      convId
+    );
+
     setShowSavedPage(false);
 
-
-    } catch (error) {
-      console.error("Error during upload:", error);
-    }
-  };
+  } catch (error) {
+    console.error("Error during upload:", error);
+  }
+};
 	// ==============================================
 
 
@@ -380,7 +386,20 @@ const renderedMessages = activeConversation?.messages.length
             onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
           />
         );
-      } else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
+      } 
+      //show user prompts on the right
+      else if (msg.type === "user" && msg.content) {
+        return (
+          <div
+            key={`user-${msg.id}-${i}`}
+            className="self-end bg-lightBlue text-black font-calistoga 
+                       p-3 rounded-xl max-w-xs shadow"
+          >
+            {msg.content}
+          </div>
+        );
+      }
+      else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
