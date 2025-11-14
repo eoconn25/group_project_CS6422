@@ -540,24 +540,33 @@ const renderedMessages = activeConversation?.messages.length
             {/* Search + Upload */}
             {/* has a flexbox layout with padding, gap between items and a blue background */}
             {/* placed under the chat container */}
-            <div className="flex p-4 gap-2 bg-blue">
+            {/* Search + Upload */}
+            <div className="flex p-4 gap-2 bg-blue relative z-20">
+              {/* the upload button and hidden file input */}
+              {/* the button has padding, light blue background, rounded corners and calistoga font */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="relative group px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+              >
+                +
+                {/* Custom tooltip */}
+                <div
+                  className="
+                    absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+                    bg-black text-white text-xs px-2 py-1 rounded pointer-events-none
+                    opacity-0 group-hover:opacity-100 transition-opacity
+                  "
+                >
+                Image Upload
+                </div>
+              </button>
+              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
+              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
               {/* the search bar takes the remaining space in its section */}
               <div className="flex-1">
                 {/* calls the search bar component and passes the handleSearch function to it */}
                 <SearchBar onSearch={handleSearch} />
               </div>
-              {/* the upload button and hidden file input */}
-              {/* the button has padding, light blue background, rounded corners and calistoga font */}
-              <button
-                /* when clicked it triggers the hidden file input to open the file dialog */
-                onClick={() => fileInputRef.current?.click()}
-                // button styling is padding on left axis of 4 and right its 2, light blue background, rounded corners and calistoga font
-                className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
-              >
-                Upload
-              </button>
-              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
-              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
             </div>
             {showErrorMessage && (
                 <div className="absolute top-4 right-4 bg-red-400 text-white px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
