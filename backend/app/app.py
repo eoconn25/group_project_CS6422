@@ -99,11 +99,6 @@ def getChats():
 def getPinnedFlowers():
     ...
 
-@app.route("/saveUploadedImage", methods=["POST"])
-def saveUploadedImage():
-    data = response.get_json()
-    
-
 @app.route("/saveChat", methods=["POST"])
 def saveChat():
     ...
@@ -214,3 +209,8 @@ def predict():
         # Clean up temp file if their userid is 0 (not logged in)
         if os.path.exists(filepath) and token["userid"] == 0:
             os.remove(filepath)
+        else:
+            # Add the new image to the db
+            newImage = UserUploadedImages(userid=token["userid"], filepath=filepath)
+            db.session.add(newImage)
+            db.session.commit()
