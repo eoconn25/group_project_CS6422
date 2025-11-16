@@ -250,12 +250,11 @@ const saveUploadedImage = async () => {
 const getUploadedImages = async () => {
 		try {
 	    // Get the JWT token from localStorage
-      const token = localStorage.getItem("token");
 
     const response = await fetch(`${API_BASE}/getUploadedImages`, 
 		  { method: "POST", 
 				headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
           'Content-Type': 'application/json',
       },
 				body: JSON.stringify({})
@@ -363,7 +362,7 @@ const getUploadedImages = async () => {
     // new from here
     // Prepare data for backend
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("image", file)
     console.log("form data: ", formData)
 
     try {
@@ -382,6 +381,7 @@ const getUploadedImages = async () => {
 
     const response = await fetch(`${API_BASE}/predict`, {
       method: "POST",
+			headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: formData,
     });
 

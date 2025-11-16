@@ -155,7 +155,7 @@ def login():
     if not user :
         return jsonify(message='Login Failed'), 400
 
-    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid}, expires_delta=datetime.timedelta(days=7))
+    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid, "username": username}, expires_delta=datetime.timedelta(days=7))
     return jsonify(message='Login Successful', token=access_token), 200
 
 def create_tables():
@@ -174,9 +174,11 @@ def predict():
 
     # Get the userid (if they have one)
     token = getUser(request)
+    print(request.headers.get("Authorization"))
+    print(request)
 
     # Save uploaded image
-    filename = f'${token["identity"]}-${time.time()}'
+    filename = f'${token["username"]}-${time.time()}'
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
@@ -209,7 +211,15 @@ def predict():
         # Clean up temp file if their userid is 0 (not logged in)
         if os.path.exists(filepath) and token["userid"] == 0:
             os.remove(filepath)
+            print("I actually hate everything")
+            print(token["userid"])
+            print(token)
+            #print(request.headers.get("Authorization"))
+            print(request.headers)
+            sys.stdout.flush()
         else:
+            print("this is a test")
+            sys.stdout.flush()
             # Add the new image to the db
             newImage = UserUploadedImages(userid=token["userid"], filepath=filepath)
             db.session.add(newImage)
