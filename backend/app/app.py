@@ -6,6 +6,7 @@ import datetime
 import sqlite3
 import os
 import sys
+import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trained_model.cnn_inference import ClassifyFlower
 from trained_model.model_init import get_model
@@ -176,9 +177,11 @@ def predict():
     if file.filename == '':
         return jsonify({'error': 'Empty filename'}), 400
 
+    # Get the userid (if they have one)
+    token = getUser(request)
 
-    # Save uploaded file temporarily
-    filename = 'test_img'
+    # Save uploaded image
+    filename = f'${token["identity"]}-${time.time()}'
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
@@ -208,6 +211,6 @@ def predict():
         }), 500
 
     finally:
-        # Clean up temp file (optional)
-        if os.path.exists(filepath):
+        # Clean up temp file if their userid is 0 (not logged in)
+        if os.path.exists(filepath) and token["userid"] == 0:
             os.remove(filepath)
