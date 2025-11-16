@@ -231,6 +231,49 @@ export default function ChatLayout({
       console.error("Error during upload:", error);
     }
 	}
+
+
+const saveUploadedImage = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/saveUploadedImage`,
+			{
+        method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify({token: localStorage.getItem("token"), image})
+			})
+		}
+    catch (error) {
+      console.log("Error during upload:", error);
+		}
+	}
+	
+const getUploadedImages = async () => {
+		try {
+	    // Get the JWT token from localStorage
+      const token = localStorage.getItem("token");
+
+    const response = await fetch(`${API_BASE}/getUploadedImages`, 
+		  { method: "POST", 
+				headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+      },
+				body: JSON.stringify({})
+		});
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+    console.log("Received: ", data);
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+
+
 // ==============================================
 
 
@@ -517,6 +560,9 @@ const renderedMessages = activeConversation?.messages.length
         </button>
         <button onClick={() => login("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
 					Test Login
+        </button>
+        <button onClick={() => getUploadedImages()} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					test images
         </button>
         {/* ===================== */}
 

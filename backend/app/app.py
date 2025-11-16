@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, decode_token
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 import sqlite3
@@ -16,7 +16,7 @@ import traceback
 #db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "Content-Type", "methods": ["POST", "OPTIONS"]}})
+CORS(app, resources={r"/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"], "methods": ["POST", "OPTIONS"]}})
 #CORS(app)
 app.config['SECRET_KEY'] = 'ChangeThisProbably'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////app/app/instance/database.db'
@@ -69,25 +69,47 @@ class PinnedFlowers(db.Model):
     userid = db.Column(db.Integer, nullable=False)
     flowerKey = db.Column(db.String(100), nullable=False)
 
-#def init_db():
-#    conn = sqlite3.connect(db_path)
-#    cursor = conn.cursor()
-#    cursor.execute('''
-#    CREATE TABLE IF NOT EXISTS users (
-#      userid INTEGER PRIMARY KEY AUTOINCREMENT,
-#      name TEXT NOT NULL,
-#      hpword TEXT NOT NULL
-#    ) ''')
-#    cursor.execute('''
-#    CREATE TABLE IF NOT EXISTS uploads (
-#      fileid INTEGER PRIMARY KEY AUTOINCREMENT,
-#      filename TEXT NOT NULL,
-#      userid INTEGER NOT NULL
-#    ) ''')
-#    conn.commit()
-#    conn.close()
-#    return None
+def getUser(request):
+    auth_header = request.headers.get("Authorization")
+    
+    guest_identity = {"username": "guest", "userid": 0}
 
+    if not auth_header:
+        return guest_identity
+
+    return decode_token(auth_header.split(" ")[1])
+
+@app.route("/getUploadedImages", methods=["POST"])
+def getUploadedImages():
+    try:
+        token = getUser(request)
+        userid = token["userid"]
+        uploadedImages = UserUploadedImages.query.filter_by(userid=userid).all()
+        return jsonify(uploadedImages), 200
+
+    except Exception as e:
+        return jsonify(f"Error: ${e}"), 200
+
+@app.route("/getChats", methods=["POST"])
+def getChats():
+    ...
+
+@app.route("/getPinnedFlowers", methods=["POST"])
+def getPinnedFlowers():
+    ...
+
+@app.route("/saveUploadedImage", methods=["POST"])
+def saveUploadedImage():
+    data = response.get_json()
+    
+
+@app.route("/saveChat", methods=["POST"])
+def saveChat():
+    ...
+
+@app.route("/savePinnedFlower", methods=["POST"])
+def savePinnedFlower():
+    ...
 
 # 2025-11-05 this works for now....
 @app.route("/ask", methods=["POST"])
@@ -132,10 +154,12 @@ def login():
     username = data['username']
     password = data['password']
 
-    if not User.query.filter_by(username=username, password=password).first():
+    user = User.query.filter_by(username=username, password=password).first()
+
+    if not user :
         return jsonify(message='Login Failed'), 400
 
-    access_token = create_access_token(identity=username, expires_delta=datetime.timedelta(days=7))
+    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid}, expires_delta=datetime.timedelta(days=7))
     return jsonify(message='Login Successful', token=access_token), 200
 
 def create_tables():
