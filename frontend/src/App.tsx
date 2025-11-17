@@ -21,11 +21,15 @@ export default function App() {
   };
 
   // loged out
+	// 17-11-25 I'm clearing local storage here,
+	// We're probably going to have to do a little
+	// shuffling around of logins - Caylum
   const handleLogout = () => {
     // logs to console for debugging
     console.log("🚪 handleLogout called");
     // sets the logged in state to false
     setIsLoggedIn(false);
+		localStorage.removeItem("token");
     // clears the username
     setUsername("");
   };

@@ -72,24 +72,42 @@ class PinnedFlowers(db.Model):
 
 def getUser(request):
     auth_header = request.headers.get("Authorization")
-    
     guest_identity = {"username": "guest", "userid": 0}
 
     if not auth_header:
+        print("No Auth Header")
+        sys.stdout.flush()
         return guest_identity
 
-    return decode_token(auth_header.split(" ")[1])
+    split = auth_header.split(" ")
+    token = split[1]
+
+    if token == 'null':
+        print("No Token")
+        print(split)
+        sys.stdout.flush()
+        return guest_identity
+
+    print(auth_header)
+    sys.stdout.flush()
+
+    return decode_token(split[1])
 
 @app.route("/getUploadedImages", methods=["POST"])
 def getUploadedImages():
     try:
         token = getUser(request)
         userid = token["userid"]
+        print(userid)
+        sys.stdout.flush()
+        if userid == 0:
+            return jsonify([]), 200
         uploadedImages = UserUploadedImages.query.filter_by(userid=userid).all()
-        return jsonify(uploadedImages), 200
+        filepaths = [img.filepath for img in uploadedImages]
+        return jsonify(filepaths), 200
 
     except Exception as e:
-        return jsonify(f"Error: ${e}"), 200
+        return jsonify(f"Error: {e}"), 200
 
 @app.route("/getChats", methods=["POST"])
 def getChats():
@@ -174,11 +192,10 @@ def predict():
 
     # Get the userid (if they have one)
     token = getUser(request)
-    print(request.headers.get("Authorization"))
-    print(request)
 
     # Save uploaded image
-    filename = f'${token["username"]}-${time.time()}'
+    extension = file.filename.split(".")[1]
+    filename = f'{token["username"]}-{int(time.time())}.{extension}'
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
