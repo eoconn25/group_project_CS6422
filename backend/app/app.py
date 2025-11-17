@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, decode_token
+from flask_jwt_extended import JWTManager, create_access_token, decode_token
 from flask_sqlalchemy import SQLAlchemy
 import datetime
 import sqlite3
@@ -15,6 +15,10 @@ import traceback
 #from werkzeug.utils import secure_filename
 
 #db_path = os.path.join(os.path.dirname(__file__), 'database.db')
+
+# ======================================
+# App Setup
+# ======================================
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"], "methods": ["POST", "OPTIONS"]}})
@@ -46,6 +50,10 @@ os.makedirs(PHOTO_UPLOAD_FOLDER, exist_ok=True)
 # Load your CNN model
 model = ClassifyFlower(get_model, 'trained_model/test1.2_best_model.pt', "trained_model/flowers_segmentation_model.pt")
 
+# ======================================
+# SQL Table Definitions
+# ======================================
+
 # Using SQLAlchemy have a class corresponding to each table
 class User(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
@@ -70,6 +78,10 @@ class PinnedFlowers(db.Model):
     userid = db.Column(db.Integer, nullable=False)
     flowerKey = db.Column(db.String(100), nullable=False)
 
+# ======================================
+# Helper Functions
+# ======================================
+
 def getUser(request):
     auth_header = request.headers.get("Authorization")
     guest_identity = {"username": "guest", "userid": 0}
@@ -93,6 +105,60 @@ def getUser(request):
 
     return decode_token(split[1])
 
+def create_tables():
+    with app.app_context():
+        db.create_all()
+
+# ======================================
+# User Routes
+# ======================================
+
+# register
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+
+    if User.query.filter_by(username=username).first():
+        return jsonify(message='User already exists'), 400
+    
+    new_user = User(username=username, password=password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify(message='User created successfully'), 201
+
+# login
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+
+    user = User.query.filter_by(username=username, password=password).first()
+
+    if not user :
+        return jsonify(message='Login Failed'), 400
+
+    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid, "username": username}, expires_delta=datetime.timedelta(days=7))
+    return jsonify(message='Login Successful', token=access_token), 200
+
+@app.route("/saveChat", methods=["POST"])
+def saveChat():
+    ...
+
+@app.route("/savePinnedFlower", methods=["POST"])
+def savePinnedFlower():
+    ...
+@app.route("/getChat", methods=["POST"])
+def getChat():
+    ...
+
+@app.route("/getPinnedFlower", methods=["POST"])
+def getPinnedFlower():
+    ...
+
 @app.route("/getUploadedImages", methods=["POST"])
 def getUploadedImages():
     try:
@@ -109,21 +175,9 @@ def getUploadedImages():
     except Exception as e:
         return jsonify(f"Error: {e}"), 200
 
-@app.route("/getChats", methods=["POST"])
-def getChats():
-    ...
-
-@app.route("/getPinnedFlowers", methods=["POST"])
-def getPinnedFlowers():
-    ...
-
-@app.route("/saveChat", methods=["POST"])
-def saveChat():
-    ...
-
-@app.route("/savePinnedFlower", methods=["POST"])
-def savePinnedFlower():
-    ...
+# ======================================
+# AI Routes
+# ======================================
 
 # 2025-11-05 this works for now....
 @app.route("/ask", methods=["POST"])
@@ -135,50 +189,6 @@ def ask():
     reply = llm.prompt(prompt)  # prompt llm
     print("reply: ", reply)
     return jsonify({"response": reply})  # return json response to frontend
-
-# Home route
-@app.route('/')
-def home():
-    return jsonify(message = 'Hi')
-
-# Upload route
-@app.route('/upload')
-def upload():
-    return
-
-# Register
-@app.route('/register', methods=['POST'])
-def register():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
-
-    if User.query.filter_by(username=username).first():
-        return jsonify(message='User already exists'), 400
-    
-    new_user = User(username=username, password=password)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify(message='User created successfully'), 201
-
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
-
-    user = User.query.filter_by(username=username, password=password).first()
-
-    if not user :
-        return jsonify(message='Login Failed'), 400
-
-    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid, "username": username}, expires_delta=datetime.timedelta(days=7))
-    return jsonify(message='Login Successful', token=access_token), 200
-
-def create_tables():
-    with app.app_context():
-        db.create_all()
 
 @app.route('/predict', methods=['POST'])
 def predict():
