@@ -24,7 +24,7 @@ import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string" | "user"; // type of message, either a flower object or string response (from llm), the users prompt
+  type: "flower" | "string" | "user" | "loading"; // type of message, either a flower object or string response (from llm), the users prompt, loading
   content?: string; // string response content from llm
   flower?: FlowerVariant;
   imageUrl?: string | ""; // image url for flower image
@@ -178,14 +178,13 @@ export default function ChatLayout({
   const handleSearch = async (query: string) => {
   console.log("query string: ", query);
 
-  // ⭐ FIX: Ensure conversation exists BEFORE appendMessage runs
   let convId = activeId;
 
+  // Ensure conversation exists
   if (!convId) {
     convId = Date.now();
     setActiveId(convId);
 
-    // create an empty conversation
     setConversations(prev => [
       ...prev,
       {
@@ -196,6 +195,26 @@ export default function ChatLayout({
     ]);
   }
 
+  // 1️⃣ Append user message ONCE
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: query
+    },
+    convId
+  );
+
+  // 2️⃣ Insert loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
   try {
     console.log("Sending query to backend...");
 
@@ -204,38 +223,35 @@ export default function ChatLayout({
         ? "http://localhost:5001"
         : "http://backend:5001";
 
-    console.log("API_BASE: ", API_BASE);
-
-    // ⭐ FIX: Pass convId so appendMessage uses the *correct* chat
-    appendMessage(
-      {
-        id: Date.now(),
-        type: "user",
-        content: query
-      },
-      convId
-    );
-
-    const response = await fetch(`${API_BASE}/ask`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: query })
-      });
+    const response = await fetch(`${API_BASE}/ask`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: query })
+    });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad server response");
     }
 
     const data = await response.json();
 
-    console.log("Received: ", data);
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
 
-    // ⭐ FIX: Again, force message into SAME conversation
+    // 4️⃣ Append final LLM response
     appendMessage(
       {
-        id: Date.now() + 1,
+        id: Date.now() + 2,
         type: "string",
         content: data.response
       },
@@ -245,7 +261,19 @@ export default function ChatLayout({
     setShowSavedPage(false);
 
   } catch (error) {
-    console.error("Error during upload:", error);
+    console.error("Error during search:", error);
+
+    // Remove loading bubble even if error
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
   }
 };
 	// ==============================================
@@ -269,7 +297,6 @@ export default function ChatLayout({
   console.log("Selected:", file);
   if (!file) return;
 
-  // === Validate File ===
   const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
   const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
   const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
@@ -283,11 +310,8 @@ export default function ChatLayout({
   const formData = new FormData();
   formData.append("image", file);
 
-  // ================================
-  // ⭐ ENSURE CHAT EXISTS + GET convId
-  // ================================
+  // Ensure conversation exists
   let convId = activeId;
-
   if (!convId) {
     convId = Date.now();
     setActiveId(convId);
@@ -297,29 +321,31 @@ export default function ChatLayout({
       {
         id: convId,
         title: "*Image Upload*",
-        messages: [
-          {
-            id: Date.now(),
-            type: "user",
-            content: `*Uploaded image:* _${file.name}_`,
-          }
-        ]
+        messages: []
       }
     ]);
-  } else {
-    appendMessage(
-      {
-        id: Date.now(),
-        type: "user",
-        content: `*Uploaded image:* _${file.name}_`,
-      },
-      convId
-    );
   }
 
-  // ================================
-  // ⭐ SEND IMAGE TO BACKEND
-  // ================================
+  // 1️⃣ User upload message
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: `*Uploaded image:* _${file.name}_`
+    },
+    convId
+  );
+
+  // 2️⃣ Add loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
   try {
     console.log("Sending image to backend...");
 
@@ -330,37 +356,60 @@ export default function ChatLayout({
 
     const response = await fetch(`${API_BASE}/predict`, {
       method: "POST",
-      body: formData,
+      body: formData
     });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad response from server");
     }
 
     const data = await response.json();
     console.log("Backend response:", data);
 
-    // Match flower from local dataset
     const matchedFlower = findMatchingFlower(data);
 
-    // ================================
-    // ⭐ APPEND FLOWER RESULT — ALWAYS USE convId
-    // ================================
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
+
+    // 4️⃣ Append flower card
     appendMessage(
       {
-        id: Date.now(),
+        id: Date.now() + 2,
         type: "flower",
         flower: matchedFlower,
-        imageUrl: url,
+        imageUrl: url
       },
       convId
     );
-
   } catch (err) {
     console.error("Upload failed:", err);
     setShowErrorMessage(true);
+
+    // Cleanup: remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
   }
+  if (fileInputRef.current) {
+  fileInputRef.current.value = "";
+}
 };
 
   // Save/remove flower
@@ -418,7 +467,22 @@ const renderedMessages = activeConversation?.messages.length
             {msg.content}
           </div>
         );
-      } else if (msg.type === "string" && msg.content) {
+      }
+      else if (msg.type === "loading") {
+        return (
+          <div
+            key={`loading-${msg.id}-${i}`}
+            className="self-start bg-white/70 text-black font-calistoga 
+                      p-3 rounded-xl max-w-xs shadow flex items-center gap-2"
+          >
+            <span className="animate-pulse">Thinking</span>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-150"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-300"></div>
+          </div>
+        );
+      } 
+      else if (msg.type === "string" && msg.content) {
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
