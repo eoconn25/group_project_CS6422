@@ -24,7 +24,7 @@ import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string" | "user"; // type of message, either a flower object or string response (from llm), the users prompt
+  type: "flower" | "string" | "user" | "loading"; // type of message, either a flower object or string response (from llm), the users prompt, loading
   content?: string; // string response content from llm
   flower?: FlowerVariant;
   imageUrl?: string | ""; // image url for flower image
@@ -178,14 +178,13 @@ export default function ChatLayout({
   const handleSearch = async (query: string) => {
   console.log("query string: ", query);
 
-  // ⭐ FIX: Ensure conversation exists BEFORE appendMessage runs
   let convId = activeId;
 
+  // Ensure conversation exists
   if (!convId) {
     convId = Date.now();
     setActiveId(convId);
 
-    // create an empty conversation
     setConversations(prev => [
       ...prev,
       {
@@ -196,6 +195,26 @@ export default function ChatLayout({
     ]);
   }
 
+  // 1️⃣ Append user message ONCE
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: query
+    },
+    convId
+  );
+
+  // 2️⃣ Insert loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
   try {
     console.log("Sending query to backend...");
 
@@ -204,38 +223,35 @@ export default function ChatLayout({
         ? "http://localhost:5001"
         : "http://backend:5001";
 
-    console.log("API_BASE: ", API_BASE);
-
-    // ⭐ FIX: Pass convId so appendMessage uses the *correct* chat
-    appendMessage(
-      {
-        id: Date.now(),
-        type: "user",
-        content: query
-      },
-      convId
-    );
-
-    const response = await fetch(`${API_BASE}/ask`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: query })
-      });
+    const response = await fetch(`${API_BASE}/ask`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: query })
+    });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad server response");
     }
 
     const data = await response.json();
 
-    console.log("Received: ", data);
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
 
-    // ⭐ FIX: Again, force message into SAME conversation
+    // 4️⃣ Append final LLM response
     appendMessage(
       {
-        id: Date.now() + 1,
+        id: Date.now() + 2,
         type: "string",
         content: data.response
       },
@@ -245,7 +261,19 @@ export default function ChatLayout({
     setShowSavedPage(false);
 
   } catch (error) {
-    console.error("Error during upload:", error);
+    console.error("Error during search:", error);
+
+    // Remove loading bubble even if error
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
   }
 };
 	// ==============================================
@@ -263,90 +291,126 @@ export default function ChatLayout({
   // then goes back to the main chat view
   // make async to talk to AI
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("entered handleUpload")
-    
-    const file = e.target.files?.[0];
-    console.log("Selected:", file);
+  console.log("entered handleUpload");
 
+  const file = e.target.files?.[0];
+  console.log("Selected:", file);
+  if (!file) return;
 
-    if (!file) return;
-
-    // another check to make sure file type restricted
   const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
   const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
-
   const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
 
   if (!allowedTypes.includes(file.type) && !allowedExts.includes(ext)) {
-    console.error("Unsupported file type:", file.type, ext);
-    // you can reuse your error toast, or later make a new one
     setShowErrorMessage(true);
-    // optional: different message state if you want specific copy
     return;
   }
 
+  const url = URL.createObjectURL(file);
+  const formData = new FormData();
+  formData.append("image", file);
 
-    const url = URL.createObjectURL(file);
-    console.log(url)
+  // Ensure conversation exists
+  let convId = activeId;
+  if (!convId) {
+    convId = Date.now();
+    setActiveId(convId);
 
-    // new from here
-    // Prepare data for backend
-    const formData = new FormData();
-    formData.append("image", file);
-    console.log("form data: ", formData)
+    setConversations(prev => [
+      ...prev,
+      {
+        id: convId,
+        title: "*Image Upload*",
+        messages: []
+      }
+    ]);
+  }
 
-    try {
+  // 1️⃣ User upload message
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: `*Uploaded image:* _${file.name}_`
+    },
+    convId
+  );
+
+  // 2️⃣ Add loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
+  try {
     console.log("Sending image to backend...");
-    // const response = await fetch("http://localhost:5001/predict", {
-    //   method: "POST",
-    //   body: formData,
-    // });
 
     const API_BASE =
       window.location.hostname === "localhost"
         ? "http://localhost:5001"
         : "http://backend:5001";
 
-    console.log("API_BASE: ", API_BASE);
-
     const response = await fetch(`${API_BASE}/predict`, {
       method: "POST",
-      body: formData,
+      body: formData
     });
-
-
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad response from server");
     }
 
     const data = await response.json();
-    console.log("Backend response:", data); // {color, species}
+    console.log("Backend response:", data);
 
-    if (data.species) {
-      const matchedFlower = findMatchingFlower(data);
-      console.log("matchedFlower: ", matchedFlower)
-          
-    
-      // Update your UI / message list
-      appendMessage({ id: Date.now(), type: "flower", flower: matchedFlower, imageUrl: url });
+    const matchedFlower = findMatchingFlower(data);
 
-    } else {
-      console.log("No flower was detected in photo upload")
-      setShowErrorMessage(true);
-      setTimeout(() => setShowErrorMessage(false), 3000);
-    }
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
 
-    } catch (error) {
-      console.error("Error during upload:", error);
-    }
+    // 4️⃣ Append flower card
+    appendMessage(
+      {
+        id: Date.now() + 2,
+        type: "flower",
+        flower: matchedFlower,
+        imageUrl: url
+      },
+      convId
+    );
+  } catch (err) {
+    console.error("Upload failed:", err);
+    setShowErrorMessage(true);
 
-    // old version
-    // const matchedFlower = mockFlowers[2]; // mock prediction
-    // appendMessage({ flower: matchedFlower, imageUrl: url });
-    // setShowSavedPage(false);  // commented this for now
-  };
+    // Cleanup: remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
+  }
+  if (fileInputRef.current) {
+  fileInputRef.current.value = "";
+}
+};
 
   // Save/remove flower
   // if its found, it will show remove message and remove it from saved flowers
@@ -383,7 +447,7 @@ export default function ChatLayout({
   // before your main return() — right after defining activeConversation, etc.
 const renderedMessages = activeConversation?.messages.length
   ? activeConversation.messages.map((msg, i) => {
-      if (msg.type === "flower" && msg.flower) { // check to see if flower type and flower data exist
+      if (msg.type === "flower" && msg.flower) {
         return (
           <FlowerInfoCard
             key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
@@ -393,37 +457,47 @@ const renderedMessages = activeConversation?.messages.length
             onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
           />
         );
-      } 
-      //show user prompts on the right
-      else if (msg.type === "user" && msg.content) {
+      } else if (msg.type === "user" && msg.content) {
         return (
           <div
             key={`user-${msg.id}-${i}`}
-            className="self-end bg-lightBlue text-black font-calistoga 
+            className="self-end bg-purple text-black font-calistoga 
                        p-3 rounded-xl max-w-xs shadow"
           >
             {msg.content}
           </div>
         );
       }
-      else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
+      else if (msg.type === "loading") {
+        return (
+          <div
+            key={`loading-${msg.id}-${i}`}
+            className="self-start bg-white/70 text-black font-calistoga 
+                      p-3 rounded-xl max-w-xs shadow flex items-center gap-2"
+          >
+            <span className="animate-pulse">Thinking</span>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-150"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-300"></div>
+          </div>
+        );
+      } 
+      else if (msg.type === "string" && msg.content) {
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
             content={msg.content}
           />
         );
-      } else { // otherwise, return null (and panic)
+      } else {
         return null;
       }
     })
   : (
-    <p className="text-gray-500 text-center mt-10 font-calistoga">
-      Search or upload an image to start a conversation.
-    </p>
-  );
-
-
+      <p className="text-gray-500 text-center mt-10 font-calistoga">
+        Search or upload an image to start a conversation.
+      </p>
+    );
 
   // where "renderedMessages" is used, used to be:
   // {/* checks if there is an active conversation and if it has messages to display */}
@@ -633,4 +707,4 @@ const renderedMessages = activeConversation?.messages.length
       </div>
     </div>
   );
-}
+};
