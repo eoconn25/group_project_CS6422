@@ -11,6 +11,7 @@ import LlmResponseCard from "./LlmResponseCard";
 // import { mockFlowers } from "../data/mockData";
 import flowerDataset from '../data/flowerDataset.json';
 import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
+import LoginPage from "./LoginPage";
 
 
 
@@ -53,11 +54,13 @@ export default function ChatLayout({
     // object destructuring to get the username and logout function from props
     username,
     onLogout,
+    onGoToLogin
   }: {
     // the username is optional string
     username?: string;
     // the logout function has no return value
     onLogout: () => void;
+    onGoToLogin: () => void; 
   }) 
 {
   //state declarations
@@ -176,6 +179,7 @@ export default function ChatLayout({
 // The idea here is that I am going to dump a bunch of these
 // Backend Calls here and you guys can shuffle them around to wherever
 // They are needed, since I don't really understand react
+/*
 	const register = async (username: string, password: string) => {
 		try {
 		console.log("username: ", username)
@@ -215,12 +219,14 @@ export default function ChatLayout({
 		const data = await response.json()
 		localStorage.setItem("token", data.token)
     console.log("Received: ", localStorage.getItem("token"));
+    onLoginSuccess(username);
 		// After this just like add whatever you received back somewhere 
 		//
 		} catch (error) {
       console.error("Error during upload:", error);
     }
 	}
+    */
 
 
 const saveUploadedImage = async () => {
@@ -662,24 +668,19 @@ const renderedMessages = activeConversation?.messages.length
       <div className="w-64 bg-blue p-4 flex flex-col border-r border-black">
         {/* this is the left sidebar */}
         {/* this is the button to starts a new conversation */}
+        
+        {/* Login Button */}
+        <button
+          onClick={onGoToLogin}
+          className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+        >
+          Login
+        </button>
         {/* the the margin bottom is set to 4, the padding on the sides is set to 4 and the passing for top and bottom is 2, the background is light blue and the button will have rounded corners, and the font is calistoga */}
         <button onClick={handleNewChat} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
           New Chat
         </button>
 
-        {/* ===================== */}
-        {/* This is also my section -> Caylum */}
-
-        <button onClick={() => register("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
-					Test Register
-        </button>
-        <button onClick={() => login("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
-					Test Login
-        </button>
-        <button onClick={() => getUploadedImages()} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
-					test images
-        </button>
-        {/* ===================== */}
 
         {/* button to view saved flowers */}
         {/* the styling is the same as the new chat button*/}
@@ -722,11 +723,13 @@ const renderedMessages = activeConversation?.messages.length
           )}
         </div >
         {/* Welcome message with username */}
-        {username && (
-          <p className="text-black font-calistoga mb-2 text-sm">
-            🌸 Welcome, <span className="font-bold">{username}</span>!
-          </p>
-        )}
+        <p className="text-black font-calistoga mb-2 text-sm">
+          🌸 Welcome, 
+          <span className="font-bold">
+            {username ? username : "User"}
+          </span>
+          !
+        </p>
         {/* the logout button at the bottom of the sidebar */}
         {/* the button has margin top auto to push it to the bottom, full width, padding on top and bottom of 2, rounded corners, calistoga font, light blue background and black text */}
         {/* at the moment does not cause no login had been made, for the future reference*/}
@@ -764,6 +767,44 @@ const renderedMessages = activeConversation?.messages.length
             <div className="flex-1 overflow-y-auto p-4 flex flex-col space-y-4" ref={chatRef}>
               {renderedMessages}
             </div>
+
+            {/* SAVE CHAT BUTTON – insert here */}
+              {activeConversation && (
+                <div className="flex justify-end p-2 bg-pink">
+                  <button
+                    //onClick={() => saveChat(activeConversation)}
+                    className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
+                  >
+                    Save Chat
+                  </button>
+                </div>
+              )}
+
+              {/* Notifications */}
+              {showSaveMessage && (
+                <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+                  ✅ Saved successfully!
+                </div>
+              )}
+
+               {/* SAVE CHAT BUTTON – insert here */}
+              {activeConversation && (
+                <div className="flex justify-end p-2 bg-pink">
+                  <button
+                    //onClick={() => saveChat(activeConversation)}
+                    className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
+                  >
+                    Delete Chat
+                  </button>
+                </div>
+              )}
+
+              {/* Notifications */}
+              {showSaveMessage && (
+                <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+                  ❌ Deleted
+                </div>
+              )}
 
             {/* Search + Upload */}
             {/* has a flexbox layout with padding, gap between items and a blue background */}
