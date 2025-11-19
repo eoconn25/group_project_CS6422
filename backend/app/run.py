@@ -1,4 +1,4 @@
-from app import app, home, ask, create_tables
+from app import app, create_tables
 
 if __name__ == '__main__':
     create_tables()

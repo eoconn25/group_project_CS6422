@@ -146,18 +146,35 @@ def login():
 
 @app.route("/saveChat", methods=["POST"])
 def saveChat():
-    ...
+    data = request.get_json()
 
 @app.route("/savePinnedFlower", methods=["POST"])
 def savePinnedFlower():
-    ...
+    data = request.get_json()
+
 @app.route("/getChat", methods=["POST"])
 def getChat():
-    ...
+    token = getUser(request)
+    userid = token["userid"]
+    if userid == 0:
+        return jsonify([]), 200
+    userChats = UserChats.query.filter_by(userid=userid).all()
+    chats = [chat for chat in userChats]
+    print(chats)
+    sys.stdout.flush()
+    return jsonify(chats), 200
 
 @app.route("/getPinnedFlower", methods=["POST"])
 def getPinnedFlower():
-    ...
+    token = getUser(request)
+    userid = token["userid"]
+    if userid == 0:
+        return jsonify([]), 200
+    pinnedFlowers = PinnedFlowers.query.filter_by(userid=userid).all()
+    flowers = [flower.flowerKey for flower in pinnedFlowers]
+    print(flowers)
+    sys.stdout.flush()
+    return jsonify(flowers), 200
 
 @app.route("/getUploadedImages", methods=["POST"])
 def getUploadedImages():
@@ -174,6 +191,18 @@ def getUploadedImages():
 
     except Exception as e:
         return jsonify(f"Error: {e}"), 200
+
+@app.route("/removeChat", methods=["POST"])
+def removeChat():
+    ...
+
+@app.route("/removePinnedFlower", methods=["POST"])
+def removePinnedFlower():
+    ...
+
+@app.route("/removeUploadedImage", methods=["POST"])
+def removeUploadedImage():
+    ...
 
 # ======================================
 # AI Routes
