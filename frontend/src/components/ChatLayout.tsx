@@ -24,7 +24,7 @@ import type { FlowerVariant, FlowerDataset } from '../types/flowerTypes';
 // an optional image url to display a image uploaded by the user
 interface ConversationCard {
   id: number; // unique id for the message, use Date.now()
-  type: "flower" | "string"; // type of message, either a flower object or string response (from llm)
+  type: "flower" | "string" | "user" | "loading"; // type of message, either a flower object or string response (from llm), the users prompt, loading
   content?: string; // string response content from llm
   flower?: FlowerVariant;
   imageUrl?: string | ""; // image url for flower image
@@ -119,46 +119,23 @@ export default function ChatLayout({
   //     );
   //   }
   // };
+  const waitForState = () =>
+  new Promise(resolve => setTimeout(resolve, 0));
 
-  const appendMessage = (msg: Partial<ConversationCard>) => {
-  setConversations((prev) => {
-    // if no active conversation exists, create one
-    if (!activeId) {
-      const newId = Date.now();
+  const appendMessage = (
+  msg: Partial<ConversationCard>,
+  targetId?: number       // ⭐ NEW: force message into correct conversation
+) => {
+  setConversations(prev => {
+    const id = targetId ?? activeId;  // use explicit ID or fallback
 
-      // derive a title
-      const title =
-        msg.type === "flower" && msg.flower
-          ? `${msg.flower.color} ${msg.flower.name}`
-          : "Untitled Chat";
-
-      const newConv: ConversationThread = {
-        id: newId,
-        title,
-        messages: [
-          {
-            id: msg.id ?? Date.now(),
-            type: msg.type || "string",
-            content: msg.content || "",
-            flower: msg.flower,
-            imageUrl: msg.imageUrl ?? "",
-          },
-        ],
-      };
-
-      setActiveId(newId);
-      return [...prev, newConv];
+    if (!id) {
+      console.error("appendMessage called with no active conversation!");
+      return prev;
     }
 
-    // otherwise, append to the existing active conversation
-    return prev.map((conv) => {
-      if (conv.id !== activeId) return conv;
-
-      // update title only if it’s "Untitled Chat" and we have a new flower
-      let newTitle = conv.title;
-      if (conv.title === "Untitled Chat" && msg.flower) {
-        newTitle = msg.flower.name;
-      }
+    return prev.map(conv => {
+      if (conv.id !== id) return conv;
 
       const newMessage: ConversationCard = {
         id: msg.id ?? Date.now(),
@@ -167,6 +144,19 @@ export default function ChatLayout({
         flower: msg.flower,
         imageUrl: msg.imageUrl ?? "",
       };
+
+      // ⭐ TITLE LOGIC
+      let newTitle = conv.title;
+
+      // If the chat has no messages yet → the first message determines the title
+      if (conv.messages.length === 0) {
+        if (msg.type === "user" && msg.content) {
+          newTitle = msg.content;                 // user prompt becomes title
+        } 
+        else if (msg.type === "flower" && msg.flower) {
+          newTitle = `${msg.flower.color} ${msg.flower.name}`;   // flower becomes title
+        }
+      }
 
       return {
         ...conv,
@@ -177,6 +167,104 @@ export default function ChatLayout({
   });
 };
 
+	const API_BASE =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "http://backend:5001";
+//	 ============================================== 
+// This is my section -> Caylum
+// The idea here is that I am going to dump a bunch of these
+// Backend Calls here and you guys can shuffle them around to wherever
+// They are needed, since I don't really understand react
+	const register = async (username: string, password: string) => {
+		try {
+		console.log("username: ", username)
+		console.log("password: ", password)
+    const response = await fetch(`${API_BASE}/register`, 
+		  { method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({username: username, password: password}) 
+		})
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+    console.log("Received: ", data);
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+
+
+	const login = async (username: string, password: string) => {
+		try {
+		console.log("username: ", username)
+		console.log("password: ", password)
+    const response = await fetch(`${API_BASE}/login`, 
+		  { method: "POST", 
+				headers: {"Content-Type": "application/json"}, 
+				body: JSON.stringify({username: username, password: password}) 
+		})
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+		localStorage.setItem("token", data.token)
+    console.log("Received: ", localStorage.getItem("token"));
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+
+
+const saveUploadedImage = async () => {
+    try {
+      const response = await fetch(`${API_BASE}/saveUploadedImage`,
+			{
+        method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify({token: localStorage.getItem("token"), image})
+			})
+		}
+    catch (error) {
+      console.log("Error during upload:", error);
+		}
+	}
+	
+const getUploadedImages = async () => {
+		try {
+	    // Get the JWT token from localStorage
+
+    const response = await fetch(`${API_BASE}/getUploadedImages`, 
+		  { method: "POST", 
+				headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'application/json',
+      },
+				body: JSON.stringify({})
+		});
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		const data = await response.json()
+    console.log("Received: ", data);
+		// After this just like add whatever you received back somewhere 
+		//
+		} catch (error) {
+      console.error("Error during upload:", error);
+    }
+	}
+
+
+// ==============================================
+
 
 	// ===================== 2025-11-05================
 	// This is a somewhat working version of communication, it only console.logs the response now
@@ -186,9 +274,46 @@ export default function ChatLayout({
   // ignores case when searching
   // does nothing if no match is found
   const handleSearch = async (query: string) => {
-		console.log("query string: ", query);
+  console.log("query string: ", query);
 
-    try {
+  let convId = activeId;
+
+  // Ensure conversation exists
+  if (!convId) {
+    convId = Date.now();
+    setActiveId(convId);
+
+    setConversations(prev => [
+      ...prev,
+      {
+        id: convId,
+        title: "Untitled Chat",
+        messages: []
+      }
+    ]);
+  }
+
+  // 1️⃣ Append user message ONCE
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: query
+    },
+    convId
+  );
+
+  // 2️⃣ Insert loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
+  try {
     console.log("Sending query to backend...");
 
     const API_BASE =
@@ -196,45 +321,59 @@ export default function ChatLayout({
         ? "http://localhost:5001"
         : "http://backend:5001";
 
-    console.log("API_BASE: ", API_BASE);
-
-
-
-    const response = await fetch(`${API_BASE}/ask`, 
-			{ method: "POST", 
-				headers: {"Content-Type": "application/json"}, 
-				body: JSON.stringify({prompt: query}) 
-		})
-
-    // const response = await fetch("http://localhost:5001/ask", 
-    //       { method: "POST", 
-    //         headers: {"Content-Type": "application/json"}, 
-    //         body: JSON.stringify({prompt: query}) 
-    //     })
-
+    const response = await fetch(`${API_BASE}/ask`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: query })
+    });
 
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad server response");
     }
 
-    
-		const data = await response.json()
-    //const result = flowerDataset.find((f) => f.name.toLowerCase() === query.toLowerCase());
-    //if (!result) return;
-    //appendMessage(data.response);
-		
-        
-    console.log("Received: ", data);
+    const data = await response.json();
 
-    appendMessage({ id: Date.now(), type: "string", content: data.response });
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
+
+    // 4️⃣ Append final LLM response
+    appendMessage(
+      {
+        id: Date.now() + 2,
+        type: "string",
+        content: data.response
+      },
+      convId
+    );
+
     setShowSavedPage(false);
 
+  } catch (error) {
+    console.error("Error during search:", error);
 
-    } catch (error) {
-      console.error("Error during upload:", error);
-    }
-  };
+    // Remove loading bubble even if error
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
+  }
+};
 	// ==============================================
 
 
@@ -250,75 +389,127 @@ export default function ChatLayout({
   // then goes back to the main chat view
   // make async to talk to AI
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("entered handleUpload")
-    
-    const file = e.target.files?.[0];
-    console.log("Selected:", file);
+  console.log("entered handleUpload");
 
+  const file = e.target.files?.[0];
+  console.log("Selected:", file);
+  if (!file) return;
 
-    if (!file) return;
+  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const allowedExts = [".jpg", ".jpeg", ".png", ".webp"];
+  const ext = file.name.toLowerCase().slice(file.name.lastIndexOf("."));
 
-    const url = URL.createObjectURL(file);
-    console.log(url)
+  if (!allowedTypes.includes(file.type) && !allowedExts.includes(ext)) {
+    setShowErrorMessage(true);
+    return;
+  }
 
-    // new from here
-    // Prepare data for backend
-    const formData = new FormData();
-    formData.append("image", file);
-    console.log("form data: ", formData)
+  const url = URL.createObjectURL(file);
+  const formData = new FormData();
+  formData.append("image", file);
 
-    try {
+  // Ensure conversation exists
+  let convId = activeId;
+  if (!convId) {
+    convId = Date.now();
+    setActiveId(convId);
+
+    setConversations(prev => [
+      ...prev,
+      {
+        id: convId,
+        title: "*Image Upload*",
+        messages: []
+      }
+    ]);
+  }
+
+  // 1️⃣ User upload message
+  appendMessage(
+    {
+      id: Date.now(),
+      type: "user",
+      content: `*Uploaded image:* _${file.name}_`
+    },
+    convId
+  );
+
+  // 2️⃣ Add loading bubble
+  const loadingId = Date.now() + 1;
+  appendMessage(
+    {
+      id: loadingId,
+      type: "loading"
+    },
+    convId
+  );
+
+  try {
     console.log("Sending image to backend...");
-    // const response = await fetch("http://localhost:5001/predict", {
-    //   method: "POST",
-    //   body: formData,
-    // });
 
     const API_BASE =
       window.location.hostname === "localhost"
         ? "http://localhost:5001"
         : "http://backend:5001";
 
-    console.log("API_BASE: ", API_BASE);
-
     const response = await fetch(`${API_BASE}/predict`, {
       method: "POST",
+			headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` },
       body: formData,
     });
 
-
-
     if (!response.ok) {
       console.error("Server returned error:", response.status);
-      return;
+      throw new Error("Bad response from server");
     }
 
     const data = await response.json();
-    console.log("Backend response:", data); // {color, species}
+    console.log("Backend response:", data);
 
-    if (data.species) {
-      const matchedFlower = findMatchingFlower(data);
-      console.log("matchedFlower: ", matchedFlower)
-          
-    
-      // Update your UI / message list
-      appendMessage({ id: Date.now(), type: "flower", flower: matchedFlower, imageUrl: url });
+    const matchedFlower = findMatchingFlower(data);
 
-    } else {
-      console.log("No flower was detected in photo upload")
-      setShowErrorMessage(true);
-      setTimeout(() => setShowErrorMessage(false), 3000);
-    }
+    // 3️⃣ Remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
 
-    } catch (error) {
-      console.error("Error during upload:", error);
-    }
+    // 4️⃣ Append flower card
+    appendMessage(
+      {
+        id: Date.now() + 2,
+        type: "flower",
+        flower: matchedFlower,
+        imageUrl: url
+      },
+      convId
+    );
+  } catch (err) {
+    console.error("Upload failed:", err);
+    setShowErrorMessage(true);
 
-    // old version
-    // const matchedFlower = mockFlowers[2]; // mock prediction
-    // appendMessage({ flower: matchedFlower, imageUrl: url });
-    // setShowSavedPage(false);  // commented this for now
-  };
+    // Cleanup: remove loading bubble
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === convId
+          ? {
+              ...conv,
+              messages: conv.messages.filter(m => m.id !== loadingId)
+            }
+          : conv
+      )
+    );
+  }
+  if (fileInputRef.current) {
+  fileInputRef.current.value = "";
+}
+};
 
   // Save/remove flower
   // if its found, it will show remove message and remove it from saved flowers
@@ -355,7 +546,7 @@ export default function ChatLayout({
   // before your main return() — right after defining activeConversation, etc.
 const renderedMessages = activeConversation?.messages.length
   ? activeConversation.messages.map((msg, i) => {
-      if (msg.type === "flower" && msg.flower) { // check to see if flower type and flower data exist
+      if (msg.type === "flower" && msg.flower) {
         return (
           <FlowerInfoCard
             key={`${msg.flower.name}-${msg.imageUrl}-${i}`}
@@ -365,24 +556,47 @@ const renderedMessages = activeConversation?.messages.length
             onSaveOrRemove={() => handleSaveOrRemoveFlower(msg.flower, msg.imageUrl)}
           />
         );
-      } else if (msg.type === "string" && msg.content) { // if not flower object, check for string type and content
+      } else if (msg.type === "user" && msg.content) {
+        return (
+          <div
+            key={`user-${msg.id}-${i}`}
+            className="self-end bg-purple text-black font-calistoga 
+                       p-3 rounded-xl max-w-xs shadow"
+          >
+            {msg.content}
+          </div>
+        );
+      }
+      else if (msg.type === "loading") {
+        return (
+          <div
+            key={`loading-${msg.id}-${i}`}
+            className="self-start bg-white/70 text-black font-calistoga 
+                      p-3 rounded-xl max-w-xs shadow flex items-center gap-2"
+          >
+            <span className="animate-pulse">Thinking</span>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-150"></div>
+            <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce delay-300"></div>
+          </div>
+        );
+      } 
+      else if (msg.type === "string" && msg.content) {
         return (
           <LlmResponseCard
             key={`string-${msg.id}-${i}`}
             content={msg.content}
           />
         );
-      } else { // otherwise, return null (and panic)
+      } else {
         return null;
       }
     })
   : (
-    <p className="text-gray-500 text-center mt-10 font-calistoga">
-      Search or upload an image to start a conversation.
-    </p>
-  );
-
-
+      <p className="text-gray-500 text-center mt-10 font-calistoga">
+        Search or upload an image to start a conversation.
+      </p>
+    );
 
   // where "renderedMessages" is used, used to be:
   // {/* checks if there is an active conversation and if it has messages to display */}
@@ -452,6 +666,20 @@ const renderedMessages = activeConversation?.messages.length
         <button onClick={handleNewChat} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
           New Chat
         </button>
+
+        {/* ===================== */}
+        {/* This is also my section -> Caylum */}
+
+        <button onClick={() => register("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					Test Register
+        </button>
+        <button onClick={() => login("2", "3")} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					Test Login
+        </button>
+        <button onClick={() => getUploadedImages()} className="mb-4 px-4 py-2 bg-lightBlue rounded-lg font-calistoga">
+					test images
+        </button>
+        {/* ===================== */}
 
         {/* button to view saved flowers */}
         {/* the styling is the same as the new chat button*/}
@@ -540,24 +768,39 @@ const renderedMessages = activeConversation?.messages.length
             {/* Search + Upload */}
             {/* has a flexbox layout with padding, gap between items and a blue background */}
             {/* placed under the chat container */}
-            <div className="flex p-4 gap-2 bg-blue">
+            {/* Search + Upload */}
+            <div className="flex p-4 gap-2 bg-blue relative z-20">
+              {/* the upload button and hidden file input */}
+              {/* the button has padding, light blue background, rounded corners and calistoga font */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="relative group px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
+              >
+                +
+                {/* Custom tooltip */}
+                <div
+                  className="
+                    absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+                    bg-black text-white text-xs px-2 py-1 rounded pointer-events-none
+                    opacity-0 group-hover:opacity-100 transition-opacity
+                  "
+                >
+                Image Upload
+                </div>
+              </button>
+              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                ref={fileInputRef}
+                onChange={handleUpload}
+                className="hidden"
+              />
               {/* the search bar takes the remaining space in its section */}
               <div className="flex-1">
                 {/* calls the search bar component and passes the handleSearch function to it */}
                 <SearchBar onSearch={handleSearch} />
               </div>
-              {/* the upload button and hidden file input */}
-              {/* the button has padding, light blue background, rounded corners and calistoga font */}
-              <button
-                /* when clicked it triggers the hidden file input to open the file dialog */
-                onClick={() => fileInputRef.current?.click()}
-                // button styling is padding on left axis of 4 and right its 2, light blue background, rounded corners and calistoga font
-                className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga"
-              >
-                Upload
-              </button>
-              {/* the file input accepts image files only, references the fileInputRef and calls handleUpload when a file is selected */}
-              <input type="file" accept="image/*" ref={fileInputRef} onChange={handleUpload} className="hidden" />
             </div>
             {showErrorMessage && (
                 <div className="absolute top-4 right-4 bg-red-400 text-white px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
@@ -577,4 +820,4 @@ const renderedMessages = activeConversation?.messages.length
       </div>
     </div>
   );
-}
+};

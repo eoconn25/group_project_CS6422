@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required
+from flask_jwt_extended import JWTManager, create_access_token, decode_token
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 import sqlite3
 import os
 import sys
+import time
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trained_model.cnn_inference import ClassifyFlower
 from trained_model.model_init import get_model
@@ -14,12 +16,18 @@ import traceback
 
 #db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
+# ======================================
+# App Setup
+# ======================================
+
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*", "allow_headers": "Content-Type", "methods": ["POST", "OPTIONS"]}})
+CORS(app, resources={r"/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"], "methods": ["POST", "OPTIONS"]}})
+#CORS(app)
 app.config['SECRET_KEY'] = 'ChangeThisProbably'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////app/app/instance/database.db'
 
 db = SQLAlchemy(app)
+jwt = JWTManager(app)
 
 llm = SmartAss()
 
@@ -42,54 +50,70 @@ os.makedirs(PHOTO_UPLOAD_FOLDER, exist_ok=True)
 # Load your CNN model
 model = ClassifyFlower(get_model, 'trained_model/test1.2_best_model.pt', "trained_model/flowers_segmentation_model.pt")
 
+# ======================================
+# SQL Table Definitions
+# ======================================
+
 # Using SQLAlchemy have a class corresponding to each table
 class User(db.Model):
     userid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
 
-#def init_db():
-#    conn = sqlite3.connect(db_path)
-#    cursor = conn.cursor()
-#    cursor.execute('''
-#    CREATE TABLE IF NOT EXISTS users (
-#      userid INTEGER PRIMARY KEY AUTOINCREMENT,
-#      name TEXT NOT NULL,
-#      hpword TEXT NOT NULL
-#    ) ''')
-#    cursor.execute('''
-#    CREATE TABLE IF NOT EXISTS uploads (
-#      fileid INTEGER PRIMARY KEY AUTOINCREMENT,
-#      filename TEXT NOT NULL,
-#      userid INTEGER NOT NULL
-#    ) ''')
-#    conn.commit()
-#    conn.close()
-#    return None
+class UserChats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    chatGroup = db.Column(db.String(100), nullable=False)
+    msgSeq = db.Column(db.Integer, nullable=False)
+    msgText = db.Column(db.Text, nullable=False)
+    isModel = db.Column(db.Boolean)
 
+class UserUploadedImages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    filepath = db.Column(db.String(256), nullable=False)
 
-# 2025-11-05 this works for now....
-@app.route("/ask", methods=["POST"])
-def ask():
-    data = request.get_json()  # get json from frontend
-    print("data: ", data)
-    prompt = data.get("prompt", "")
-    print("prompt: ", prompt)
-    reply = llm.prompt(prompt)  # prompt llm
-    print("reply: ", reply)
-    return jsonify({"response": reply})  # return json response to frontend
+class PinnedFlowers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
+    flowerKey = db.Column(db.String(100), nullable=False)
 
-# Home route
-@app.route('/')
-def home():
-    return jsonify(message = 'Hi')
+# ======================================
+# Helper Functions
+# ======================================
 
-# Upload route
-@app.route('/upload')
-def upload():
-    return
+def getUser(request):
+    auth_header = request.headers.get("Authorization")
+    guest_identity = {"username": "guest", "userid": 0}
 
-# Register
+    if not auth_header:
+        print("No Auth Header")
+        sys.stdout.flush()
+        return guest_identity
+
+    split = auth_header.split(" ")
+    token = split[1]
+
+    if token == 'null':
+        print("No Token")
+        print(split)
+        sys.stdout.flush()
+        return guest_identity
+
+    print(auth_header)
+    sys.stdout.flush()
+
+    return decode_token(split[1])
+
+def create_tables():
+    with app.app_context():
+        db.create_all()
+
+# ======================================
+# User Routes
+# ======================================
+
+# register
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
@@ -105,6 +129,96 @@ def register():
 
     return jsonify(message='User created successfully'), 201
 
+# login
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data['username']
+    password = data['password']
+
+    user = User.query.filter_by(username=username, password=password).first()
+
+    if not user :
+        return jsonify(message='Login Failed'), 400
+
+    access_token = create_access_token(identity=username, additional_claims={"userid": user.userid, "username": username}, expires_delta=datetime.timedelta(days=7))
+    return jsonify(message='Login Successful', token=access_token), 200
+
+@app.route("/saveChat", methods=["POST"])
+def saveChat():
+    data = request.get_json()
+
+@app.route("/savePinnedFlower", methods=["POST"])
+def savePinnedFlower():
+    data = request.get_json()
+
+@app.route("/getChat", methods=["POST"])
+def getChat():
+    token = getUser(request)
+    userid = token["userid"]
+    if userid == 0:
+        return jsonify([]), 200
+    userChats = UserChats.query.filter_by(userid=userid).all()
+    chats = [chat for chat in userChats]
+    print(chats)
+    sys.stdout.flush()
+    return jsonify(chats), 200
+
+@app.route("/getPinnedFlower", methods=["POST"])
+def getPinnedFlower():
+    token = getUser(request)
+    userid = token["userid"]
+    if userid == 0:
+        return jsonify([]), 200
+    pinnedFlowers = PinnedFlowers.query.filter_by(userid=userid).all()
+    flowers = [flower.flowerKey for flower in pinnedFlowers]
+    print(flowers)
+    sys.stdout.flush()
+    return jsonify(flowers), 200
+
+@app.route("/getUploadedImages", methods=["POST"])
+def getUploadedImages():
+    try:
+        token = getUser(request)
+        userid = token["userid"]
+        print(userid)
+        sys.stdout.flush()
+        if userid == 0:
+            return jsonify([]), 200
+        uploadedImages = UserUploadedImages.query.filter_by(userid=userid).all()
+        filepaths = [img.filepath for img in uploadedImages]
+        return jsonify(filepaths), 200
+
+    except Exception as e:
+        return jsonify(f"Error: {e}"), 200
+
+@app.route("/removeChat", methods=["POST"])
+def removeChat():
+    ...
+
+@app.route("/removePinnedFlower", methods=["POST"])
+def removePinnedFlower():
+    ...
+
+@app.route("/removeUploadedImage", methods=["POST"])
+def removeUploadedImage():
+    ...
+
+# ======================================
+# AI Routes
+# ======================================
+
+# 2025-11-05 this works for now....
+@app.route("/ask", methods=["POST"])
+def ask():
+    data = request.get_json()  # get json from frontend
+    print("data: ", data)
+    prompt = data.get("prompt", "")
+    print("prompt: ", prompt)
+    reply = llm.prompt(prompt)  # prompt llm
+    print("reply: ", reply)
+    return jsonify({"response": reply})  # return json response to frontend
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Ensure file is in request
@@ -115,9 +229,12 @@ def predict():
     if file.filename == '':
         return jsonify({'error': 'Empty filename'}), 400
 
+    # Get the userid (if they have one)
+    token = getUser(request)
 
-    # Save uploaded file temporarily
-    filename = 'test_img'
+    # Save uploaded image
+    extension = file.filename.split(".")[1]
+    filename = f'{token["username"]}-{int(time.time())}.{extension}'
     filepath = os.path.join(PHOTO_UPLOAD_FOLDER, filename)
     file.save(filepath)
     print(f"Saved file to: {filepath}")
@@ -148,6 +265,19 @@ def predict():
         }), 500
 
     finally:
-        # Clean up temp file (optional)
-        if os.path.exists(filepath):
+        # Clean up temp file if their userid is 0 (not logged in)
+        if os.path.exists(filepath) and token["userid"] == 0:
             os.remove(filepath)
+            print("I actually hate everything")
+            print(token["userid"])
+            print(token)
+            #print(request.headers.get("Authorization"))
+            print(request.headers)
+            sys.stdout.flush()
+        else:
+            print("this is a test")
+            sys.stdout.flush()
+            # Add the new image to the db
+            newImage = UserUploadedImages(userid=token["userid"], filepath=filepath)
+            db.session.add(newImage)
+            db.session.commit()
