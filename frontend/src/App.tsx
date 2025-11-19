@@ -1,54 +1,61 @@
 import { useState } from "react";
 import ChatLayout from "./components/ChatLayout";
 import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
 
 export default function App() {
-  // login state
-  // boolean for if logged in or not
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // username stored, initially empty string
   const [username, setUsername] = useState("");
 
-  // successful login
-  // takes the name as parameter
+  // NEW: control showing login or register screen
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
   const handleLoginSuccess = (name: string) => {
-    // logs to console for debugging
-    console.log("✅ handleLoginSuccess called with:", name);
-    // sets the username state to the name passed in
     setUsername(name);
-    // sets the logged in state to true
     setIsLoggedIn(true);
+    setShowLogin(false);
   };
 
-  // loged out
-	// 17-11-25 I'm clearing local storage here,
-	// We're probably going to have to do a little
-	// shuffling around of logins - Caylum
   const handleLogout = () => {
-    // logs to console for debugging
-    console.log("🚪 handleLogout called");
-    // sets the logged in state to false
     setIsLoggedIn(false);
-		localStorage.removeItem("token");
-    // clears the username
     setUsername("");
+    localStorage.removeItem("token");
+    setShowLogin(true); // go back to login page
   };
 
-  // logs the current state for debugging
-  console.log("Rendering App - isLoggedIn:", isLoggedIn, "username:", username);
+  // 🌼 Show Register Page
+  if (showRegister) {
+    return (
+      <RegisterPage
+        onBackToLogin={() => {
+          setShowRegister(false);
+          setShowLogin(true);
+        }}
+      />
+    );
+  }
 
-  // renders either the chat layout if logged in, or the login page if not
+  // 🌼 Show Login Page
+  if (showLogin) {
+    return (
+      <LoginPage
+        onLoginSuccess={handleLoginSuccess}
+        onGoToRegister={() => {
+          setShowLogin(false);
+          setShowRegister(true);
+        }}
+      />
+    );
+  }
+
+  // 🌼 Default → Show ChatLayout
   return (
-    <>
-    {/* conditional rendering based on login state*/}
-      {isLoggedIn ? (
-        <ChatLayout onLogout={handleLogout} username={username} />
-      ) : (
-
-        <LoginPage onLoginSuccess={handleLoginSuccess} />
-      )}
-    </>
+    <ChatLayout
+      username={username}
+      onLogout={handleLogout}
+      onGoToLogin={() => setShowLogin(true)} 
+    />
   );
 }
-
 
