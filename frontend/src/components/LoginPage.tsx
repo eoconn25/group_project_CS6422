@@ -21,19 +21,19 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
     e.preventDefault();
 
     // Mock credentials for now
-    const validUsername = "flowerlover";
-    const validPassword = "petal123";
+    //const validUsername = "flowerlover";
+    //const validPassword = "petal123";
 
     // Simple mock check (later replace with backend fetch)
-    if (username === validUsername && password === validPassword) {
-      setError("");
-      onLoginSuccess(username); // pass username to App
-    } else {
-      setError("Invalid username or password");
-    }
+    //if (username === validUsername && password === validPassword) {
+      //setError("");
+      //onLoginSuccess(username); // pass username to App
+    //} else {
+      //setError("Invalid username or password");
+    //}
 
     // Later replace this section for backend authentication:
-    /*
+    
     try {
       const API_BASE =
         window.location.hostname === "localhost"
@@ -58,7 +58,6 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       console.error("Login failed:", error);
       setError("Unable to connect to the server");
     }
-    */
   };
 
   // JSX to render the login form
