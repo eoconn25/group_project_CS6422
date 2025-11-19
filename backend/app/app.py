@@ -128,13 +128,14 @@ def predict():
 
     try:
         # Run your model
-        result_param1, result_param2 = model.predict(filepath)
+        result_param1, result_param2, result_param3 = model.predict(filepath)
         print("Model output:", result_param1, result_param2)
 
         # Return as JSON
         return jsonify({
             'species': result_param1,
-            'color': result_param2
+            'color': result_param2,
+            'probability': result_param3
         })
 
     except Exception as e:
