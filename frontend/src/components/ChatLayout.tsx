@@ -229,6 +229,34 @@ export default function ChatLayout({
     */
 
 
+	const saveChat = async (convo) => {
+		console.log(convo)
+		var chatHistory: string[] = []
+		convo["messages"].forEach(element => {
+			if (!("", "...", "loading").includes(element["content"])) {
+				chatHistory.push(`${element["type"]}: ${element["content"]}`)
+			}});
+			
+			const response = await fetch(`${API_BASE}/saveChat`,
+			{ method: "POST", 
+				headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'application/json',
+      },
+				body: JSON.stringify({
+					title: convo["title"],
+					messages: chatHistory
+					})
+		});
+		if (!response.ok) {
+      console.error("Server returned error:", response.status);
+      return;
+    }
+		console.log(chatHistory)
+	}
+
+
+	
 const saveUploadedImage = async () => {
     try {
       const response = await fetch(`${API_BASE}/saveUploadedImage`,
@@ -772,7 +800,7 @@ const renderedMessages = activeConversation?.messages.length
               {activeConversation && (
                 <div className="flex justify-end p-2 bg-pink">
                   <button
-                    //onClick={() => saveChat(activeConversation)}
+                    onClick={() => saveChat(activeConversation)}
                     className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
                   >
                     Save Chat

@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, decode_token
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.inspection import inspect
 import datetime
 import sqlite3
 import os
@@ -28,6 +29,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////app/app/instance/database.db
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+
+
 
 llm = SmartAss()
 
@@ -63,7 +66,7 @@ class User(db.Model):
 class UserChats(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer, nullable=False)
-    chatGroup = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     msgSeq = db.Column(db.Integer, nullable=False)
     msgText = db.Column(db.Text, nullable=False)
     isModel = db.Column(db.Boolean)
@@ -109,6 +112,27 @@ def create_tables():
     with app.app_context():
         db.create_all()
 
+def dump_database():
+    output = {}
+
+    # Loop through all mappers registered in SQLAlchemy
+    for mapper in db.Model.registry.mappers:
+        model = mapper.class_
+        table_name = model.__tablename__
+
+        rows = model.query.all()
+        table_data = []
+
+        for row in rows:
+            row_dict = {}
+            for column in inspect(model).columns:
+                row_dict[column.key] = getattr(row, column.key)
+            table_data.append(row_dict)
+
+        output[table_name] = table_data
+
+    return output
+
 # ======================================
 # User Routes
 # ======================================
@@ -146,7 +170,28 @@ def login():
 
 @app.route("/saveChat", methods=["POST"])
 def saveChat():
+    token = getUser(request)
+    userid = token["userid"]
+    if userid == 0:
+        return jsonify("You are not logged in :/"), 200
     data = request.get_json()
+    title = data["title"]
+    msgSeq = 1
+    for item in data["messages"]:
+        user, msgText = item.split(": ", 1)
+        if user == "user":
+            isModel = False
+        else:
+            isModel = True
+        new_chat = UserChats(userid=userid, title=title, msgSeq=msgSeq, msgText=msgText, isModel=isModel)
+        db.session.add(new_chat)
+        msgSeq += 1
+    db.session.commit()
+    print(data)
+
+    print(userid)
+    sys.stdout.flush()
+    return jsonify("Yeah it worked"), 200
 
 @app.route("/savePinnedFlower", methods=["POST"])
 def savePinnedFlower():
