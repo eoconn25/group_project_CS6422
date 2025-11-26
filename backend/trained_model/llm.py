@@ -22,6 +22,9 @@ class SmartAss:
         # we will want a conversation history to provide context for LLM, save previous chats, etc
         # defines it as alist of dictionaries, mapping strings to string
         self.conversation: List[Dict[str,str]] = []
+        
+        # path to json db
+        self.data_path = ""
 
 
     def reset(self):
@@ -33,20 +36,19 @@ class SmartAss:
         # add a message/exchange to our conversation history
         self.conversation.append({'role': role, 'content': content})
     
-    
-    def prompt(self, prompt:str, temperature:float=0.7, max_tokens:int=512) -> str:
-        # function to actually send a prompt to model and return response
-        self.add_message('user', prompt)
+    # function to actually send a prompt to model and return response
+    def prompt(self, prompt:str, temperature:float=0.7, max_tokens:int=512, 
+               image=False, species:str=None, color:str=None) -> str:
 
-        # call prompt engineering function
+        self.add_message('user', prompt)
         messages = self.prompt_engineer(prompt)
 
-        url = f'{self.base_url}/api/generate'
+        url = f'{self.base_url}/api/chat'  #generate maybe switch to chat
 
         # this delivers the prompt to the llm with full context
         turn = {
             'model': self.model,  # defines model
-            'prompt': prompt,  # context/conversation history
+            'messages': messages,  # context/conversation history
             "stream": False
             #"temperature": temperature, # model params
             #"num_predict": max_tokens
@@ -60,7 +62,7 @@ class SmartAss:
             print(f'\n\nHERE {data}\n\n', flush=True)
 
             # extract llm response and add to conversation history
-            message = data.get('response', '').strip()
+            message = data.get("message", {}).get("content", "").strip()
             self.add_message('assistant', message)
             return message
         
@@ -69,7 +71,28 @@ class SmartAss:
             return 'oh no, didnt work'
         
 
-    def prompt_engineer(self, prompt:str) -> List[Dict[str,str]]:
+    def prompt_engineer(self, prompt:str, context:str=None) -> List[Dict[str,str]]:
+        personality = (
+            "You are an expert in flower symbolism and bouquet design. "
+            "Be precise, concise, and end each message with a relevant haiku on a newline."
+        )
+        
+        # tell LLM who he is
+        messages = [{"role": "system",
+                     "content": personality}]
+        
+        # add in RAG context
+        if context:
+            messages.append({
+                "role": "system",
+                "content": f"Additional context you must use:\n{context}"
+            })
+
+        # append to convesation history for persistence
+        messages.extend(self.conversation)
+
+        return messages
+
         messages = self.conversation + [
             {'role': 'system', 'content': 'You are an expert in flower symbolism and bouquet design'},
             {'role': 'user', 'content': prompt}
@@ -87,8 +110,83 @@ class SmartAss:
         ]
     
     def query_db(self, species:str, color:str):
+        # open dataset
+        try:
+            with open(self.data_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception as e:
+            return f"(Database error: {e})"
+
+        species = species.lower().strip()
+        color = color.lower().strip()
+
+        # grab that from the db
+        for entry in data:
+            if entry["species"].lower() == species:
+
+                # ---- Search variants by color ----
+                for variant in entry.get("variants", []):
+                    if variant["color"].lower() == color:
+
+                        # ---- Build context block ----
+                        context_parts = []
+
+                        context_parts.append(f"Species: {entry['species']}")
+                        context_parts.append(f"Color Variant: {variant['color']}")
+                        context_parts.append(
+                            f"Symbolism: {', '.join(variant.get('symbolism', []))}"
+                        )
+
+                        context_parts.append(
+                            f"Blooming Season: {', '.join(variant.get('blooming_season', []))}"
+                        )
+
+                        context_parts.append(
+                            f"Native Regions: {', '.join(variant.get('native_regions', []))}"
+                        )
+
+                        care = variant.get("care", {})
+                        context_parts.append(
+                            f"Care Requirements — Light: {care.get('light')}, "
+                            f"Water: {care.get('water')}, Soil: {care.get('soil')}"
+                        )
+
+                        # Petal count info
+                        petals = variant.get("petal_count", {})
+                        context_parts.append(
+                            f"Petal Count: typically {petals.get('typical')} "
+                            f"(range {petals.get('min')}–{petals.get('max')})"
+                        )
+
+                        # Fragrance note
+                        fragrance = variant.get("fragrance", {})
+                        context_parts.append(
+                            f"Fragrance: {fragrance.get('description')} "
+                            f"(intensity {fragrance.get('intensity')})"
+                        )
+
+                        # Traditional uses
+                        uses = variant.get("traditional_uses", [])
+                        context_parts.append(
+                            f"Traditional Uses: {', '.join(uses)}"
+                        )
+
+                        # Allergies
+                        allergies = variant.get("allergies", {})
+                        context_parts.append("Allergy Concerns:")
+                        for k, v in allergies.items():
+                            context_parts.append(f"  {k.capitalize()}: {v}")
+
+                        return "\n".join(context_parts)
+
+                # If species matched but color did not
+                return f"(No variant found for species '{species}' with color '{color}'.)"
+
+        # If species not found
+        return f"(Species '{species}' not found in dataset.)"
+
         # query sql db here for flower symbolism context
-        pass
+        return ""
 
 
 # test the class with a prompt!!

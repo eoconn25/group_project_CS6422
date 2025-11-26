@@ -79,6 +79,12 @@ export default function ChatLayout({
   //control the display of upload error message
   const [showErrorMessage, setShowErrorMessage] = useState(false);
 
+  //controls save chat toast (new)
+const [showChatSavedMessage, setShowChatSavedMessage] = useState(false);
+//controls delete chat toast (new)
+const [showChatDeletedMessage, setShowChatDeletedMessage] = useState(false);
+
+
   //references for file input and chat container (scrollable area)
   const fileInputRef = useRef<HTMLInputElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
@@ -752,7 +758,7 @@ const renderedMessages = activeConversation?.messages.length
         </div >
         {/* Welcome message with username */}
         <p className="text-black font-calistoga mb-2 text-sm">
-          🌸 Welcome, 
+          🌸 Welcome,{" "}
           <span className="font-bold">
             {username ? username : "User"}
           </span>
@@ -796,43 +802,39 @@ const renderedMessages = activeConversation?.messages.length
               {renderedMessages}
             </div>
 
-            {/* SAVE CHAT BUTTON – insert here */}
-              {activeConversation && (
-                <div className="flex justify-end p-2 bg-pink">
-                  <button
-                    onClick={() => saveChat(activeConversation)}
-                    className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
-                  >
-                    Save Chat
-                  </button>
-                </div>
-              )}
+            {/* SAVE / DELETE CHAT BUTTONS – cleaned version */}
+            {activeConversation && (
+              <div className="absolute bottom-22 right-6 z-30 flex gap-2">
+                <button
+                  //onClick={() => saveChat(activeConversation)}
+                  className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
+                >
+                  Save Chat
+                </button>
 
-              {/* Notifications */}
-              {showSaveMessage && (
-                <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
-                  ✅ Saved successfully!
-                </div>
-              )}
+                <button
+                  //onClick={() => deleteChat(activeConversation)}
+                  className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
+                >
+                  Delete Chat
+                </button>
+              </div>
+            )}
 
-               {/* SAVE CHAT BUTTON – insert here */}
-              {activeConversation && (
-                <div className="flex justify-end p-2 bg-pink">
-                  <button
-                    //onClick={() => saveChat(activeConversation)}
-                    className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
-                  >
-                    Delete Chat
-                  </button>
-                </div>
-              )}
 
-              {/* Notifications */}
-              {showSaveMessage && (
-                <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
-                  ❌ Deleted
-                </div>
-              )}
+            {/* Notifications for Chat Save/Delete */}
+            {showChatSavedMessage && (
+              <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+                ✅ Saved successfully!
+              </div>
+            )}
+
+            {showChatDeletedMessage && (
+              <div className="absolute top-4 right-4 bg-lightBlue text-black px-4 py-2 rounded-lg shadow font-calistoga animate-fadeInOut">
+                ❌ Deleted
+              </div>
+            )}
+
 
             {/* Search + Upload */}
             {/* has a flexbox layout with padding, gap between items and a blue background */}

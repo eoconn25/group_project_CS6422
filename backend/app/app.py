@@ -8,6 +8,7 @@ import sqlite3
 import os
 import sys
 import time
+import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from trained_model.cnn_inference import ClassifyFlower
 from trained_model.model_init import get_model
@@ -255,7 +256,7 @@ def removeUploadedImage():
 
 # 2025-11-05 this works for now....
 @app.route("/ask", methods=["POST"])
-def ask():
+def ask(image:bool=False, species:str=None, color:str=None):
     data = request.get_json()  # get json from frontend
     print("data: ", data)
     prompt = data.get("prompt", "")
@@ -263,6 +264,23 @@ def ask():
     reply = llm.prompt(prompt)  # prompt llm
     print("reply: ", reply)
     return jsonify({"response": reply})  # return json response to frontend
+
+
+@app.route('/context/flower', methods=['POST'])
+def add_flower_context():
+    data = request.get_json()
+    flower = data.get("flower")
+
+    if not flower:
+        return jsonify({"err: no flower data sent"}), 400
+    
+    print("Received flower context:", flower)
+
+    # format context message and send it to llm
+    context_message = f"Flower context/facts: {json.dumps(flower, indent=2)}"
+    llm.add_message(role='system', content=context_message)
+    return jsonify({"status": "context added"})
+
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -289,14 +307,17 @@ def predict():
     print(f"File exists? {os.path.exists(filepath)}")
 
     try:
-        # Run your model
-        result_param1, result_param2 = model.predict(filepath)
+        # Run your model - param1 is species, 2 is color, 3 is probability
+        result_param1, result_param2, result_param3 = model.predict(filepath)
         print("Model output:", result_param1, result_param2)
+        # prompt LLM with CNN classification output 
+        #ask(image=True, species=result_param1, color=result_param2)
 
         # Return as JSON
         return jsonify({
             'species': result_param1,
-            'color': result_param2
+            'color': result_param2,
+            'probability': result_param3
         })
 
     except Exception as e:
