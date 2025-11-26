@@ -40,36 +40,8 @@ class SmartAss:
     def prompt(self, prompt:str, temperature:float=0.7, max_tokens:int=512, 
                image=False, species:str=None, color:str=None) -> str:
 
-        # call prompt engineering function
-        if image:
-            prompt = ("Please respond to the following prompt:" \
-                      f"You have received an image of a {color} {species}" \
-                      "Using the context provided, please discuss the symbolism and uses of this flower in a bouquet" \
-                      "Your response should follow the following format:\n"
-                      "*You have uploaded a picture of a (color) (species)\n"
-                      "*Symbolism*: discuss flower symbolism\n"
-                      "*Facts*: discuss flower growing region and traditional uses\n"
-                      "*Care*: discuss the water and sunlight required for proper care\n"
-                      "*Allergies*: discuss\n"
-                      "After this, please conclude with a relevant haiku about the flower, following the proper guidelines for haiku writing."
-                      "Here is an example of proper output, included in parenthesis below:"
-                      "(You have uploaded a picture of a red rose." \
-                      "*Symbolism*: The red rose is a romantic flower symbolizing feelings of love and passion." \
-                      "*Facts*: The red rose is native to Asia and Europe, and has traditionally been used to make perfume and tea blends, in addition to serving as a romantic gift." \
-                      "*Care*: Red roses should be exposed to full sun, receive moderate watering, and grow in well-drained, fertile soil." \
-                      "*Allergies*: The thorns of the red rose can cause moderate irritation, so be careful when handling them. Roses are generally safe for pets, but can injure gums or stomachs if eaten." \
-                      "Enjoy your red rose!  Here is a relevant haiku:"
-                      "Scarlet petals blush\nsoft fire in twilight air,\nlove’s breath trembling there.)" \
-                      "Do not deviate from this format, and do not invent additional symbolism beyond the context provided."
-            )        
-            self.add_message('user', prompt)
-            # prompt db for flower symbols
-            context = self.query_db(species, color)
-            messages = self.prompt_engineer(prompt, context)
-
-        else:
-            self.add_message('user', prompt)
-            messages = self.prompt_engineer(prompt)
+        self.add_message('user', prompt)
+        messages = self.prompt_engineer(prompt)
 
         url = f'{self.base_url}/api/chat'  #generate maybe switch to chat
 

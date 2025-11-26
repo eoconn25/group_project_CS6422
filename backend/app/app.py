@@ -212,18 +212,13 @@ def removeUploadedImage():
 # 2025-11-05 this works for now....
 @app.route("/ask", methods=["POST"])
 def ask(image:bool=False, species:str=None, color:str=None):
-    if image:
-        reply = llm.prompt("image")  # prompt llm
-        print("reply: ", reply)
-        return jsonify({"response": reply})
-    else:
-        data = request.get_json()  # get json from frontend
-        print("data: ", data)
-        prompt = data.get("prompt", "")
-        print("prompt: ", prompt)
-        reply = llm.prompt(prompt)  # prompt llm
-        print("reply: ", reply)
-        return jsonify({"response": reply})  # return json response to frontend
+    data = request.get_json()  # get json from frontend
+    print("data: ", data)
+    prompt = data.get("prompt", "")
+    print("prompt: ", prompt)
+    reply = llm.prompt(prompt)  # prompt llm
+    print("reply: ", reply)
+    return jsonify({"response": reply})  # return json response to frontend
 
 
 @app.route('/context/flower', methods=['POST'])
