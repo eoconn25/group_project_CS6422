@@ -1,5 +1,5 @@
 // used to select the state of if more info is shown
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { FlowerVariant } from "../types/flowerTypes";
 
 //blueprint for the props that the FlowerInfoCard component will receive
@@ -14,7 +14,7 @@ interface FlowerInfoCardProps {
 // main component function for the flower info card
 // destructuring -> to pull the peops that are passed (states earlier_)
 export default function FlowerInfoCard({
-  flower,
+  flower,  //info on the flowers
   imageUrl,
   // default value set to false, as do not want all to be saved
   isSaved = false,
@@ -22,6 +22,24 @@ export default function FlowerInfoCard({
 }: FlowerInfoCardProps) {
   // state to track if more info is shown or not, default is false
   const [showMore, setShowMore] = useState(false);
+
+  // Send flower info to backend LLM when card loads
+  useEffect(() => {
+    if (!flower) return;
+
+    console.log("Sending flower context to backend:", flower);
+
+    fetch("http://localhost:5001/context/flower", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ flower })
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("Flower context synced:", data))
+      .catch((err) => console.error("Error syncing flower context:", err));
+  }, [flower]);
+  
+
 
   return (
     // the container for the card
