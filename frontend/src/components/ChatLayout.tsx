@@ -806,7 +806,7 @@ const renderedMessages = activeConversation?.messages.length
             {activeConversation && (
               <div className="absolute bottom-22 right-6 z-30 flex gap-2">
                 <button
-                  //onClick={() => saveChat(activeConversation)}
+                  onClick={() => saveChat(activeConversation)}
                   className="px-4 py-2 bg-lightBlue rounded-lg font-calistoga text-black hover:bg-blue transition"
                 >
                   Save Chat
