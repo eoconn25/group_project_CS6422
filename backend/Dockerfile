@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     #gnupg \
     && rm -rf /var/lib/apt/lists/*
 
+ENV PYTHONUNBUFFERED=1
+
 copy requirements.txt ./
 run pip install -r requirements.txt
 

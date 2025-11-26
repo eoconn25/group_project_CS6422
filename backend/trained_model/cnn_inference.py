@@ -45,12 +45,12 @@ class ClassifyFlower:
 
         # dictionary for decoding predictions
         self.decode_species = {
-            0: 'astilbe', 1: 'bellflower', 2: 'black_eyed_susan', 3: 'calendula', 4: 'california_poppy', 
-            5: 'carnation', 6: 'common_daisy', 7: 'coreopsis', 8: 'daffodil', 9: 'dandelion', 
-            10: 'iris', 11: 'magnolia', 12: 'rose', 13: 'sunflower', 14: 'tulip', 15: 'water_lily'
+            0: 'Astilbe', 1: 'Bellflower', 2: 'Black-eyed Susan', 3: 'Calendula', 4: 'California_poppy', 
+            5: 'Carnation', 6: 'Common Daisy', 7: 'Coreopsis', 8: 'Daffodil', 9: 'Dandelion', 
+            10: 'Iris', 11: 'Magnolia', 12: 'Rose', 13: 'Sunflower', 14: 'Tulip', 15: 'Water Lily'
         }
         self.decode_color = {
-            0: 'white', 1: 'yellow', 2: 'orange', 3: 'pink', 4: 'red', 5: 'purple', 6: 'maroon', 7: 'brown'
+            0: 'White', 1: 'Yellow', 2: 'Orange', 3: 'Pink', 4: 'Red', 5: 'Purple', 6: 'Maroon', 7: 'Brown'
         }
 
 
@@ -111,7 +111,7 @@ class ClassifyFlower:
             species_pred = self.decode_species[species_pred.item()]
             color_pred = self.decode_color[color_pred.item()]
 
-            return species_pred, color_pred
+            return species_pred, color_pred, species_pred
 
 
 ### example use
