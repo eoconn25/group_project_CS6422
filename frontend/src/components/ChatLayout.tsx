@@ -730,7 +730,7 @@ const renderedMessages = activeConversation?.messages.length
         </div >
         {/* Welcome message with username */}
         <p className="text-black font-calistoga mb-2 text-sm">
-          🌸 Welcome, 
+          🌸 Welcome,{" "}
           <span className="font-bold">
             {username ? username : "User"}
           </span>
